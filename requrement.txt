@@ -1,9 +1,0 @@
-
--- pages
-home page
-login
-signup
-events
-
--- just html css js
--- 

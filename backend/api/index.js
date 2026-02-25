@@ -1,12 +1,12 @@
 /**
- * api.js — Vercel Serverless entry point
+ * api/index.js — Vercel Serverless entry point
  *
  * Wraps the Express app for Vercel's Node.js runtime.
  * MongoDB is connected lazily and reused across warm invocations.
  */
 
 const mongoose = require('mongoose');
-const app = require('./src/app');
+const app = require('../src/app');
 
 // 404 handler — registered once at module load (module is cached by Node)
 app.use((_req, res) => res.status(404).json({ error: 'Route not found' }));

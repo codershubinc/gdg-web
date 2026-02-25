@@ -1,1 +1,4 @@
-backend/
+# Only ignore .env files — backend/ is excluded per-project via Root Directory setting
+**/.env
+**/.env.local
+**/.env.*.local

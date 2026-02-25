@@ -324,58 +324,169 @@
       height: 76px;
       animation: ec-float 4s ease-in-out infinite alternate;
       scale: 1;
-      transition: scale 0.35s cubic-bezier(0.4,0,0.2,1), filter 0.35s ease;
+      transition: scale 0.35s cubic-bezier(0.4, 0, 0.2, 1), filter 0.35s ease;
     }
-    .event-card-big:hover .ec-icon-wrap { scale: 1.18; filter: drop-shadow(0 0 18px rgba(255,255,255,0.32)); }
+
+    .event-card-big:hover .ec-icon-wrap {
+      scale: 1.18;
+      filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.32));
+    }
+
     .ec-ring {
       position: absolute;
       inset: -6px;
       border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.28);
+      border: 1.5px solid rgba(255, 255, 255, 0.28);
       animation: ec-pulse 3s ease-out infinite;
       pointer-events: none;
     }
-    .ec-ring-2 { inset: -18px; border-color: rgba(255,255,255,0.10); animation-delay: 1.5s; }
+
+    .ec-ring-2 {
+      inset: -18px;
+      border-color: rgba(255, 255, 255, 0.10);
+      animation-delay: 1.5s;
+    }
+
     .ec-glow {
       position: absolute;
-      width: 60px; height: 60px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       filter: blur(24px);
       opacity: 0.36;
       transition: opacity 0.4s ease, transform 0.4s ease;
       pointer-events: none;
     }
-    .event-card-big:hover .ec-glow { opacity: 0.72; transform: scale(1.4); }
-    .ec-svg {
-      width: 50px; height: 50px;
-      position: relative; z-index: 1;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.55));
+
+    .event-card-big:hover .ec-glow {
+      opacity: 0.72;
+      transform: scale(1.4);
     }
-    [data-category="workshop"]  .ec-glow { background: #4285F4; }
-    [data-category="workshop"]  .ec-ring { border-color: rgba(66,133,244,0.5); }
-    [data-category="hackathon"] .ec-glow { background: #EA4335; }
-    [data-category="hackathon"] .ec-ring { border-color: rgba(234,67,53,0.5); }
-    [data-category="devfest"]   .ec-glow { background: #34A853; }
-    [data-category="devfest"]   .ec-ring { border-color: rgba(52,168,83,0.5); }
-    [data-category="study"]     .ec-glow { background: #4285F4; }
-    [data-category="study"]     .ec-ring { border-color: rgba(66,133,244,0.5); }
-    [data-category="talk"]      .ec-glow { background: #9C27B0; }
-    [data-category="talk"]      .ec-ring { border-color: rgba(156,39,176,0.5); }
-    [data-category="community"] .ec-glow { background: #FBBC04; }
-    [data-category="community"] .ec-ring { border-color: rgba(251,188,4,0.5); }
-    .event-card-big:nth-child(2) .ec-icon-wrap { animation-delay: 0.55s; }
-    .event-card-big:nth-child(3) .ec-icon-wrap { animation-delay: 1.1s; }
-    .event-card-big:nth-child(4) .ec-icon-wrap { animation-delay: 1.65s; }
-    .event-card-big:nth-child(5) .ec-icon-wrap { animation-delay: 2.2s; }
-    .event-card-big:nth-child(6) .ec-icon-wrap { animation-delay: 2.75s; }
-    [data-category="devfest"]   .ec-svg { animation: ec-spin-slow 14s linear infinite; }
-    [data-category="hackathon"] .ec-svg { animation: ec-flicker 2.4s ease-in-out infinite; }
-    @keyframes ec-float  { from { transform: translateY(0); }  to { transform: translateY(-12px); } }
-    @keyframes ec-pulse  { 0% { transform: scale(0.82); opacity: 0.72; } 100% { transform: scale(1.5); opacity: 0; } }
-    @keyframes ec-spin-slow { to { transform: rotate(360deg); } }
+
+    .ec-svg {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.55));
+    }
+
+    [data-category="workshop"] .ec-glow {
+      background: #4285F4;
+    }
+
+    [data-category="workshop"] .ec-ring {
+      border-color: rgba(66, 133, 244, 0.5);
+    }
+
+    [data-category="hackathon"] .ec-glow {
+      background: #EA4335;
+    }
+
+    [data-category="hackathon"] .ec-ring {
+      border-color: rgba(234, 67, 53, 0.5);
+    }
+
+    [data-category="devfest"] .ec-glow {
+      background: #34A853;
+    }
+
+    [data-category="devfest"] .ec-ring {
+      border-color: rgba(52, 168, 83, 0.5);
+    }
+
+    [data-category="study"] .ec-glow {
+      background: #4285F4;
+    }
+
+    [data-category="study"] .ec-ring {
+      border-color: rgba(66, 133, 244, 0.5);
+    }
+
+    [data-category="talk"] .ec-glow {
+      background: #9C27B0;
+    }
+
+    [data-category="talk"] .ec-ring {
+      border-color: rgba(156, 39, 176, 0.5);
+    }
+
+    [data-category="community"] .ec-glow {
+      background: #FBBC04;
+    }
+
+    [data-category="community"] .ec-ring {
+      border-color: rgba(251, 188, 4, 0.5);
+    }
+
+    .event-card-big:nth-child(2) .ec-icon-wrap {
+      animation-delay: 0.55s;
+    }
+
+    .event-card-big:nth-child(3) .ec-icon-wrap {
+      animation-delay: 1.1s;
+    }
+
+    .event-card-big:nth-child(4) .ec-icon-wrap {
+      animation-delay: 1.65s;
+    }
+
+    .event-card-big:nth-child(5) .ec-icon-wrap {
+      animation-delay: 2.2s;
+    }
+
+    .event-card-big:nth-child(6) .ec-icon-wrap {
+      animation-delay: 2.75s;
+    }
+
+    [data-category="devfest"] .ec-svg {
+      animation: ec-spin-slow 14s linear infinite;
+    }
+
+    [data-category="hackathon"] .ec-svg {
+      animation: ec-flicker 2.4s ease-in-out infinite;
+    }
+
+    @keyframes ec-float {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes ec-pulse {
+      0% {
+        transform: scale(0.82);
+        opacity: 0.72;
+      }
+
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes ec-spin-slow {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     @keyframes ec-flicker {
-      0%,100% { opacity:1;    filter: drop-shadow(0 0 4px rgba(234,67,53,0.6)) drop-shadow(0 2px 8px rgba(0,0,0,0.45)); }
-      50%      { opacity:0.8; filter: drop-shadow(0 0 18px rgba(234,67,53,1))   drop-shadow(0 2px 8px rgba(0,0,0,0.45)); }
+
+      0%,
+      100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 4px rgba(234, 67, 53, 0.6)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+      }
+
+      50% {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 18px rgba(234, 67, 53, 1)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+      }
     }
 
     /* Stats bar */
@@ -650,6 +761,140 @@
         text-align: center;
       }
     }
+
+    /* ── Modal prev / next navigation ── */
+    .modal-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.15rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9001;
+      opacity: 0;
+      pointer-events: none;
+      transition: background 0.2s ease, opacity 0.25s ease, transform 0.15s ease;
+      user-select: none;
+    }
+
+    .event-modal-backdrop.open .modal-nav-btn {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .modal-nav-btn:active {
+      transform: translateY(-50%) scale(0.88);
+    }
+
+    .modal-nav-btn.nav-disabled {
+      opacity: 0.18 !important;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    #modal-prev {
+      left: 16px;
+    }
+
+    #modal-next {
+      right: 16px;
+    }
+
+    @media (max-width: 600px) {
+      #modal-prev {
+        left: 6px;
+      }
+
+      #modal-next {
+        right: 6px;
+      }
+
+      .modal-nav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
+    }
+
+    /* ── Modal card-change animations ── */
+    @keyframes modal-slide-in-right {
+      from {
+        opacity: 0;
+        transform: translateX(52px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    @keyframes modal-slide-in-left {
+      from {
+        opacity: 0;
+        transform: translateX(-52px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    @keyframes modal-slide-out-left {
+      from {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(-52px) scale(0.97);
+      }
+    }
+
+    @keyframes modal-slide-out-right {
+      from {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(52px) scale(0.97);
+      }
+    }
+
+    .event-modal.anim-in-right {
+      animation: modal-slide-in-right 0.32s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+    }
+
+    .event-modal.anim-in-left {
+      animation: modal-slide-in-left 0.32s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+    }
+
+    .event-modal.anim-out-left {
+      animation: modal-slide-out-left 0.18s ease forwards;
+    }
+
+    .event-modal.anim-out-right {
+      animation: modal-slide-out-right 0.18s ease forwards;
+    }
   </style>
 </head>
 
@@ -757,23 +1002,24 @@
     <div class="event-card-big reveal delay-1" data-category="workshop">
       <div class="event-img-big" style="background:linear-gradient(135deg,#0d1b3e,#1a237e)">
         <div class="ec-icon-wrap">
-          <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+          <div class="ec-ring"></div>
+          <div class="ec-ring ec-ring-2"></div>
           <div class="ec-glow"></div>
           <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
-            <line x1="14" y1="16" x2="31" y2="28" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-            <line x1="14" y1="32" x2="31" y2="32" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-            <line x1="14" y1="48" x2="31" y2="36" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-            <line x1="33" y1="28" x2="50" y2="22" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-            <line x1="33" y1="28" x2="50" y2="42" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-            <line x1="33" y1="36" x2="50" y2="22" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-            <line x1="33" y1="36" x2="50" y2="42" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-            <circle cx="14" cy="16" r="4" fill="rgba(255,255,255,0.85)"/>
-            <circle cx="14" cy="32" r="4" fill="rgba(255,255,255,0.85)"/>
-            <circle cx="14" cy="48" r="4" fill="rgba(255,255,255,0.85)"/>
-            <circle cx="32" cy="28" r="5" fill="white"/>
-            <circle cx="32" cy="36" r="5" fill="white"/>
-            <circle cx="50" cy="22" r="4" fill="rgba(255,255,255,0.85)"/>
-            <circle cx="50" cy="42" r="4" fill="rgba(255,255,255,0.85)"/>
+            <line x1="14" y1="16" x2="31" y2="28" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+            <line x1="14" y1="32" x2="31" y2="32" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+            <line x1="14" y1="48" x2="31" y2="36" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+            <line x1="33" y1="28" x2="50" y2="22" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+            <line x1="33" y1="28" x2="50" y2="42" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+            <line x1="33" y1="36" x2="50" y2="22" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+            <line x1="33" y1="36" x2="50" y2="42" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+            <circle cx="14" cy="16" r="4" fill="rgba(255,255,255,0.85)" />
+            <circle cx="14" cy="32" r="4" fill="rgba(255,255,255,0.85)" />
+            <circle cx="14" cy="48" r="4" fill="rgba(255,255,255,0.85)" />
+            <circle cx="32" cy="28" r="5" fill="white" />
+            <circle cx="32" cy="36" r="5" fill="white" />
+            <circle cx="50" cy="22" r="4" fill="rgba(255,255,255,0.85)" />
+            <circle cx="50" cy="42" r="4" fill="rgba(255,255,255,0.85)" />
           </svg>
         </div>
       </div>
@@ -829,10 +1075,11 @@
     <div class="event-card-big reveal delay-2" data-category="hackathon">
       <div class="event-img-big" style="background:linear-gradient(135deg,#3e0d0d,#7f1212)">
         <div class="ec-icon-wrap">
-          <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+          <div class="ec-ring"></div>
+          <div class="ec-ring ec-ring-2"></div>
           <div class="ec-glow"></div>
           <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
-            <path d="M37 5L15 37h17L26 59 53 27H36L40 5z" fill="rgba(255,255,255,0.95)"/>
+            <path d="M37 5L15 37h17L26 59 53 27H36L40 5z" fill="rgba(255,255,255,0.95)" />
           </svg>
         </div>
       </div>
@@ -888,10 +1135,13 @@
     <div class="event-card-big reveal delay-3" data-category="devfest">
       <div class="event-img-big" style="background:linear-gradient(135deg,#1a3a1a,#1b5e20)">
         <div class="ec-icon-wrap">
-          <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+          <div class="ec-ring"></div>
+          <div class="ec-ring ec-ring-2"></div>
           <div class="ec-glow"></div>
           <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
-            <polygon points="32,5 35.5,21 51,14 42,27 58,32 42,37 51,50 35.5,43 32,59 28.5,43 13,50 22,37 6,32 22,27 13,14 28.5,21" fill="rgba(255,255,255,0.95)"/>
+            <polygon
+              points="32,5 35.5,21 51,14 42,27 58,32 42,37 51,50 35.5,43 32,59 28.5,43 13,50 22,37 6,32 22,27 13,14 28.5,21"
+              fill="rgba(255,255,255,0.95)" />
           </svg>
         </div>
       </div>
@@ -947,12 +1197,15 @@
     <div class="event-card-big reveal delay-1" data-category="study">
       <div class="event-img-big" style="background:linear-gradient(135deg,#0d2137,#01579b)">
         <div class="ec-icon-wrap">
-          <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+          <div class="ec-ring"></div>
+          <div class="ec-ring ec-ring-2"></div>
           <div class="ec-glow"></div>
           <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
-            <path d="M18 46c-6 0-10-4.7-10-10.5 0-5.4 3.8-9.9 9-10.4C18.4 19 25 13 32 13s13.6 6 15 12.1c5.2.5 9 5 9 10.4C56 41.3 52 46 46 46H18z" fill="rgba(255,255,255,0.92)"/>
-            <path d="M32 38v10" stroke="#0a1a2e" stroke-width="3" stroke-linecap="round"/>
-            <path d="M27 44l5 6 5-6" stroke="#0a1a2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M18 46c-6 0-10-4.7-10-10.5 0-5.4 3.8-9.9 9-10.4C18.4 19 25 13 32 13s13.6 6 15 12.1c5.2.5 9 5 9 10.4C56 41.3 52 46 46 46H18z"
+              fill="rgba(255,255,255,0.92)" />
+            <path d="M32 38v10" stroke="#0a1a2e" stroke-width="3" stroke-linecap="round" />
+            <path d="M27 44l5 6 5-6" stroke="#0a1a2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </div>
       </div>
@@ -1000,16 +1253,21 @@
     <div class="event-card-big reveal delay-2" data-category="talk">
       <div class="event-img-big" style="background:linear-gradient(135deg,#2d1b69,#4a148c)">
         <div class="ec-icon-wrap">
-          <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+          <div class="ec-ring"></div>
+          <div class="ec-ring ec-ring-2"></div>
           <div class="ec-glow"></div>
           <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
-            <polygon points="32,14 42,20 42,32 32,38 22,32 22,20" stroke="rgba(255,255,255,0.95)" stroke-width="2" fill="rgba(255,255,255,0.14)"/>
-            <polygon points="10,38 16,41.5 16,48.5 10,52 4,48.5 4,41.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" fill="rgba(255,255,255,0.08)"/>
-            <polygon points="54,38 60,41.5 60,48.5 54,52 48,48.5 48,41.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" fill="rgba(255,255,255,0.08)"/>
-            <polygon points="32,4 37,7 37,13 32,16 27,13 27,7" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" fill="rgba(255,255,255,0.08)"/>
-            <line x1="22" y1="30" x2="14" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-            <line x1="42" y1="30" x2="50" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-            <line x1="32" y1="14" x2="32" y2="13" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+            <polygon points="32,14 42,20 42,32 32,38 22,32 22,20" stroke="rgba(255,255,255,0.95)" stroke-width="2"
+              fill="rgba(255,255,255,0.14)" />
+            <polygon points="10,38 16,41.5 16,48.5 10,52 4,48.5 4,41.5" stroke="rgba(255,255,255,0.65)"
+              stroke-width="1.5" fill="rgba(255,255,255,0.08)" />
+            <polygon points="54,38 60,41.5 60,48.5 54,52 48,48.5 48,41.5" stroke="rgba(255,255,255,0.65)"
+              stroke-width="1.5" fill="rgba(255,255,255,0.08)" />
+            <polygon points="32,4 37,7 37,13 32,16 27,13 27,7" stroke="rgba(255,255,255,0.65)" stroke-width="1.5"
+              fill="rgba(255,255,255,0.08)" />
+            <line x1="22" y1="30" x2="14" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" />
+            <line x1="42" y1="30" x2="50" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" />
+            <line x1="32" y1="14" x2="32" y2="13" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" />
           </svg>
         </div>
       </div>
@@ -1057,12 +1315,16 @@
     <div class="event-card-big reveal delay-3" data-category="community">
       <div class="event-img-big" style="background:linear-gradient(135deg,#33180d,#bf360c)">
         <div class="ec-icon-wrap">
-          <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+          <div class="ec-ring"></div>
+          <div class="ec-ring ec-ring-2"></div>
           <div class="ec-glow"></div>
           <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
-            <path d="M22 18L9 32l13 14" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M42 18l13 14-13 14" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="38" y1="12" x2="26" y2="52" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M22 18L9 32l13 14" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M42 18l13 14-13 14" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <line x1="38" y1="12" x2="26" y2="52" stroke="rgba(255,255,255,0.55)" stroke-width="2.5"
+              stroke-linecap="round" />
           </svg>
         </div>
       </div>
@@ -1117,15 +1379,18 @@
     <div class="event-card-big past-card reveal delay-1" data-category="workshop">
       <div class="event-img-big" style="background:linear-gradient(135deg,#111,#222)">
         <div class="ec-icon-wrap">
-          <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+          <div class="ec-ring"></div>
+          <div class="ec-ring ec-ring-2"></div>
           <div class="ec-glow" style="background:#4285F4"></div>
           <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
-            <circle cx="32" cy="32" r="16" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="rgba(255,255,255,0.06)"/>
-            <path d="M32 16 C22 16 16 24 16 32 C16 40 22 48 32 48 C42 48 48 40 48 32 C48 24 42 16 32 16z" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
-            <ellipse cx="32" cy="32" rx="9" ry="16" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
-            <line x1="16" y1="32" x2="48" y2="32" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
-            <line x1="19" y1="22" x2="45" y2="22" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-            <line x1="19" y1="42" x2="45" y2="42" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+            <circle cx="32" cy="32" r="16" stroke="rgba(255,255,255,0.6)" stroke-width="2"
+              fill="rgba(255,255,255,0.06)" />
+            <path d="M32 16 C22 16 16 24 16 32 C16 40 22 48 32 48 C42 48 48 40 48 32 C48 24 42 16 32 16z"
+              stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" />
+            <ellipse cx="32" cy="32" rx="9" ry="16" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none" />
+            <line x1="16" y1="32" x2="48" y2="32" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" />
+            <line x1="19" y1="22" x2="45" y2="22" stroke="rgba(255,255,255,0.25)" stroke-width="1" />
+            <line x1="19" y1="42" x2="45" y2="42" stroke="rgba(255,255,255,0.25)" stroke-width="1" />
           </svg>
         </div>
       </div>
@@ -1161,10 +1426,11 @@
     <div class="event-card-big past-card reveal delay-2" data-category="hackathon">
       <div class="event-img-big" style="background:linear-gradient(135deg,#111,#222)">
         <div class="ec-icon-wrap">
-          <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+          <div class="ec-ring"></div>
+          <div class="ec-ring ec-ring-2"></div>
           <div class="ec-glow" style="background:#EA4335"></div>
           <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
-            <path d="M32 8l5.5 17H56l-14.5 10.5 5.5 17L32 42l-15 10.5 5.5-17L8 25h18.5z" fill="rgba(255,255,255,0.9)"/>
+            <path d="M32 8l5.5 17H56l-14.5 10.5 5.5 17L32 42l-15 10.5 5.5-17L8 25h18.5z" fill="rgba(255,255,255,0.9)" />
           </svg>
         </div>
       </div>
@@ -1200,13 +1466,18 @@
     <div class="event-card-big past-card reveal delay-3" data-category="talk">
       <div class="event-img-big" style="background:linear-gradient(135deg,#111,#222)">
         <div class="ec-icon-wrap">
-          <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+          <div class="ec-ring"></div>
+          <div class="ec-ring ec-ring-2"></div>
           <div class="ec-glow" style="background:#9C27B0"></div>
           <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
-            <circle cx="32" cy="20" r="9" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="rgba(255,255,255,0.1)"/>
-            <path d="M13 56c0-10.5 8.5-19 19-19s19 8.5 19 19" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <line x1="44" y1="28" x2="56" y2="22" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="44" y1="34" x2="56" y2="38" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="32" cy="20" r="9" stroke="rgba(255,255,255,0.9)" stroke-width="2"
+              fill="rgba(255,255,255,0.1)" />
+            <path d="M13 56c0-10.5 8.5-19 19-19s19 8.5 19 19" stroke="rgba(255,255,255,0.9)" stroke-width="2"
+              stroke-linecap="round" fill="none" />
+            <line x1="44" y1="28" x2="56" y2="22" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"
+              stroke-linecap="round" />
+            <line x1="44" y1="34" x2="56" y2="38" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"
+              stroke-linecap="round" />
           </svg>
         </div>
       </div>
@@ -1305,6 +1576,7 @@
 
   <!-- Event Detail Modal -->
   <div class="event-modal-backdrop" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-nav-btn" id="modal-prev" aria-label="Previous event">&#8592;</button>
     <div class="event-modal">
       <div class="event-modal-hero" id="modal-hero"><span id="modal-emoji"></span></div>
       <button class="event-modal-close" id="modal-close" aria-label="Close">✕</button>
@@ -1317,6 +1589,7 @@
         <div class="event-modal-footer" id="modal-footer"></div>
       </div>
     </div>
+    <button class="modal-nav-btn" id="modal-next" aria-label="Next event">&#8594;</button>
   </div>
 
   <script type="module" src="js/main.js"></script>
@@ -1328,15 +1601,60 @@
   <script>
     (function () {
       const backdrop = document.getElementById('event-modal');
+      var currentCardIndex = -1;
+      var visibleCards = [];
+
+      function getVisibleCards() {
+        return Array.from(document.querySelectorAll('.event-card-big')).filter(function (card) {
+          return getComputedStyle(card).display !== 'none';
+        });
+      }
 
       /* ── Tap/click anywhere on a card to open modal ── */
       document.querySelectorAll('.event-card-big').forEach(function (card) {
         card.addEventListener('click', function (e) {
           /* don't intercept real button/link clicks */
           if (e.target.closest('a, button')) return;
+          visibleCards = getVisibleCards();
+          currentCardIndex = visibleCards.indexOf(card);
           openModal(card);
         });
       });
+
+      function updateNavState() {
+        var prevBtn = document.getElementById('modal-prev');
+        var nextBtn = document.getElementById('modal-next');
+        prevBtn.classList.toggle('nav-disabled', currentCardIndex <= 0);
+        nextBtn.classList.toggle('nav-disabled', currentCardIndex >= visibleCards.length - 1);
+      }
+
+      function goToCard(index) {
+        if (index < 0 || index >= visibleCards.length) return;
+        var direction = index > currentCardIndex ? 1 : -1;
+        var modalEl = document.querySelector('.event-modal');
+
+        /* clear any leftover anim classes */
+        modalEl.classList.remove('anim-in-right', 'anim-in-left', 'anim-out-left', 'anim-out-right');
+
+        /* slide out in the travel direction */
+        var outClass = direction > 0 ? 'anim-out-left' : 'anim-out-right';
+        modalEl.classList.add(outClass);
+
+        setTimeout(function () {
+          modalEl.classList.remove(outClass);
+          currentCardIndex = index;
+          openModal(visibleCards[currentCardIndex]);
+          modalEl.scrollTop = 0;
+
+          /* slide in from the opposite direction */
+          var inClass = direction > 0 ? 'anim-in-right' : 'anim-in-left';
+          modalEl.classList.add(inClass);
+          modalEl.addEventListener('animationend', function cleanup() {
+            modalEl.classList.remove(inClass);
+            modalEl.removeEventListener('animationend', cleanup);
+          });
+        }, 180);
+      }
 
       function openModal(card) {
         var heroEl = card.querySelector('.event-img-big');
@@ -1350,7 +1668,16 @@
         /* hero */
         var mHero = document.getElementById('modal-hero');
         mHero.style.background = heroEl ? heroEl.style.background : '';
-        document.getElementById('modal-emoji').textContent = heroEl ? heroEl.textContent.trim() : '';
+        var mEmoji = document.getElementById('modal-emoji');
+        mEmoji.innerHTML = '';
+        if (heroEl) {
+          var iconWrap = heroEl.querySelector('.ec-icon-wrap');
+          if (iconWrap) {
+            mEmoji.appendChild(iconWrap.cloneNode(true));
+          } else {
+            mEmoji.textContent = heroEl.textContent.trim();
+          }
+        }
 
         /* badge */
         var mBadgeRow = document.getElementById('modal-badge-row');
@@ -1399,8 +1726,7 @@
         /* inject action button */
         var cta = document.createElement('a');
         if (isPast) {
-          var ctaText = 'View Details';
-          cta.textContent = ctaText;
+          cta.textContent = 'View Details';
           cta.href = '#';
           cta.className = 'btn btn-ghost';
         } else {
@@ -1412,6 +1738,7 @@
 
         backdrop.classList.add('open');
         document.body.style.overflow = 'hidden';
+        updateNavState();
       }
 
       function closeModal() {
@@ -1419,9 +1746,21 @@
         document.body.style.overflow = '';
       }
 
+      document.getElementById('modal-prev').addEventListener('click', function () {
+        goToCard(currentCardIndex - 1);
+      });
+      document.getElementById('modal-next').addEventListener('click', function () {
+        goToCard(currentCardIndex + 1);
+      });
+
       document.getElementById('modal-close').addEventListener('click', closeModal);
       backdrop.addEventListener('click', function (e) { if (e.target === backdrop) closeModal(); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { closeModal(); return; }
+        if (!backdrop.classList.contains('open')) return;
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goToCard(currentCardIndex - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goToCard(currentCardIndex + 1); }
+      });
     })();
   </script>
 </body>

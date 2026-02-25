@@ -1,29 +1,60 @@
-'use strict';
-
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema(
     {
-        name: { type: String, required: true, trim: true },
-        email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-        password: { type: String, required: true, minlength: 8, select: false },
-        college: { type: String, default: '', trim: true },
-        role: { type: String, enum: ['member', 'admin'], default: 'member' },
+        name: {
+            type: String,
+            required: [true, 'Name is required'],
+            trim: true,
+            maxlength: [100, 'Name cannot exceed 100 characters'],
+        },
+        email: {
+            type: String,
+            required: [true, 'Email is required'],
+            unique: true,
+            lowercase: true,
+            trim: true,
+            match: [/^\S+@\S+\.\S+$/, 'Please provide a valid email'],
+        },
+        password: {
+            type: String,
+            required: [true, 'Password is required'],
+            minlength: [8, 'Password must be at least 8 characters'],
+            select: false, // never returned in queries by default
+        },
+        college: {
+            type: String,
+            trim: true,
+            default: '',
+        },
+        role: {
+            type: String,
+            enum: ['member', 'admin'],
+            default: 'member',
+        },
     },
     { timestamps: true }
 );
 
-// Hash password before every save (only when modified)
+// Hash password before saving
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
     this.password = await bcrypt.hash(this.password, 12);
     next();
 });
 
-/** Compare a plaintext candidate against the stored hash. */
+// Compare plain-text password to stored hash
 userSchema.methods.comparePassword = function (candidate) {
     return bcrypt.compare(candidate, this.password);
+};
+
+// Strip sensitive fields from JSON output
+userSchema.methods.toJSON = function () {
+    const obj = this.toObject();
+    delete obj.password;
+    delete obj.__v;
+    return obj;
 };
 
 module.exports = mongoose.model('User', userSchema);

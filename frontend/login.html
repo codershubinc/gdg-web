@@ -252,13 +252,33 @@
 
         redirectIfLoggedIn('dashboard.html');
 
-        /* ── helpers ── */
+        /* ── status banner ── */
         const statusEl = document.getElementById('status-msg');
         const statusTxt = document.getElementById('status-text');
+        const statusSvg = statusEl.querySelector('svg');
+
+        const SVG_ERROR = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>';
+        const SVG_SUCCESS = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>';
 
         function showStatus(msg, isError = false) {
+            // reset first so animation always replays
+            statusEl.className = 'auth-status-msg';
+            void statusEl.offsetWidth;
             statusEl.className = 'auth-status-msg show ' + (isError ? 'error' : 'success');
+            statusSvg.innerHTML = isError ? SVG_ERROR : SVG_SUCCESS;
             statusTxt.textContent = msg;
+        }
+
+        function friendlyError(err) {
+            if (!navigator.onLine) return 'No internet connection. Check your network.';
+            const m = err?.message || '';
+            if (m.includes('Failed to fetch') || m.includes('NetworkError') || m.includes('Load failed'))
+                return 'Cannot reach the server. Make sure the backend is running.';
+            if (m.toLowerCase().includes('invalid email or password'))
+                return 'Incorrect email or password. Please try again.';
+            if (m.includes('429'))
+                return 'Too many attempts. Please wait a moment and try again.';
+            return m || 'Something went wrong. Please try again.';
         }
 
         function setLoading(btn, loading) {
@@ -267,6 +287,11 @@
                 ? '<span class="spinner"></span> Signing in…'
                 : 'Sign In';
         }
+
+        /* ── clear banner when user starts typing ── */
+        document.getElementById('login-form').addEventListener('input', () => {
+            if (statusEl.classList.contains('show')) statusEl.className = 'auth-status-msg';
+        }, { passive: true });
 
         /* ── password toggle ── */
         const pwInput = document.getElementById('password');
@@ -283,18 +308,20 @@
 
         form.addEventListener('submit', async e => {
             e.preventDefault();
-            statusEl.className = 'auth-status-msg'; // clear on every submit attempt
             const email = document.getElementById('email').value.trim();
             const password = pwInput.value;
-            if (!email || !password) { showStatus('Please fill in both fields.', true); return; }
+
+            if (!email) { showStatus('Please enter your email address.', true); return; }
+            if (!password) { showStatus('Please enter your password.', true); return; }
+            if (!/\S+@\S+\.\S+/.test(email)) { showStatus('Please enter a valid email address.', true); return; }
 
             setLoading(btn, true);
             try {
                 await login(email, password);
                 showStatus('✓ Signed in! Redirecting…');
-                setTimeout(() => window.location.href = 'dashboard.html', 700);
+                setTimeout(() => window.location.href = 'dashboard.html', 900);
             } catch (err) {
-                showStatus(err.message || 'Invalid credentials. Try again.', true);
+                showStatus(friendlyError(err), true);
                 setLoading(btn, false);
             }
         });

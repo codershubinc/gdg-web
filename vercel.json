@@ -1,14 +1,18 @@
 {
     "version": 2,
     "outputDirectory": "frontend",
+    "functions": {
+        "backend/api.js": {
+            "includeFiles": "backend/src/**"
+        }
+    },
     "routes": [
         {
             "src": "/api/(.*)",
-            "dest": "/api/$1"
+            "dest": "/backend/api.js"
         },
         {
-            "src": "/(.*)",
-            "dest": "/$1"
+            "handle": "filesystem"
         }
     ]
 }

@@ -312,13 +312,33 @@
 
         redirectIfLoggedIn('dashboard.html');
 
-        /* ── helpers ── */
+        /* ── status banner ── */
         const statusEl = document.getElementById('status-msg');
         const statusTxt = document.getElementById('status-text');
+        const statusSvg = statusEl.querySelector('svg');
+
+        const SVG_ERROR = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>';
+        const SVG_SUCCESS = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>';
 
         function showStatus(msg, isError = false) {
+            // reset first so animation always replays
+            statusEl.className = 'auth-status-msg';
+            void statusEl.offsetWidth;
             statusEl.className = 'auth-status-msg show ' + (isError ? 'error' : 'success');
+            statusSvg.innerHTML = isError ? SVG_ERROR : SVG_SUCCESS;
             statusTxt.textContent = msg;
+        }
+
+        function friendlyError(err) {
+            if (!navigator.onLine) return 'No internet connection. Check your network.';
+            const m = err?.message || '';
+            if (m.includes('Failed to fetch') || m.includes('NetworkError') || m.includes('Load failed'))
+                return 'Cannot reach the server. Make sure the backend is running.';
+            if (m.toLowerCase().includes('already exists'))
+                return 'An account with this email already exists. Try signing in instead.';
+            if (m.includes('429'))
+                return 'Too many attempts. Please wait a moment and try again.';
+            return m || 'Something went wrong. Please try again.';
         }
 
         function setLoading(btn, loading) {
@@ -327,6 +347,11 @@
                 ? '<span class="spinner"></span> Creating account…'
                 : 'Create Account';
         }
+
+        /* ── clear banner when user starts typing ── */
+        document.getElementById('signup-form').addEventListener('input', () => {
+            if (statusEl.classList.contains('show')) statusEl.className = 'auth-status-msg';
+        }, { passive: true });
 
         /* ── password toggle helpers ── */
         function makeToggle(btnId, inputId, showId, hideId) {
@@ -400,9 +425,9 @@
             try {
                 await signUp(name, email, password, college);
                 showStatus('✓ Account created! Redirecting…');
-                setTimeout(() => window.location.href = 'dashboard.html', 700);
+                setTimeout(() => window.location.href = 'dashboard.html', 900);
             } catch (err) {
-                showStatus(err.message || 'Something went wrong. Try again.', true);
+                showStatus(friendlyError(err), true);
                 setLoading(btn, false);
             }
         });

@@ -95,7 +95,7 @@ window.addEventListener('load', () => {
 
 /* ===== SCROLL REVEAL ===== */
 (function initScrollReveal() {
-  const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-tl, .reveal-tr, .reveal-bl, .reveal-br');
   if (!els.length) return;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {

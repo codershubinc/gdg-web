@@ -28,7 +28,8 @@
 
   <!-- Particles -->
   <canvas id="particles-canvas"></canvas>
-  <canvas id="fluid-canvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;"></canvas>
+  <canvas id="fluid-canvas"
+    style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;"></canvas>
 
   <!-- Navbar -->
   <nav class="navbar">
@@ -177,27 +178,37 @@
 
   <!-- ====== ABOUT ====== -->
   <section class="about-section" id="about">
+    <!-- decorative bg orbs -->
+    <div class="about-bg-orb about-bg-orb-1"></div>
+    <div class="about-bg-orb about-bg-orb-2"></div>
+    <div class="about-bg-orb about-bg-orb-3"></div>
+
     <div class="about-grid">
-      <div class="about-visual reveal-left">
+      <div class="about-visual">
         <div class="about-icon-grid">
-          <div class="about-icon-card">
+          <div class="about-icon-card reveal-tl delay-1">
             <span class="icon">🚀</span>
             <h4>Innovation</h4>
+            <p>Pushing boundaries with cutting-edge Google tech</p>
           </div>
-          <div class="about-icon-card">
+          <div class="about-icon-card reveal-tr delay-2">
             <span class="icon">🤝</span>
             <h4>Collaboration</h4>
+            <p>Building alongside passionate fellow developers</p>
           </div>
-          <div class="about-icon-card">
+          <div class="about-icon-card reveal-bl delay-3">
             <span class="icon">💡</span>
             <h4>Learning</h4>
+            <p>Workshops, study jams &amp; hands-on sessions</p>
           </div>
-          <div class="about-icon-card">
+          <div class="about-icon-card reveal-br delay-4">
             <span class="icon">🌍</span>
             <h4>Community</h4>
+            <p>Part of a global network of 10M+ developers</p>
           </div>
         </div>
       </div>
+
       <div class="about-content reveal-right">
         <div class="section-tag">About Us</div>
         <h2 class="section-title">Where <span class="highlight">Tech Meets</span> Passion</h2>
@@ -210,28 +221,48 @@
         <p>We host workshops, hackathons, tech talks, and study jams — all designed to bring you closer to cutting-edge
           technologies and the global developer ecosystem powered by Google.</p>
         <div class="about-pillars">
-          <div class="pillar">
+          <div class="pillar reveal delay-1">
             <div class="pillar-icon blue">🎓</div>
             <div class="pillar-text">
               <h4>Learn New Skills</h4>
-              <p>Workshops & study jams on Google technologies</p>
+              <p>Workshops &amp; study jams on Google technologies</p>
             </div>
           </div>
-          <div class="pillar">
+          <div class="pillar reveal delay-2">
             <div class="pillar-icon red">🏆</div>
             <div class="pillar-text">
-              <h4>Build & Compete</h4>
-              <p>Hackathons, solution challenges & project showcases</p>
+              <h4>Build &amp; Compete</h4>
+              <p>Hackathons, solution challenges &amp; project showcases</p>
             </div>
           </div>
-          <div class="pillar">
+          <div class="pillar reveal delay-3">
             <div class="pillar-icon green">🌐</div>
             <div class="pillar-text">
               <h4>Grow Your Network</h4>
-              <p>Connect with developers, mentors & industry experts</p>
+              <p>Connect with developers, mentors &amp; industry experts</p>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="about-stats">
+      <div class="about-stat-card reveal delay-1">
+        <span class="about-stat-num" style="background:linear-gradient(135deg,#4285F4,#34A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">580+</span>
+        <span class="about-stat-label">Community Members</span>
+      </div>
+      <div class="about-stat-card reveal delay-2">
+        <span class="about-stat-num" style="background:linear-gradient(135deg,#EA4335,#FBBC04);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">11+</span>
+        <span class="about-stat-label">Events Hosted</span>
+      </div>
+      <div class="about-stat-card reveal delay-3">
+        <span class="about-stat-num" style="background:linear-gradient(135deg,#FBBC04,#EA4335);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">6</span>
+        <span class="about-stat-label">Tech Domains</span>
+      </div>
+      <div class="about-stat-card reveal delay-4">
+        <span class="about-stat-num" style="background:linear-gradient(135deg,#34A853,#4285F4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">3+</span>
+        <span class="about-stat-label">Years of Impact</span>
       </div>
     </div>
   </section>
@@ -251,7 +282,28 @@
       <!-- Event 1 -->
       <div class="event-card reveal delay-1" data-category="workshop">
         <div class="event-card-image">
-          <div class="img-placeholder" style="background: linear-gradient(135deg,#0d1b3e,#1a237e);">🤖</div>
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#0d1b3e,#1a237e);">
+            <div class="ec-icon-wrap">
+              <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+              <div class="ec-glow"></div>
+              <svg class="ec-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="14" y1="16" x2="31" y2="28" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <line x1="14" y1="32" x2="31" y2="32" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <line x1="14" y1="48" x2="31" y2="36" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <line x1="33" y1="28" x2="50" y2="22" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <line x1="33" y1="28" x2="50" y2="42" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <line x1="33" y1="36" x2="50" y2="22" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <line x1="33" y1="36" x2="50" y2="42" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <circle cx="14" cy="16" r="4" fill="rgba(255,255,255,0.85)"/>
+                <circle cx="14" cy="32" r="4" fill="rgba(255,255,255,0.85)"/>
+                <circle cx="14" cy="48" r="4" fill="rgba(255,255,255,0.85)"/>
+                <circle cx="32" cy="28" r="5" fill="white"/>
+                <circle cx="32" cy="36" r="5" fill="white"/>
+                <circle cx="50" cy="22" r="4" fill="rgba(255,255,255,0.85)"/>
+                <circle cx="50" cy="42" r="4" fill="rgba(255,255,255,0.85)"/>
+              </svg>
+            </div>
+          </div>
           <span class="event-type-badge badge-workshop">Workshop</span>
         </div>
         <div class="event-card-body">
@@ -292,7 +344,15 @@
       <!-- Event 2 -->
       <div class="event-card reveal delay-2" data-category="hackathon">
         <div class="event-card-image">
-          <div class="img-placeholder" style="background: linear-gradient(135deg,#3e0d0d,#7f1212);">⚡</div>
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#3e0d0d,#7f1212);">
+            <div class="ec-icon-wrap">
+              <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+              <div class="ec-glow"></div>
+              <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
+                <path d="M37 5L15 37h17L26 59 53 27H36L40 5z" fill="rgba(255,255,255,0.95)"/>
+              </svg>
+            </div>
+          </div>
           <span class="event-type-badge badge-hackathon">Hackathon</span>
         </div>
         <div class="event-card-body">
@@ -333,7 +393,15 @@
       <!-- Event 3 -->
       <div class="event-card reveal delay-3" data-category="devfest">
         <div class="event-card-image">
-          <div class="img-placeholder" style="background: linear-gradient(135deg,#1a3a1a,#1b5e20);">🎉</div>
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#1a3a1a,#1b5e20);">
+            <div class="ec-icon-wrap">
+              <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+              <div class="ec-glow"></div>
+              <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
+                <polygon points="32,5 35.5,21 51,14 42,27 58,32 42,37 51,50 35.5,43 32,59 28.5,43 13,50 22,37 6,32 22,27 13,14 28.5,21" fill="rgba(255,255,255,0.95)"/>
+              </svg>
+            </div>
+          </div>
           <span class="event-type-badge badge-devfest">DevFest</span>
         </div>
         <div class="event-card-body">
@@ -374,7 +442,17 @@
       <!-- Event 4 -->
       <div class="event-card reveal delay-4" data-category="study">
         <div class="event-card-image">
-          <div class="img-placeholder" style="background: linear-gradient(135deg,#0d2137,#01579b);">☁️</div>
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#0d2137,#01579b);">
+            <div class="ec-icon-wrap">
+              <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+              <div class="ec-glow"></div>
+              <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
+                <path d="M18 46c-6 0-10-4.7-10-10.5 0-5.4 3.8-9.9 9-10.4C18.4 19 25 13 32 13s13.6 6 15 12.1c5.2.5 9 5 9 10.4C56 41.3 52 46 46 46H18z" fill="rgba(255,255,255,0.92)"/>
+                <path d="M32 38v10" stroke="#0a1a2e" stroke-width="3" stroke-linecap="round"/>
+                <path d="M27 44l5 6 5-6" stroke="#0a1a2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
           <span class="event-type-badge badge-study">Study Jam</span>
         </div>
         <div class="event-card-body">
@@ -415,7 +493,21 @@
       <!-- Event 5 -->
       <div class="event-card reveal delay-5" data-category="talk">
         <div class="event-card-image">
-          <div class="img-placeholder" style="background: linear-gradient(135deg,#2d1b69,#4a148c);">🎤</div>
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#2d1b69,#4a148c);">
+            <div class="ec-icon-wrap">
+              <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+              <div class="ec-glow"></div>
+              <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
+                <polygon points="32,14 42,20 42,32 32,38 22,32 22,20" stroke="rgba(255,255,255,0.95)" stroke-width="2" fill="rgba(255,255,255,0.14)"/>
+                <polygon points="10,38 16,41.5 16,48.5 10,52 4,48.5 4,41.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" fill="rgba(255,255,255,0.08)"/>
+                <polygon points="54,38 60,41.5 60,48.5 54,52 48,48.5 48,41.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" fill="rgba(255,255,255,0.08)"/>
+                <polygon points="32,4 37,7 37,13 32,16 27,13 27,7" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" fill="rgba(255,255,255,0.08)"/>
+                <line x1="22" y1="30" x2="14" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+                <line x1="42" y1="30" x2="50" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+                <line x1="32" y1="14" x2="32" y2="13" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+              </svg>
+            </div>
+          </div>
           <span class="event-type-badge badge-talk">Tech Talk</span>
         </div>
         <div class="event-card-body">
@@ -456,7 +548,17 @@
       <!-- Event 6 -->
       <div class="event-card reveal delay-6" data-category="community">
         <div class="event-card-image">
-          <div class="img-placeholder" style="background: linear-gradient(135deg,#33180d,#bf360c);">🎊</div>
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#33180d,#bf360c);">
+            <div class="ec-icon-wrap">
+              <div class="ec-ring"></div><div class="ec-ring ec-ring-2"></div>
+              <div class="ec-glow"></div>
+              <svg class="ec-svg" viewBox="0 0 64 64" fill="none">
+                <path d="M22 18L9 32l13 14" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M42 18l13 14-13 14" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="38" y1="12" x2="26" y2="52" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
           <span class="event-type-badge badge-community">Community</span>
         </div>
         <div class="event-card-body">

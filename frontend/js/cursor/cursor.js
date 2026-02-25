@@ -29,8 +29,12 @@ import { LaserTail } from './laser.js';
   document.body.appendChild(cv);
   const ctx = cv.getContext('2d');
 
+  // ── Navbar cursor-following border ──────────────────────────────
+  const navbar = document.querySelector('.navbar');
+  let navRect = navbar ? navbar.getBoundingClientRect() : null;
   window.addEventListener('resize', () => {
-    cv.width = window.innerWidth;
+    navRect = navbar ? navbar.getBoundingClientRect() : null;
+    cv.width  = window.innerWidth;
     cv.height = window.innerHeight;
   });
 
@@ -45,6 +49,20 @@ import { LaserTail } from './laser.js';
   // ── Mouse / keyboard events ───────────────────────────────────────
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
+
+    // Update navbar cursor-following border
+    if (navbar && navRect) {
+      const px = ((mx - navRect.left) / navRect.width)  * 100;
+      const py = ((my - navRect.top)  / navRect.height) * 100;
+      const over = px >= 0 && px <= 100 && py >= -60 && py <= 160;
+      if (over) {
+        navbar.style.setProperty('--mx', px.toFixed(1));
+        navbar.style.setProperty('--my', py.toFixed(1));
+        navbar.dataset.cursorOver = '1';
+      } else {
+        delete navbar.dataset.cursorOver;
+      }
+    }
   });
 
   document.addEventListener('mouseleave', () => { visible = false; });

@@ -11,19 +11,25 @@
  *   const { user } = await api.post('/auth/login', { email, password });
  */
 
-// Backend URL — override via ?backend=http://host:port in the URL for local dev
-// On production (Vercel) both frontend and backend share the same origin,
-// so relative /api always works.
+// Production API domain
+const PROD_API = 'https://gdg-api.codershubinc.com/api';
+
+// Backend URL resolution:
+//   1. ?backend=<url>   → developer override
+//   2. localhost / 127.0.0.1 on port 3001 → relative /api (same-origin local server)
+//   3. localhost / 127.0.0.1 on any other port → http://localhost:3001/api
+//   4. Any real domain (online) → PROD_API
 const _apiBase = (() => {
     if (typeof window === 'undefined') return '/api';
-    // Allow developer override: ?backend=http://localhost:3001
+    // Developer override via query param
     const param = new URLSearchParams(window.location.search).get('backend');
     if (param) return param.replace(/\/$/, '') + '/api';
-    // Same-origin (production or running directly from port 3001)
-    if (window.location.port === '3001' || window.location.port === '') return '/api';
-    // Default: dev frontend on any other port → backend on :3001
-    // Use the same hostname the browser used (127.0.0.1 vs localhost matters for CORS)
-    return `${window.location.protocol}//${window.location.hostname}:3001/api`;
+    const { hostname, port } = window.location;
+    const isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
+    if (!isLocal) return PROD_API;                          // online → production API
+    if (port === '3001' || port === '') return '/api';       // same-origin local
+    // Dev static server (e.g. Live Server on :5500) → local backend
+    return `${window.location.protocol}//${hostname}:3001/api`;
 })();
 
 async function _request(method, path, body) {

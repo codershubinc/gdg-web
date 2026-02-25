@@ -52,6 +52,10 @@
                 <p class="auth-brand-tagline">
                     Build · Learn · <span class="hl-blue">Grow</span>
                 </p>
+
+                <div class="auth-anim-wrap">
+                    <span class="auth-anim-label">We </span><span class="auth-anim-word" id="anim-word"></span>
+                </div>
             </div>
 
             <div class="auth-brand-bottom">
@@ -219,6 +223,31 @@
 
         /* ── Google OAuth ── */
         document.getElementById('google-btn').addEventListener('click', () => loginWithGoogle());
+
+        /* ── Typewriter animation ── */
+        (function () {
+            const el = document.getElementById('anim-word');
+            if (!el) return;
+            const words  = ['Build.', 'Learn.', 'Connect.', 'Create.', 'Grow.'];
+            const colors = ['#4285F4', '#34A853', '#FBBC04', '#EA4335', '#4285F4'];
+            let wi = 0, ci = 0, deleting = false;
+            function tick() {
+                const word = words[wi];
+                if (!deleting) {
+                    el.textContent = word.slice(0, ci + 1);
+                    el.style.color = colors[wi];
+                    el.style.borderColor = colors[wi];
+                    ci++;
+                    if (ci === word.length) { deleting = true; setTimeout(tick, 1600); return; }
+                } else {
+                    el.textContent = word.slice(0, ci - 1);
+                    ci--;
+                    if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+                }
+                setTimeout(tick, deleting ? 45 : 95);
+            }
+            tick();
+        })();
     </script>
 </body>
 

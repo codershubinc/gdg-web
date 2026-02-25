@@ -1484,6 +1484,36 @@ footer {
   letter-spacing: 0.02em;
 }
 
+/* ── Typewriter animation ── */
+.auth-anim-wrap {
+  margin-top: 44px;
+  display: flex;
+  align-items: baseline;
+  gap: 0.3em;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+.auth-anim-label {
+  color: var(--text-secondary);
+  font-weight: 300;
+  font-size: 0.6em;
+  letter-spacing: 0.04em;
+}
+.auth-anim-word {
+  color: #4285F4;
+  border-right: 3px solid #4285F4;
+  padding-right: 4px;
+  min-width: 2px;
+  transition: color 0.2s, border-color 0.2s;
+  animation: caretBlink 0.65s step-end infinite;
+  white-space: nowrap;
+}
+@keyframes caretBlink {
+  0%, 100% { border-color: currentColor; }
+  50%       { border-color: transparent; }
+}
+
 /* Community stats inside brand panel */
 .auth-brand-stats {
   display: flex;

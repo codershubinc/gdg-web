@@ -17,6 +17,7 @@ const _defaultOrigins = [
     'http://127.0.0.1:3001',
     'http://127.0.0.1:5500',
     'http://127.0.0.1:5501',
+    'https://gdg.codershubinc.com',
 ];
 
 const allowedOrigins = process.env.FRONTEND_ORIGIN

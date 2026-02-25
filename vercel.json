@@ -1,11 +1,10 @@
 {
     "version": 2,
-    "buildCommand": null,
-    "outputDirectory": "public",
+    "outputDirectory": "frontend",
     "routes": [
         {
-            "src": "/js/config.js",
-            "dest": "/api/config"
+            "src": "/api/(.*)",
+            "dest": "/api/$1"
         },
         {
             "src": "/(.*)",

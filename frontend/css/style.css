@@ -113,12 +113,12 @@ body {
   backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
   -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
   border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.09);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 0;
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.07) inset,
-    0 0 0 0.5px rgba(255,255,255,0.04) inset,
-    0 4px 30px rgba(0,0,0,0.18);
+    0 1px 0 rgba(255, 255, 255, 0.07) inset,
+    0 0 0 0.5px rgba(255, 255, 255, 0.04) inset,
+    0 4px 30px rgba(0, 0, 0, 0.18);
   transition:
     top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
@@ -134,14 +134,16 @@ body {
 .navbar::before {
   content: '';
   position: absolute;
-  top: 0; left: 10%; right: 10%;
+  top: 0;
+  left: 10%;
+  right: 10%;
   height: 1px;
   background: linear-gradient(90deg,
-    transparent,
-    rgba(255,255,255,0.18) 30%,
-    rgba(255,255,255,0.28) 50%,
-    rgba(255,255,255,0.18) 70%,
-    transparent);
+      transparent,
+      rgba(255, 255, 255, 0.18) 30%,
+      rgba(255, 255, 255, 0.28) 50%,
+      rgba(255, 255, 255, 0.18) 70%,
+      transparent);
   border-radius: 100px;
   pointer-events: none;
   opacity: 0;
@@ -155,14 +157,12 @@ body {
   inset: -1px;
   border-radius: 100px;
   padding: 1px;
-  background: radial-gradient(
-    180px circle at calc(var(--mx, 50%) * 1%) calc(var(--my, 50%) * 1%),
-    rgba(66,133,244,0.85) 0%,
-    rgba(52,168,83,0.45) 35%,
-    rgba(251,188,4,0.2) 55%,
-    rgba(255,255,255,0.04) 75%,
-    transparent 100%
-  );
+  background: radial-gradient(180px circle at calc(var(--mx, 50%) * 1%) calc(var(--my, 50%) * 1%),
+      rgba(66, 133, 244, 0.85) 0%,
+      rgba(52, 168, 83, 0.45) 35%,
+      rgba(251, 188, 4, 0.2) 55%,
+      rgba(255, 255, 255, 0.04) 75%,
+      transparent 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -174,18 +174,29 @@ body {
 /* fallback shimmer when cursor is off-navbar (scrolled only) */
 .navbar.scrolled:not([data-cursor-over])::after {
   background: linear-gradient(135deg,
-    rgba(66,133,244,0.25),
-    rgba(52,168,83,0.1) 30%,
-    rgba(255,255,255,0.03) 50%,
-    rgba(251,188,4,0.1) 70%,
-    rgba(234,67,53,0.25));
+      rgba(66, 133, 244, 0.25),
+      rgba(52, 168, 83, 0.1) 30%,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(251, 188, 4, 0.1) 70%,
+      rgba(234, 67, 53, 0.25));
   animation: navBorderShimmer 8s linear infinite;
 }
 
 @keyframes navBorderShimmer {
-  0%   { filter: hue-rotate(0deg);   opacity: 0.7; }
-  50%  { filter: hue-rotate(180deg); opacity: 1;   }
-  100% { filter: hue-rotate(360deg); opacity: 0.7; }
+  0% {
+    filter: hue-rotate(0deg);
+    opacity: 0.7;
+  }
+
+  50% {
+    filter: hue-rotate(180deg);
+    opacity: 1;
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+    opacity: 0.7;
+  }
 }
 
 .navbar.scrolled {
@@ -195,14 +206,14 @@ body {
   padding: 0 20px;
   border-radius: 100px;
   border-bottom: none;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(8, 8, 16, 0.22);
   backdrop-filter: blur(48px) saturate(220%) brightness(1.08);
   -webkit-backdrop-filter: blur(48px) saturate(220%) brightness(1.08);
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.07) inset,
-    0 8px 40px rgba(0,0,0,0.28),
-    0 2px 8px rgba(0,0,0,0.18);
+    0 0 0 1px rgba(255, 255, 255, 0.07) inset,
+    0 8px 40px rgba(0, 0, 0, 0.28),
+    0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
 .navbar.scrolled::before {
@@ -321,8 +332,8 @@ body {
 
 .nav-links a.active {
   color: #fff;
-  background: rgba(66,133,244,0.15);
-  box-shadow: inset 0 0 0 1px rgba(66,133,244,0.25);
+  background: rgba(66, 133, 244, 0.15);
+  box-shadow: inset 0 0 0 1px rgba(66, 133, 244, 0.25);
 }
 
 .nav-links a.active::after {
@@ -371,9 +382,9 @@ body {
 }
 
 .btn-ghost {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text-secondary);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
 }
 
@@ -886,7 +897,7 @@ body {
   top: 50%;
   left: 50%;
   --orbit-r: 185px;
-  --glow-rgb: 66,133,244;
+  --glow-rgb: 66, 133, 244;
   background: var(--dark-card);
   border: 1px solid var(--dark-border);
   border-radius: 50px;
@@ -895,38 +906,44 @@ body {
   font-weight: 600;
   color: var(--text-secondary);
   white-space: nowrap;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   animation: orbit 12s linear infinite, pillGlow 12s linear infinite;
   z-index: 3;
   transition: color 0.3s;
 }
 
 @keyframes pillGlow {
-  0%,  83%  {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+
+  0%,
+  83% {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     background: var(--dark-card);
     border-color: rgba(var(--glow-rgb), 0.25);
     padding: 7px 14px;
   }
-  90%  {
+
+  90% {
     box-shadow: 0 0 0 2px rgba(var(--glow-rgb), 0.7),
-                0 0 20px rgba(var(--glow-rgb), 0.45),
-                0 0 50px rgba(var(--glow-rgb), 0.2),
-                0 10px 40px rgba(0,0,0,0.5);
+      0 0 20px rgba(var(--glow-rgb), 0.45),
+      0 0 50px rgba(var(--glow-rgb), 0.2),
+      0 10px 40px rgba(0, 0, 0, 0.5);
     background: rgba(var(--glow-rgb), 0.12);
     border-color: rgba(var(--glow-rgb), 0.8);
     padding: 9px 18px;
   }
-  95%  {
+
+  95% {
     box-shadow: 0 0 0 2px rgba(var(--glow-rgb), 0.5),
-                0 0 14px rgba(var(--glow-rgb), 0.3),
-                0 8px 32px rgba(0,0,0,0.4);
+      0 0 14px rgba(var(--glow-rgb), 0.3),
+      0 8px 32px rgba(0, 0, 0, 0.4);
     background: rgba(var(--glow-rgb), 0.08);
     border-color: rgba(var(--glow-rgb), 0.6);
     padding: 8px 16px;
   }
-  99%, 100% {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+
+  99%,
+  100% {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     background: var(--dark-card);
     border-color: rgba(var(--glow-rgb), 0.25);
     padding: 7px 14px;
@@ -969,43 +986,43 @@ body {
 
 .orbit-pill-1 {
   animation-delay: 0s;
-  --glow-rgb: 66,133,244;
-  border-color: rgba(66,133,244,0.25);
+  --glow-rgb: 66, 133, 244;
+  border-color: rgba(66, 133, 244, 0.25);
   color: #4285F4;
 }
 
 .orbit-pill-2 {
   animation-delay: -2s;
-  --glow-rgb: 52,168,83;
-  border-color: rgba(52,168,83,0.25);
+  --glow-rgb: 52, 168, 83;
+  border-color: rgba(52, 168, 83, 0.25);
   color: #34A853;
 }
 
 .orbit-pill-3 {
   animation-delay: -4s;
-  --glow-rgb: 234,67,53;
-  border-color: rgba(234,67,53,0.25);
+  --glow-rgb: 234, 67, 53;
+  border-color: rgba(234, 67, 53, 0.25);
   color: #EA4335;
 }
 
 .orbit-pill-4 {
   animation-delay: -6s;
-  --glow-rgb: 251,188,4;
-  border-color: rgba(251,188,4,0.25);
+  --glow-rgb: 251, 188, 4;
+  border-color: rgba(251, 188, 4, 0.25);
   color: #FBBC04;
 }
 
 .orbit-pill-5 {
   animation-delay: -8s;
-  --glow-rgb: 66,133,244;
-  border-color: rgba(66,133,244,0.25);
+  --glow-rgb: 66, 133, 244;
+  border-color: rgba(66, 133, 244, 0.25);
   color: #4285F4;
 }
 
 .orbit-pill-6 {
   animation-delay: -10s;
-  --glow-rgb: 234,67,53;
-  border-color: rgba(234,67,53,0.25);
+  --glow-rgb: 234, 67, 53;
+  border-color: rgba(234, 67, 53, 0.25);
   color: #EA4335;
 }
 
@@ -1018,7 +1035,7 @@ body {
   margin-left: 0;
   font-size: 0.68rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
   vertical-align: middle;
   animation: pillDetailShow 12s linear infinite;
   letter-spacing: 0.2px;
@@ -1036,9 +1053,30 @@ body {
 }
 
 @keyframes pillDetailShow {
-  0%,  83%  { max-width: 0;     opacity: 0;   margin-left: 0;    transform: translateY(4px);  }
-  90%, 95%  { max-width: 140px; opacity: 1;   margin-left: 8px;  transform: translateY(0);    }
-  99%, 100% { max-width: 0;     opacity: 0;   margin-left: 0;    transform: translateY(-3px); }
+
+  0%,
+  83% {
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+    transform: translateY(4px);
+  }
+
+  90%,
+  95% {
+    max-width: 140px;
+    opacity: 1;
+    margin-left: 8px;
+    transform: translateY(0);
+  }
+
+  99%,
+  100% {
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+    transform: translateY(-3px);
+  }
 }
 
 /* sync each detail's reveal to its pill's orbit phase */
@@ -2027,38 +2065,51 @@ footer {
 
 .filter-bar {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 50px;
+  margin-bottom: 52px;
   position: relative;
   z-index: 1;
+  background: rgba(12, 12, 20, 0.65);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  padding: 7px 10px;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .filter-btn {
-  padding: 9px 22px;
+  padding: 8px 20px;
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  border: 1px solid var(--dark-border);
-  background: var(--dark-card);
-  color: var(--text-secondary);
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.48);
   cursor: pointer;
-  transition: var(--transition);
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
 }
 
 .filter-btn:hover,
 .filter-btn.active {
-  background: var(--google-blue);
-  border-color: var(--google-blue);
-  color: white;
-  box-shadow: 0 4px 20px rgba(66, 133, 244, 0.35);
+  background: rgba(66, 133, 244, 0.18);
+  border-color: rgba(66, 133, 244, 0.35);
+  color: #fff;
+  box-shadow: none;
+}
+
+.filter-btn.active {
+  background: rgba(66, 133, 244, 0.24);
 }
 
 .events-page-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 22px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 5% 100px;
@@ -3452,9 +3503,9 @@ footer {
     background: rgba(12, 12, 20, 0.82);
     backdrop-filter: blur(28px) saturate(160%);
     -webkit-backdrop-filter: blur(28px) saturate(160%);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04) inset;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
     flex-direction: column;
     gap: 0;
     padding: 12px;

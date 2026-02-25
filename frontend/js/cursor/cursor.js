@@ -34,7 +34,7 @@ import { LaserTail } from './laser.js';
   let navRect = navbar ? navbar.getBoundingClientRect() : null;
   window.addEventListener('resize', () => {
     navRect = navbar ? navbar.getBoundingClientRect() : null;
-    cv.width  = window.innerWidth;
+    cv.width = window.innerWidth;
     cv.height = window.innerHeight;
   });
 
@@ -52,8 +52,8 @@ import { LaserTail } from './laser.js';
 
     // Update navbar cursor-following border
     if (navbar && navRect) {
-      const px = ((mx - navRect.left) / navRect.width)  * 100;
-      const py = ((my - navRect.top)  / navRect.height) * 100;
+      const px = ((mx - navRect.left) / navRect.width) * 100;
+      const py = ((my - navRect.top) / navRect.height) * 100;
       const over = px >= 0 && px <= 100 && py >= -60 && py <= 160;
       if (over) {
         navbar.style.setProperty('--mx', px.toFixed(1));

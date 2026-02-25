@@ -1,18 +1,18 @@
 {
     "version": 2,
-    "outputDirectory": "frontend",
-    "functions": {
-        "backend/api.js": {
-            "includeFiles": "backend/src/**"
+    "builds": [
+        {
+            "src": "frontend/**",
+            "use": "@vercel/static"
         }
-    },
+    ],
     "routes": [
         {
-            "src": "/api/(.*)",
-            "dest": "/backend/api.js"
+            "handle": "filesystem"
         },
         {
-            "handle": "filesystem"
+            "src": "/(.*)",
+            "dest": "/frontend/$1"
         }
     ]
 }

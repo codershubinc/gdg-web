@@ -28,6 +28,7 @@
 
   <!-- Particles -->
   <canvas id="particles-canvas"></canvas>
+  <canvas id="fluid-canvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;"></canvas>
 
   <!-- Navbar -->
   <nav class="navbar">
@@ -814,6 +815,7 @@
     import { initNavbarUserState } from './js/dashboard.js';
     initNavbarUserState();
   </script>
+  <script src="js/fluid-bg.js"></script>
 </body>
 
 </html>

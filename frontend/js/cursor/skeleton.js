@@ -34,6 +34,9 @@ export class RoboSkeleton {
 
     this._eyeOpen = true;
     this._blinkTick = 0;
+    this._blinkSeq = [];      // sequence of [closedFrames, openFrames, ...]
+    this._blinkSeqIdx = 0;
+    this._blinkWait = _nextBlinkWait(); // frames until next blink sequence starts
   }
 
   /** Call every animation frame with the current cursor position. */
@@ -54,9 +57,31 @@ export class RoboSkeleton {
     _branch(this.legL, this.spine[HIP], this.spine[HIP - 1], -1, LEG_SEG);
     _branch(this.legR, this.spine[HIP], this.spine[HIP - 1], 1, LEG_SEG);
 
-    // Blink: ~3 s open, 10 frames closed
-    if (++this._blinkTick === 180) this._eyeOpen = false;
-    if (this._blinkTick === 190) { this._eyeOpen = true; this._blinkTick = 0; }
+    // Blink patterns: random interval 500–700 ms, with single/double/triple/rapid styles
+    this._blinkTick++;
+    if (this._blinkSeq.length === 0) {
+      // Waiting for next blink
+      if (this._blinkTick >= this._blinkWait) {
+        this._blinkTick = 0;
+        this._blinkSeq = _pickBlinkSeq();
+        this._blinkSeqIdx = 0;
+      }
+    } else {
+      // Executing blink sequence: alternating [closed, open, closed, open …]
+      const dur = this._blinkSeq[this._blinkSeqIdx];
+      if (this._blinkTick >= dur) {
+        this._blinkTick = 0;
+        this._blinkSeqIdx++;
+        if (this._blinkSeqIdx >= this._blinkSeq.length) {
+          // Sequence done — eyes open, schedule next blink
+          this._eyeOpen = true;
+          this._blinkSeq = [];
+          this._blinkWait = _nextBlinkWait();
+        } else {
+          this._eyeOpen = !this._eyeOpen;
+        }
+      }
+    }
   }
 
   /** Draw everything onto ctx. */
@@ -68,6 +93,35 @@ export class RoboSkeleton {
     _drawChain(ctx, this.armL, 0.60, 5.0, 0);
     _drawChain(ctx, this.armR, 0.60, 5.0, 1);
     _drawHead(ctx, this.spine[0], this.spine[1], this._eyeOpen);
+  }
+}
+
+// ── blink helpers ─────────────────────────────────────────────────────────────
+// Returns frames to wait before starting the next blink (500–700 ms at ~60 fps)
+function _nextBlinkWait() {
+  return Math.round((300 + Math.random() * 200) / 1000 * 60);
+}
+
+// Returns a blink sequence as [closedFrames, openFrames, closedFrames, …]
+// First entry is always "closed", last entry is always "closed".
+// Eyes start closed when sequence begins, so odd indices = open, even = closed.
+function _pickBlinkSeq() {
+  const CLOSE = 4;   // frames eyes stay shut per blink (~67 ms)
+  const GAP = 5;   // frames eyes stay open between blinks in a multi-blink
+
+  const roll = Math.random();
+  if (roll < 0.40) {
+    // single blink
+    return [CLOSE];
+  } else if (roll < 0.65) {
+    // double blink
+    return [CLOSE, GAP, CLOSE];
+  } else if (roll < 0.82) {
+    // triple blink
+    return [CLOSE, GAP, CLOSE, GAP, CLOSE];
+  } else {
+    // rapid burst: 4 quick blinks with tiny gaps
+    return [3, 3, 3, 3, 3, 3, 3];
   }
 }
 

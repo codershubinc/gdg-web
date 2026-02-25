@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "buildCommand": null,
+    "outputDirectory": "public",
+    "routes": [
+        {
+            "src": "/js/config.js",
+            "dest": "/api/config"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/$1"
+        }
+    ]
+}

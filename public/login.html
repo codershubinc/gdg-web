@@ -39,12 +39,37 @@
                 <div class="auth-brand-orb auth-brand-orb--4"></div>
             </div>
 
-            <!-- Floating tech pills -->
-            <div class="brand-pill brand-pill--1">🤖 AI / ML</div>
-            <div class="brand-pill brand-pill--2">🌐 Web Dev</div>
-            <div class="brand-pill brand-pill--3">📱 Android</div>
-            <div class="brand-pill brand-pill--4">☁️ Cloud</div>
-            <div class="brand-pill brand-pill--5">💻 Flutter</div>
+            <!-- Hover feature cards -->
+            <div class="brand-cards">
+                <div class="brand-card" style="--card-color:#4285F4">
+                    <div class="brand-card-icon">🤖</div>
+                    <div class="brand-card-content">
+                        <span class="brand-card-title">AI &amp; ML</span>
+                        <span class="brand-card-desc">Build with Gemini, TensorFlow &amp; real-world datasets</span>
+                    </div>
+                </div>
+                <div class="brand-card" style="--card-color:#34A853">
+                    <div class="brand-card-icon">🌐</div>
+                    <div class="brand-card-content">
+                        <span class="brand-card-title">Web Dev</span>
+                        <span class="brand-card-desc">React, Firebase, Next.js — shipped to production</span>
+                    </div>
+                </div>
+                <div class="brand-card" style="--card-color:#FBBC04">
+                    <div class="brand-card-icon">📱</div>
+                    <div class="brand-card-content">
+                        <span class="brand-card-title">Android</span>
+                        <span class="brand-card-desc">Kotlin &amp; Jetpack Compose from zero to Play Store</span>
+                    </div>
+                </div>
+                <div class="brand-card" style="--card-color:#EA4335">
+                    <div class="brand-card-icon">☁️</div>
+                    <div class="brand-card-content">
+                        <span class="brand-card-title">Cloud</span>
+                        <span class="brand-card-desc">GCP credits, labs &amp; hands-on cloud architecture</span>
+                    </div>
+                </div>
+            </div>
 
             <!-- Logo -->
             <div class="auth-brand-header">
@@ -87,7 +112,8 @@
                         <span class="brand-stat-l">Projects</span>
                     </div>
                 </div>
-                <p class="brand-copyright">© 2026 GDG Campus CSMU &nbsp;·&nbsp; <a href="index.html">Back to site</a></p>
+                <p class="brand-copyright">© 2026 GDG Campus CSMU &nbsp;·&nbsp; <a href="index.html">Back to site</a>
+                </p>
             </div>
         </aside>
 
@@ -255,7 +281,7 @@
         (function () {
             const el = document.getElementById('brand-morphword');
             if (!el) return;
-            const words  = ['Build.', 'Learn.', 'Grow.', 'Connect.', 'Create.'];
+            const words = ['Build.', 'Learn.', 'Grow.', 'Connect.', 'Create.'];
             const colors = ['#4285F4', '#34A853', '#34A853', '#FBBC04', '#EA4335'];
             let wi = 0;
             function next() {

@@ -1,678 +1,778 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GDG Campus CSMU — Google Developer Groups</title>
-  <meta name="description" content="GDG Campus CSMU — Building the next generation of developers at Chandigarh State Medical University. Join our community of passionate tech enthusiasts." />
+  <meta name="description"
+    content="GDG Campus CSMU — Building the next generation of developers at Chandigarh State Medical University. Join our community of passionate tech enthusiasts." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2/dist/iife/sdk.js"></script>
 </head>
+
 <body>
 
-<!-- Page Loader -->
-<div class="page-loader">
-  <div class="loader-dots">
-    <div class="loader-dot"></div>
-    <div class="loader-dot"></div>
-    <div class="loader-dot"></div>
-    <div class="loader-dot"></div>
-  </div>
-</div>
-
-<!-- Particles -->
-<canvas id="particles-canvas"></canvas>
-
-<!-- Navbar -->
-<nav class="navbar">
-  <a href="index.html" class="nav-logo">
-    <div class="logo-dots">
-      <div class="logo-dot"></div>
-      <div class="logo-dot"></div>
-      <div class="logo-dot"></div>
-      <div class="logo-dot"></div>
-    </div>
-    <span class="logo-text">GDG <span>Campus</span> CSMU</span>
-  </a>
-
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="events.html">Events</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#domains">Domains</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-
-  <div class="nav-cta">
-    <a href="login.html" class="btn btn-ghost">Sign In</a>
-    <a href="signup.html" class="btn btn-primary">Join Us</a>
-  </div>
-
-  <div class="hamburger" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<!-- ====== HERO ====== -->
-<section class="hero">
-  <div class="hero-bg-orbs">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="orb orb-4"></div>
-  </div>
-
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
-      Google Developer Groups on Campus
-    </div>
-
-    <h1 class="hero-title">
-      Welcome to<br>
-      <span class="gdg-text">GDG Campus</span><br>
-      <span class="campus-text">CSMU</span>
-    </h1>
-
-    <p class="hero-subtitle">
-      Building the next generation of developers through innovation, collaboration, and cutting-edge technology. Join a community of passionate tech minds.
-    </p>
-
-    <div class="hero-actions">
-      <a href="signup.html" class="btn btn-primary btn-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-        Join the Community
-      </a>
-      <a href="events.html" class="btn btn-outline btn-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        Explore Events
-      </a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-number" data-target="580" data-suffix="+">0+</span>
-        <span class="stat-label">Members</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="11" data-suffix="+">0+</span>
-        <span class="stat-label">Events Hosted</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="3" data-suffix="+">0+</span>
-        <span class="stat-label">Workshops</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="9" data-suffix>0</span>
-        <span class="stat-label">Core Team</span>
-      </div>
+  <!-- Page Loader -->
+  <div class="page-loader">
+    <div class="loader-dots">
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
     </div>
   </div>
 
-  <div class="scroll-indicator">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-  </div>
-</section>
+  <!-- Particles -->
+  <canvas id="particles-canvas"></canvas>
 
-<!-- ====== ABOUT ====== -->
-<section class="about-section" id="about">
-  <div class="about-grid">
-    <div class="about-visual reveal-left">
-      <div class="about-icon-grid">
-        <div class="about-icon-card">
-          <span class="icon">🚀</span>
-          <h4>Innovation</h4>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-dots">
+        <div class="logo-dot"></div>
+        <div class="logo-dot"></div>
+        <div class="logo-dot"></div>
+        <div class="logo-dot"></div>
+      </div>
+      <span class="logo-text">GDG <span>Campus</span> CSMU</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#domains">Domains</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="login.html" class="btn btn-ghost">Sign In</a>
+      <a href="signup.html" class="btn btn-primary">Join Us</a>
+    </div>
+
+    <div class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="hero-bg-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="orb orb-4"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Google Developer Groups on Campus
+      </div>
+
+      <h1 class="hero-title">
+        Welcome to<br>
+        <span class="gdg-text">GDG Campus</span><br>
+        <span class="campus-text">CSMU</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Building the next generation of developers through innovation, collaboration, and cutting-edge technology. Join
+        a community of passionate tech minds.
+      </p>
+
+      <div class="hero-actions">
+        <a href="signup.html" class="btn btn-primary btn-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+          </svg>
+          Join the Community
+        </a>
+        <a href="events.html" class="btn btn-outline btn-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          Explore Events
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number" data-target="580" data-suffix="+">0+</span>
+          <span class="stat-label">Members</span>
         </div>
-        <div class="about-icon-card">
-          <span class="icon">🤝</span>
-          <h4>Collaboration</h4>
+        <div class="stat-item">
+          <span class="stat-number" data-target="11" data-suffix="+">0+</span>
+          <span class="stat-label">Events Hosted</span>
         </div>
-        <div class="about-icon-card">
-          <span class="icon">💡</span>
-          <h4>Learning</h4>
+        <div class="stat-item">
+          <span class="stat-number" data-target="3" data-suffix="+">0+</span>
+          <span class="stat-label">Workshops</span>
         </div>
-        <div class="about-icon-card">
-          <span class="icon">🌍</span>
-          <h4>Community</h4>
+        <div class="stat-item">
+          <span class="stat-number" data-target="9" data-suffix>0</span>
+          <span class="stat-label">Core Team</span>
         </div>
       </div>
     </div>
-    <div class="about-content reveal-right">
-      <div class="section-tag">About Us</div>
-      <h2 class="section-title">Where <span class="highlight">Tech Meets</span> Passion</h2>
-      <div class="google-bar">
-        <span class="b"></span><span class="r"></span><span class="y"></span><span class="g"></span>
-      </div>
-      <p>GDG Campus CSMU is a student-led community at Chandigarh State Medical University inspired by the Google Developer Groups program. We are a space for students passionate about technology to connect, learn, and grow together.</p>
-      <p>We host workshops, hackathons, tech talks, and study jams — all designed to bring you closer to cutting-edge technologies and the global developer ecosystem powered by Google.</p>
-      <div class="about-pillars">
-        <div class="pillar">
-          <div class="pillar-icon blue">🎓</div>
-          <div class="pillar-text">
-            <h4>Learn New Skills</h4>
-            <p>Workshops & study jams on Google technologies</p>
+
+    <div class="scroll-indicator">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT ====== -->
+  <section class="about-section" id="about">
+    <div class="about-grid">
+      <div class="about-visual reveal-left">
+        <div class="about-icon-grid">
+          <div class="about-icon-card">
+            <span class="icon">🚀</span>
+            <h4>Innovation</h4>
           </div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon red">🏆</div>
-          <div class="pillar-text">
-            <h4>Build & Compete</h4>
-            <p>Hackathons, solution challenges & project showcases</p>
+          <div class="about-icon-card">
+            <span class="icon">🤝</span>
+            <h4>Collaboration</h4>
           </div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon green">🌐</div>
-          <div class="pillar-text">
-            <h4>Grow Your Network</h4>
-            <p>Connect with developers, mentors & industry experts</p>
+          <div class="about-icon-card">
+            <span class="icon">💡</span>
+            <h4>Learning</h4>
+          </div>
+          <div class="about-icon-card">
+            <span class="icon">🌍</span>
+            <h4>Community</h4>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====== UPCOMING EVENTS (Home) ====== -->
-<section class="events-home-section" id="events">
-  <div class="section-header reveal">
-    <div class="section-tag">Events</div>
-    <h2 class="section-title">Upcoming <span class="highlight">Events</span></h2>
-    <div class="glow-divider"></div>
-    <p class="section-desc">From workshops to hackathons — there's always something exciting happening at GDG Campus CSMU.</p>
-  </div>
-
-  <div class="events-grid">
-
-    <!-- Event 1 -->
-    <div class="event-card reveal delay-1" data-category="workshop">
-      <div class="event-card-image">
-        <div class="img-placeholder" style="background: linear-gradient(135deg,#0d1b3e,#1a237e);">🤖</div>
-        <span class="event-type-badge badge-workshop">Workshop</span>
-      </div>
-      <div class="event-card-body">
-        <div class="event-date-row">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          March 8, 2026 &nbsp;·&nbsp; 10:00 AM
+      <div class="about-content reveal-right">
+        <div class="section-tag">About Us</div>
+        <h2 class="section-title">Where <span class="highlight">Tech Meets</span> Passion</h2>
+        <div class="google-bar">
+          <span class="b"></span><span class="r"></span><span class="y"></span><span class="g"></span>
         </div>
-        <h3 class="event-title">Intro to Machine Learning with TensorFlow</h3>
-        <p class="event-desc">Dive into the fundamentals of machine learning using Google's TensorFlow framework. Build your first neural network hands-on.</p>
-      </div>
-      <div class="event-card-footer">
-        <span class="event-meta">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-          Lab 401, CSMU
-        </span>
-        <a href="events.html" class="event-register-btn">Register →</a>
-      </div>
-      <div class="event-card-overlay">
-        <div class="overlay-tags">
-          <span class="overlay-tag">TensorFlow</span>
-          <span class="overlay-tag">Python</span>
-          <span class="overlay-tag">AI/ML</span>
-        </div>
-        <div class="overlay-cta">
-          <a href="events.html" class="btn-register">Register Now</a>
-          <a href="events.html" class="btn-learn">Learn More</a>
+        <p>GDG Campus CSMU is a student-led community at Chandigarh State Medical University inspired by the Google
+          Developer Groups program. We are a space for students passionate about technology to connect, learn, and grow
+          together.</p>
+        <p>We host workshops, hackathons, tech talks, and study jams — all designed to bring you closer to cutting-edge
+          technologies and the global developer ecosystem powered by Google.</p>
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-icon blue">🎓</div>
+            <div class="pillar-text">
+              <h4>Learn New Skills</h4>
+              <p>Workshops & study jams on Google technologies</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon red">🏆</div>
+            <div class="pillar-text">
+              <h4>Build & Compete</h4>
+              <p>Hackathons, solution challenges & project showcases</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon green">🌐</div>
+            <div class="pillar-text">
+              <h4>Grow Your Network</h4>
+              <p>Connect with developers, mentors & industry experts</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Event 2 -->
-    <div class="event-card reveal delay-2" data-category="hackathon">
-      <div class="event-card-image">
-        <div class="img-placeholder" style="background: linear-gradient(135deg,#3e0d0d,#7f1212);">⚡</div>
-        <span class="event-type-badge badge-hackathon">Hackathon</span>
-      </div>
-      <div class="event-card-body">
-        <div class="event-date-row">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          March 22–23, 2026 &nbsp;·&nbsp; 36 Hours
-        </div>
-        <h3 class="event-title">HealthTech Hackathon 2026</h3>
-        <p class="event-desc">Build innovative healthcare solutions using Google Cloud, AI, and Android technologies. ₹50,000 prize pool up for grabs!</p>
-      </div>
-      <div class="event-card-footer">
-        <span class="event-meta">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-          CSMU Main Auditorium
-        </span>
-        <a href="events.html" class="event-register-btn">Register →</a>
-      </div>
-      <div class="event-card-overlay">
-        <div class="overlay-tags">
-          <span class="overlay-tag">Google Cloud</span>
-          <span class="overlay-tag">Android</span>
-          <span class="overlay-tag">Healthcare</span>
-        </div>
-        <div class="overlay-cta">
-          <a href="events.html" class="btn-register">Register Team</a>
-          <a href="events.html" class="btn-learn">Details</a>
-        </div>
-      </div>
+  <!-- ====== UPCOMING EVENTS (Home) ====== -->
+  <section class="events-home-section" id="events">
+    <div class="section-header reveal">
+      <div class="section-tag">Events</div>
+      <h2 class="section-title">Upcoming <span class="highlight">Events</span></h2>
+      <div class="glow-divider"></div>
+      <p class="section-desc">From workshops to hackathons — there's always something exciting happening at GDG Campus
+        CSMU.</p>
     </div>
 
-    <!-- Event 3 -->
-    <div class="event-card reveal delay-3" data-category="devfest">
-      <div class="event-card-image">
-        <div class="img-placeholder" style="background: linear-gradient(135deg,#1a3a1a,#1b5e20);">🎉</div>
-        <span class="event-type-badge badge-devfest">DevFest</span>
-      </div>
-      <div class="event-card-body">
-        <div class="event-date-row">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          April 5, 2026 &nbsp;·&nbsp; All Day
+    <div class="events-grid">
+
+      <!-- Event 1 -->
+      <div class="event-card reveal delay-1" data-category="workshop">
+        <div class="event-card-image">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#0d1b3e,#1a237e);">🤖</div>
+          <span class="event-type-badge badge-workshop">Workshop</span>
         </div>
-        <h3 class="event-title">DevFest CSMU 2026</h3>
-        <p class="event-desc">Our flagship annual developer festival featuring keynotes, workshops, networking sessions, and incredible swag from Google.</p>
-      </div>
-      <div class="event-card-footer">
-        <span class="event-meta">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-          CSMU Convention Hall
-        </span>
-        <a href="events.html" class="event-register-btn">Register →</a>
-      </div>
-      <div class="event-card-overlay">
-        <div class="overlay-tags">
-          <span class="overlay-tag">Keynote</span>
-          <span class="overlay-tag">Networking</span>
-          <span class="overlay-tag">Swag</span>
+        <div class="event-card-body">
+          <div class="event-date-row">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            March 8, 2026 &nbsp;·&nbsp; 10:00 AM
+          </div>
+          <h3 class="event-title">Intro to Machine Learning with TensorFlow</h3>
+          <p class="event-desc">Dive into the fundamentals of machine learning using Google's TensorFlow framework.
+            Build your first neural network hands-on.</p>
         </div>
-        <div class="overlay-cta">
-          <a href="events.html" class="btn-register">Register Free</a>
-          <a href="events.html" class="btn-learn">Program</a>
+        <div class="event-card-footer">
+          <span class="event-meta">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            </svg>
+            Lab 401, CSMU
+          </span>
+          <a href="events.html" class="event-register-btn">Register →</a>
+        </div>
+        <div class="event-card-overlay">
+          <div class="overlay-tags">
+            <span class="overlay-tag">TensorFlow</span>
+            <span class="overlay-tag">Python</span>
+            <span class="overlay-tag">AI/ML</span>
+          </div>
+          <div class="overlay-cta">
+            <a href="events.html" class="btn-register">Register Now</a>
+            <a href="events.html" class="btn-learn">Learn More</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Event 4 -->
-    <div class="event-card reveal delay-4" data-category="study">
-      <div class="event-card-image">
-        <div class="img-placeholder" style="background: linear-gradient(135deg,#0d2137,#01579b);">☁️</div>
-        <span class="event-type-badge badge-study">Study Jam</span>
-      </div>
-      <div class="event-card-body">
-        <div class="event-date-row">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          April 12, 2026 &nbsp;·&nbsp; 2:00 PM
+      <!-- Event 2 -->
+      <div class="event-card reveal delay-2" data-category="hackathon">
+        <div class="event-card-image">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#3e0d0d,#7f1212);">⚡</div>
+          <span class="event-type-badge badge-hackathon">Hackathon</span>
         </div>
-        <h3 class="event-title">Google Cloud Study Jam — Associate Exam Prep</h3>
-        <p class="event-desc">Get ready for Google Cloud certifications with guided hands-on labs and expert mentorship. Free Qwiklabs credits included.</p>
-      </div>
-      <div class="event-card-footer">
-        <span class="event-meta">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          Online + Lab 202
-        </span>
-        <a href="events.html" class="event-register-btn">Register →</a>
-      </div>
-      <div class="event-card-overlay">
-        <div class="overlay-tags">
-          <span class="overlay-tag">GCP</span>
-          <span class="overlay-tag">Certification</span>
-          <span class="overlay-tag">Free Credits</span>
+        <div class="event-card-body">
+          <div class="event-date-row">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            March 22–23, 2026 &nbsp;·&nbsp; 36 Hours
+          </div>
+          <h3 class="event-title">HealthTech Hackathon 2026</h3>
+          <p class="event-desc">Build innovative healthcare solutions using Google Cloud, AI, and Android technologies.
+            ₹50,000 prize pool up for grabs!</p>
         </div>
-        <div class="overlay-cta">
-          <a href="events.html" class="btn-register">Join Jam</a>
-          <a href="events.html" class="btn-learn">Syllabus</a>
+        <div class="event-card-footer">
+          <span class="event-meta">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            </svg>
+            CSMU Main Auditorium
+          </span>
+          <a href="events.html" class="event-register-btn">Register →</a>
         </div>
-      </div>
-    </div>
-
-    <!-- Event 5 -->
-    <div class="event-card reveal delay-5" data-category="talk">
-      <div class="event-card-image">
-        <div class="img-placeholder" style="background: linear-gradient(135deg,#2d1b69,#4a148c);">🎤</div>
-        <span class="event-type-badge badge-talk">Tech Talk</span>
-      </div>
-      <div class="event-card-body">
-        <div class="event-date-row">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          April 18, 2026 &nbsp;·&nbsp; 5:00 PM
-        </div>
-        <h3 class="event-title">Web3 & Blockchain: Building the Decentralized Future</h3>
-        <p class="event-desc">An insightful session by industry expert exploring practical Web3 applications, smart contracts, and real-world blockchain use cases.</p>
-      </div>
-      <div class="event-card-footer">
-        <span class="event-meta">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-          Seminar Hall B
-        </span>
-        <a href="events.html" class="event-register-btn">Register →</a>
-      </div>
-      <div class="event-card-overlay">
-        <div class="overlay-tags">
-          <span class="overlay-tag">Blockchain</span>
-          <span class="overlay-tag">Web3</span>
-          <span class="overlay-tag">Smart Contracts</span>
-        </div>
-        <div class="overlay-cta">
-          <a href="events.html" class="btn-register">Reserve Seat</a>
-          <a href="events.html" class="btn-learn">Speaker Bio</a>
+        <div class="event-card-overlay">
+          <div class="overlay-tags">
+            <span class="overlay-tag">Google Cloud</span>
+            <span class="overlay-tag">Android</span>
+            <span class="overlay-tag">Healthcare</span>
+          </div>
+          <div class="overlay-cta">
+            <a href="events.html" class="btn-register">Register Team</a>
+            <a href="events.html" class="btn-learn">Details</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Event 6 -->
-    <div class="event-card reveal delay-6" data-category="community">
-      <div class="event-card-image">
-        <div class="img-placeholder" style="background: linear-gradient(135deg,#33180d,#bf360c);">🎊</div>
-        <span class="event-type-badge badge-community">Community</span>
-      </div>
-      <div class="event-card-body">
-        <div class="event-date-row">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          May 3, 2026 &nbsp;·&nbsp; 4:00 PM
+      <!-- Event 3 -->
+      <div class="event-card reveal delay-3" data-category="devfest">
+        <div class="event-card-image">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#1a3a1a,#1b5e20);">🎉</div>
+          <span class="event-type-badge badge-devfest">DevFest</span>
         </div>
-        <h3 class="event-title">Open Source Contribution Sprint</h3>
-        <p class="event-desc">Learn how to contribute to open-source projects effectively. Get mentored through your first real pull request to a Google-backed project.</p>
-      </div>
-      <div class="event-card-footer">
-        <span class="event-meta">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          Online + Campus
-        </span>
-        <a href="events.html" class="event-register-btn">Register →</a>
-      </div>
-      <div class="event-card-overlay">
-        <div class="overlay-tags">
-          <span class="overlay-tag">Open Source</span>
-          <span class="overlay-tag">GitHub</span>
-          <span class="overlay-tag">Mentorship</span>
+        <div class="event-card-body">
+          <div class="event-date-row">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            April 5, 2026 &nbsp;·&nbsp; All Day
+          </div>
+          <h3 class="event-title">DevFest CSMU 2026</h3>
+          <p class="event-desc">Our flagship annual developer festival featuring keynotes, workshops, networking
+            sessions, and incredible swag from Google.</p>
         </div>
-        <div class="overlay-cta">
-          <a href="events.html" class="btn-register">Join Sprint</a>
-          <a href="events.html" class="btn-learn">How It Works</a>
+        <div class="event-card-footer">
+          <span class="event-meta">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            </svg>
+            CSMU Convention Hall
+          </span>
+          <a href="events.html" class="event-register-btn">Register →</a>
         </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div style="text-align:center;margin-top:50px;" class="reveal">
-    <a href="events.html" class="btn btn-primary btn-lg">View All Events →</a>
-  </div>
-</section>
-
-<!-- ====== DOMAINS ====== -->
-<section class="domains-section" id="domains">
-  <div class="section-header reveal">
-    <div class="section-tag">What We Do</div>
-    <h2 class="section-title">Tech <span class="highlight">Domains</span></h2>
-    <div class="glow-divider"></div>
-    <p class="section-desc">We cover a wide range of technologies from Google's ecosystem and beyond.</p>
-  </div>
-
-  <div class="domains-grid">
-    <div class="domain-card reveal delay-1">
-      <span class="domain-icon">🤖</span>
-      <div class="domain-name">AI & Machine Learning</div>
-      <div class="domain-desc">TensorFlow, Vertex AI, Generative AI, and ML model deployment</div>
-    </div>
-    <div class="domain-card reveal delay-2">
-      <span class="domain-icon">☁️</span>
-      <div class="domain-name">Google Cloud</div>
-      <div class="domain-desc">GCP, Cloud Functions, Firebase, BigQuery and data engineering</div>
-    </div>
-    <div class="domain-card reveal delay-3">
-      <span class="domain-icon">📱</span>
-      <div class="domain-name">Android & Flutter</div>
-      <div class="domain-desc">Native Android, Flutter cross-platform, Jetpack Compose & Material 3</div>
-    </div>
-    <div class="domain-card reveal delay-4">
-      <span class="domain-icon">🌐</span>
-      <div class="domain-name">Web Development</div>
-      <div class="domain-desc">Modern web with Angular, Progressive Web Apps, and Chrome APIs</div>
-    </div>
-    <div class="domain-card reveal delay-5">
-      <span class="domain-icon">🔒</span>
-      <div class="domain-name">Cybersecurity</div>
-      <div class="domain-desc">Security best practices, ethical hacking, and Google BeyondCorp</div>
-    </div>
-    <div class="domain-card reveal delay-6">
-      <span class="domain-icon">📊</span>
-      <div class="domain-name">Data Science</div>
-      <div class="domain-desc">Data analytics, Looker, BigQuery ML, and visualization tools</div>
-    </div>
-    <div class="domain-card reveal delay-1">
-      <span class="domain-icon">🥽</span>
-      <div class="domain-name">AR / VR</div>
-      <div class="domain-desc">ARCore, immersive experiences, and spatial computing</div>
-    </div>
-    <div class="domain-card reveal delay-2">
-      <span class="domain-icon">⛓️</span>
-      <div class="domain-name">Web3 & Blockchain</div>
-      <div class="domain-desc">Decentralized apps, smart contracts, and digital identity</div>
-    </div>
-  </div>
-</section>
-
-<!-- ====== TEAM ====== -->
-<section class="team-section" id="team">
-  <div class="section-header reveal">
-    <div class="section-tag">Our People</div>
-    <h2 class="section-title">Meet the <span class="highlight">Team</span></h2>
-    <div class="glow-divider"></div>
-    <p class="section-desc">Passionate developers and leaders driving GDG Campus CSMU forward.</p>
-  </div>
-
-  <div class="team-grid">
-
-    <!-- Organizer Lead -->
-    <div class="team-card reveal delay-1" style="grid-column:span 1">
-      <div class="team-card-top" style="background:linear-gradient(135deg,rgba(66,133,244,0.4),rgba(52,168,83,0.4))"></div>
-      <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-blue),var(--google-green))">TH</div>
-      <div class="team-card-body">
-        <div class="team-name">Tanisha Hegde</div>
-        <div class="team-role" style="color:var(--google-blue)">GDGoC Organizer &amp; Lead</div>
-        <div class="team-socials">
-          <a href="https://www.linkedin.com/in/tanisha-hegde-b9bb44268/" target="_blank" rel="noopener" class="team-social-btn" aria-label="LinkedIn">in</a>
-          <a href="mailto:gdgoc.csmu@gmail.com" class="team-social-btn" aria-label="Email">✉</a>
+        <div class="event-card-overlay">
+          <div class="overlay-tags">
+            <span class="overlay-tag">Keynote</span>
+            <span class="overlay-tag">Networking</span>
+            <span class="overlay-tag">Swag</span>
+          </div>
+          <div class="overlay-cta">
+            <a href="events.html" class="btn-register">Register Free</a>
+            <a href="events.html" class="btn-learn">Program</a>
+          </div>
         </div>
       </div>
+
+      <!-- Event 4 -->
+      <div class="event-card reveal delay-4" data-category="study">
+        <div class="event-card-image">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#0d2137,#01579b);">☁️</div>
+          <span class="event-type-badge badge-study">Study Jam</span>
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-row">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            April 12, 2026 &nbsp;·&nbsp; 2:00 PM
+          </div>
+          <h3 class="event-title">Google Cloud Study Jam — Associate Exam Prep</h3>
+          <p class="event-desc">Get ready for Google Cloud certifications with guided hands-on labs and expert
+            mentorship. Free Qwiklabs credits included.</p>
+        </div>
+        <div class="event-card-footer">
+          <span class="event-meta">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Online + Lab 202
+          </span>
+          <a href="events.html" class="event-register-btn">Register →</a>
+        </div>
+        <div class="event-card-overlay">
+          <div class="overlay-tags">
+            <span class="overlay-tag">GCP</span>
+            <span class="overlay-tag">Certification</span>
+            <span class="overlay-tag">Free Credits</span>
+          </div>
+          <div class="overlay-cta">
+            <a href="events.html" class="btn-register">Join Jam</a>
+            <a href="events.html" class="btn-learn">Syllabus</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 5 -->
+      <div class="event-card reveal delay-5" data-category="talk">
+        <div class="event-card-image">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#2d1b69,#4a148c);">🎤</div>
+          <span class="event-type-badge badge-talk">Tech Talk</span>
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-row">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            April 18, 2026 &nbsp;·&nbsp; 5:00 PM
+          </div>
+          <h3 class="event-title">Web3 & Blockchain: Building the Decentralized Future</h3>
+          <p class="event-desc">An insightful session by industry expert exploring practical Web3 applications, smart
+            contracts, and real-world blockchain use cases.</p>
+        </div>
+        <div class="event-card-footer">
+          <span class="event-meta">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            </svg>
+            Seminar Hall B
+          </span>
+          <a href="events.html" class="event-register-btn">Register →</a>
+        </div>
+        <div class="event-card-overlay">
+          <div class="overlay-tags">
+            <span class="overlay-tag">Blockchain</span>
+            <span class="overlay-tag">Web3</span>
+            <span class="overlay-tag">Smart Contracts</span>
+          </div>
+          <div class="overlay-cta">
+            <a href="events.html" class="btn-register">Reserve Seat</a>
+            <a href="events.html" class="btn-learn">Speaker Bio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 6 -->
+      <div class="event-card reveal delay-6" data-category="community">
+        <div class="event-card-image">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#33180d,#bf360c);">🎊</div>
+          <span class="event-type-badge badge-community">Community</span>
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-row">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            May 3, 2026 &nbsp;·&nbsp; 4:00 PM
+          </div>
+          <h3 class="event-title">Open Source Contribution Sprint</h3>
+          <p class="event-desc">Learn how to contribute to open-source projects effectively. Get mentored through your
+            first real pull request to a Google-backed project.</p>
+        </div>
+        <div class="event-card-footer">
+          <span class="event-meta">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Online + Campus
+          </span>
+          <a href="events.html" class="event-register-btn">Register →</a>
+        </div>
+        <div class="event-card-overlay">
+          <div class="overlay-tags">
+            <span class="overlay-tag">Open Source</span>
+            <span class="overlay-tag">GitHub</span>
+            <span class="overlay-tag">Mentorship</span>
+          </div>
+          <div class="overlay-cta">
+            <a href="events.html" class="btn-register">Join Sprint</a>
+            <a href="events.html" class="btn-learn">How It Works</a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Technical Head AI/ML -->
-    <div class="team-card reveal delay-2">
-      <div class="team-card-top" style="background:linear-gradient(135deg,rgba(234,67,53,0.3),rgba(251,188,4,0.3))"></div>
-      <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-red),var(--google-yellow))">VM</div>
-      <div class="team-card-body">
-        <div class="team-name">Varad Madhav</div>
-        <div class="team-role" style="color:var(--google-red)">Technical Head — AI/ML</div>
-        <div class="team-socials">
-          <a href="https://www.linkedin.com/in/varadmadhav/" target="_blank" rel="noopener" class="team-social-btn" aria-label="LinkedIn">in</a>
-          <a href="https://github.com/Varadmadhav" target="_blank" rel="noopener" class="team-social-btn" aria-label="GitHub">⌥</a>
+    <div style="text-align:center;margin-top:50px;" class="reveal">
+      <a href="events.html" class="btn btn-primary btn-lg">View All Events →</a>
+    </div>
+  </section>
+
+  <!-- ====== DOMAINS ====== -->
+  <section class="domains-section" id="domains">
+    <div class="section-header reveal">
+      <div class="section-tag">What We Do</div>
+      <h2 class="section-title">Tech <span class="highlight">Domains</span></h2>
+      <div class="glow-divider"></div>
+      <p class="section-desc">We cover a wide range of technologies from Google's ecosystem and beyond.</p>
+    </div>
+
+    <div class="domains-grid">
+      <div class="domain-card reveal delay-1">
+        <span class="domain-icon">🤖</span>
+        <div class="domain-name">AI & Machine Learning</div>
+        <div class="domain-desc">TensorFlow, Vertex AI, Generative AI, and ML model deployment</div>
+      </div>
+      <div class="domain-card reveal delay-2">
+        <span class="domain-icon">☁️</span>
+        <div class="domain-name">Google Cloud</div>
+        <div class="domain-desc">GCP, Cloud Functions, Firebase, BigQuery and data engineering</div>
+      </div>
+      <div class="domain-card reveal delay-3">
+        <span class="domain-icon">📱</span>
+        <div class="domain-name">Android & Flutter</div>
+        <div class="domain-desc">Native Android, Flutter cross-platform, Jetpack Compose & Material 3</div>
+      </div>
+      <div class="domain-card reveal delay-4">
+        <span class="domain-icon">🌐</span>
+        <div class="domain-name">Web Development</div>
+        <div class="domain-desc">Modern web with Angular, Progressive Web Apps, and Chrome APIs</div>
+      </div>
+      <div class="domain-card reveal delay-5">
+        <span class="domain-icon">🔒</span>
+        <div class="domain-name">Cybersecurity</div>
+        <div class="domain-desc">Security best practices, ethical hacking, and Google BeyondCorp</div>
+      </div>
+      <div class="domain-card reveal delay-6">
+        <span class="domain-icon">📊</span>
+        <div class="domain-name">Data Science</div>
+        <div class="domain-desc">Data analytics, Looker, BigQuery ML, and visualization tools</div>
+      </div>
+      <div class="domain-card reveal delay-1">
+        <span class="domain-icon">🥽</span>
+        <div class="domain-name">AR / VR</div>
+        <div class="domain-desc">ARCore, immersive experiences, and spatial computing</div>
+      </div>
+      <div class="domain-card reveal delay-2">
+        <span class="domain-icon">⛓️</span>
+        <div class="domain-name">Web3 & Blockchain</div>
+        <div class="domain-desc">Decentralized apps, smart contracts, and digital identity</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TEAM ====== -->
+  <section class="team-section" id="team">
+    <div class="section-header reveal">
+      <div class="section-tag">Our People</div>
+      <h2 class="section-title">Meet the <span class="highlight">Team</span></h2>
+      <div class="glow-divider"></div>
+      <p class="section-desc">Passionate developers and leaders driving GDG Campus CSMU forward.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <!-- Organizer Lead -->
+      <div class="team-card reveal delay-1" style="grid-column:span 1">
+        <div class="team-card-top" style="background:linear-gradient(135deg,rgba(66,133,244,0.4),rgba(52,168,83,0.4))">
         </div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-blue),var(--google-green))">TH
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Tanisha Hegde</div>
+          <div class="team-role" style="color:var(--google-blue)">GDGoC Organizer &amp; Lead</div>
+          <div class="team-socials">
+            <a href="https://www.linkedin.com/in/tanisha-hegde-b9bb44268/" target="_blank" rel="noopener"
+              class="team-social-btn" aria-label="LinkedIn">in</a>
+            <a href="mailto:gdgoc.csmu@gmail.com" class="team-social-btn" aria-label="Email">✉</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Head AI/ML -->
+      <div class="team-card reveal delay-2">
+        <div class="team-card-top" style="background:linear-gradient(135deg,rgba(234,67,53,0.3),rgba(251,188,4,0.3))">
+        </div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-red),var(--google-yellow))">VM
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Varad Madhav</div>
+          <div class="team-role" style="color:var(--google-red)">Technical Head — AI/ML</div>
+          <div class="team-socials">
+            <a href="https://www.linkedin.com/in/varadmadhav/" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="LinkedIn">in</a>
+            <a href="https://github.com/Varadmadhav" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="GitHub">⌥</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Head Frontend -->
+      <div class="team-card reveal delay-3">
+        <div class="team-card-top" style="background:linear-gradient(135deg,rgba(52,168,83,0.3),rgba(66,133,244,0.3))">
+        </div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-green),var(--google-blue))">PP
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Prathamesh Padher</div>
+          <div class="team-role" style="color:var(--google-green)">Technical Head — Frontend</div>
+          <div class="team-socials">
+            <a href="https://www.linkedin.com/in/prathamesh-padher-6bb094269/" target="_blank" rel="noopener"
+              class="team-social-btn" aria-label="LinkedIn">in</a>
+            <a href="https://github.com/PrathameshPadher" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="GitHub">⌥</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- UI/UX Head -->
+      <div class="team-card reveal delay-4">
+        <div class="team-card-top" style="background:linear-gradient(135deg,rgba(251,188,4,0.3),rgba(234,67,53,0.3))">
+        </div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-yellow),var(--google-red))">AS
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Aarya Shewale</div>
+          <div class="team-role" style="color:var(--google-yellow)">UI/UX Head</div>
+          <div class="team-socials">
+            <a href="https://www.linkedin.com/in/aarya-shewale-4b04712ab/" target="_blank" rel="noopener"
+              class="team-social-btn" aria-label="LinkedIn">in</a>
+            <a href="https://github.com/AaryaShewale07" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="GitHub">⌥</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Management & Design Head -->
+      <div class="team-card reveal delay-1">
+        <div class="team-card-top" style="background:linear-gradient(135deg,rgba(66,133,244,0.3),rgba(234,67,53,0.3))">
+        </div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-blue),var(--google-red))">JJ
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Jayesh Jadhav</div>
+          <div class="team-role" style="color:var(--google-blue)">Management &amp; Design Head</div>
+          <div class="team-socials">
+            <a href="https://www.linkedin.com/in/jayeshvj/" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="LinkedIn">in</a>
+            <a href="https://github.com/jayxvj" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="GitHub">⌥</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Media Head -->
+      <div class="team-card reveal delay-2">
+        <div class="team-card-top" style="background:linear-gradient(135deg,rgba(52,168,83,0.3),rgba(251,188,4,0.3))">
+        </div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-green),var(--google-yellow))">SG
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Sakshi Gollar</div>
+          <div class="team-role" style="color:var(--google-green)">Social Media Head</div>
+          <div class="team-socials">
+            <a href="https://www.linkedin.com/in/sakshigollar31/" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="LinkedIn">in</a>
+            <a href="https://github.com/sakshig3101" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="GitHub">⌥</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Management Head -->
+      <div class="team-card reveal delay-3">
+        <div class="team-card-top" style="background:linear-gradient(135deg,rgba(234,67,53,0.3),rgba(66,133,244,0.3))">
+        </div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-red),var(--google-blue))">PH
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Pratik Harugade</div>
+          <div class="team-role" style="color:var(--google-red)">Management Head</div>
+          <div class="team-socials">
+            <a href="https://www.linkedin.com/in/pratik-pramod-harugade/" target="_blank" rel="noopener"
+              class="team-social-btn" aria-label="LinkedIn">in</a>
+            <a href="https://github.com/ppharugade" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="GitHub">⌥</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Media Head -->
+      <div class="team-card reveal delay-4">
+        <div class="team-card-top" style="background:linear-gradient(135deg,rgba(251,188,4,0.3),rgba(52,168,83,0.3))">
+        </div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-yellow),var(--google-green))">VP
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Vallabh Patil</div>
+          <div class="team-role" style="color:var(--google-yellow)">Media Head</div>
+          <div class="team-socials">
+            <a href="https://www.linkedin.com/in/vallabh-patil-8810ba374/" target="_blank" rel="noopener"
+              class="team-social-btn" aria-label="LinkedIn">in</a>
+            <a href="https://github.com/Patil2004-hash" target="_blank" rel="noopener" class="team-social-btn"
+              aria-label="GitHub">⌥</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Operational Head -->
+      <div class="team-card reveal delay-1">
+        <div class="team-card-top" style="background:linear-gradient(135deg,rgba(66,133,244,0.3),rgba(52,168,83,0.3))">
+        </div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-blue),var(--google-green))">PT
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Prathamesh Tripathi</div>
+          <div class="team-role" style="color:var(--google-blue)">Operational Head</div>
+          <div class="team-socials">
+            <a href="https://www.linkedin.com/in/tripathiprathamesh/" target="_blank" rel="noopener"
+              class="team-social-btn" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====== CTA ====== -->
+  <section class="cta-section" id="contact">
+    <div class="cta-box reveal">
+      <h2>Ready to <span class="highlight">Join</span> Us?</h2>
+      <p>Be part of a movement that's shaping the future of technology. Become a member of GDG Campus CSMU today — it's
+        free!</p>
+      <div class="cta-actions">
+        <a href="signup.html" class="btn btn-primary btn-lg">Create Free Account</a>
+        <a href="mailto:gdgoc.csmu@gmail.com" class="btn btn-outline btn-lg">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0">
+          <div class="logo-dots">
+            <div class="logo-dot"></div>
+            <div class="logo-dot"></div>
+            <div class="logo-dot"></div>
+            <div class="logo-dot"></div>
+          </div>
+          <span class="logo-text">GDG <span>Campus</span> CSMU</span>
+        </a>
+        <p>A community of passionate developers at Chandigarh State Medical University, powered by Google Developer
+          Groups.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/google-developer-group-on-campus-csmu/" target="_blank"
+            rel="noopener" aria-label="LinkedIn">in</a>
+          <a href="https://www.instagram.com/gdgoncampus.csmu" target="_blank" rel="noopener"
+            aria-label="Instagram">📸</a>
+          <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener" aria-label="GDG">G</a>
+          <a href="mailto:gdgoc.csmu@gmail.com" aria-label="Email">✉</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#domains">Domains</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="signup.html">Join GDG</a></li>
+          <li><a href="#">Become a Speaker</a></li>
+          <li><a href="#">Sponsor Us</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Google for Developers</a></li>
+          <li><a href="#">Google Codelabs</a></li>
+          <li><a href="#">Study Jams</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
       </div>
     </div>
 
-    <!-- Technical Head Frontend -->
-    <div class="team-card reveal delay-3">
-      <div class="team-card-top" style="background:linear-gradient(135deg,rgba(52,168,83,0.3),rgba(66,133,244,0.3))"></div>
-      <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-green),var(--google-blue))">PP</div>
-      <div class="team-card-body">
-        <div class="team-name">Prathamesh Padher</div>
-        <div class="team-role" style="color:var(--google-green)">Technical Head — Frontend</div>
-        <div class="team-socials">
-          <a href="https://www.linkedin.com/in/prathamesh-padher-6bb094269/" target="_blank" rel="noopener" class="team-social-btn" aria-label="LinkedIn">in</a>
-          <a href="https://github.com/PrathameshPadher" target="_blank" rel="noopener" class="team-social-btn" aria-label="GitHub">⌥</a>
-        </div>
+    <div class="footer-bottom">
+      <p>© 2026 GDG Campus CSMU. Made with ❤️ by the community.</p>
+      <div class="gdg-colors-bar">
+        <span style="background:var(--google-blue)"></span>
+        <span style="background:var(--google-red)"></span>
+        <span style="background:var(--google-yellow)"></span>
+        <span style="background:var(--google-green)"></span>
       </div>
     </div>
+  </footer>
 
-    <!-- UI/UX Head -->
-    <div class="team-card reveal delay-4">
-      <div class="team-card-top" style="background:linear-gradient(135deg,rgba(251,188,4,0.3),rgba(234,67,53,0.3))"></div>
-      <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-yellow),var(--google-red))">AS</div>
-      <div class="team-card-body">
-        <div class="team-name">Aarya Shewale</div>
-        <div class="team-role" style="color:var(--google-yellow)">UI/UX Head</div>
-        <div class="team-socials">
-          <a href="https://www.linkedin.com/in/aarya-shewale-4b04712ab/" target="_blank" rel="noopener" class="team-social-btn" aria-label="LinkedIn">in</a>
-          <a href="https://github.com/AaryaShewale07" target="_blank" rel="noopener" class="team-social-btn" aria-label="GitHub">⌥</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Management & Design Head -->
-    <div class="team-card reveal delay-1">
-      <div class="team-card-top" style="background:linear-gradient(135deg,rgba(66,133,244,0.3),rgba(234,67,53,0.3))"></div>
-      <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-blue),var(--google-red))">JJ</div>
-      <div class="team-card-body">
-        <div class="team-name">Jayesh Jadhav</div>
-        <div class="team-role" style="color:var(--google-blue)">Management &amp; Design Head</div>
-        <div class="team-socials">
-          <a href="https://www.linkedin.com/in/jayeshvj/" target="_blank" rel="noopener" class="team-social-btn" aria-label="LinkedIn">in</a>
-          <a href="https://github.com/jayxvj" target="_blank" rel="noopener" class="team-social-btn" aria-label="GitHub">⌥</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Social Media Head -->
-    <div class="team-card reveal delay-2">
-      <div class="team-card-top" style="background:linear-gradient(135deg,rgba(52,168,83,0.3),rgba(251,188,4,0.3))"></div>
-      <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-green),var(--google-yellow))">SG</div>
-      <div class="team-card-body">
-        <div class="team-name">Sakshi Gollar</div>
-        <div class="team-role" style="color:var(--google-green)">Social Media Head</div>
-        <div class="team-socials">
-          <a href="https://www.linkedin.com/in/sakshigollar31/" target="_blank" rel="noopener" class="team-social-btn" aria-label="LinkedIn">in</a>
-          <a href="https://github.com/sakshig3101" target="_blank" rel="noopener" class="team-social-btn" aria-label="GitHub">⌥</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Management Head -->
-    <div class="team-card reveal delay-3">
-      <div class="team-card-top" style="background:linear-gradient(135deg,rgba(234,67,53,0.3),rgba(66,133,244,0.3))"></div>
-      <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-red),var(--google-blue))">PH</div>
-      <div class="team-card-body">
-        <div class="team-name">Pratik Harugade</div>
-        <div class="team-role" style="color:var(--google-red)">Management Head</div>
-        <div class="team-socials">
-          <a href="https://www.linkedin.com/in/pratik-pramod-harugade/" target="_blank" rel="noopener" class="team-social-btn" aria-label="LinkedIn">in</a>
-          <a href="https://github.com/ppharugade" target="_blank" rel="noopener" class="team-social-btn" aria-label="GitHub">⌥</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Media Head -->
-    <div class="team-card reveal delay-4">
-      <div class="team-card-top" style="background:linear-gradient(135deg,rgba(251,188,4,0.3),rgba(52,168,83,0.3))"></div>
-      <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-yellow),var(--google-green))">VP</div>
-      <div class="team-card-body">
-        <div class="team-name">Vallabh Patil</div>
-        <div class="team-role" style="color:var(--google-yellow)">Media Head</div>
-        <div class="team-socials">
-          <a href="https://www.linkedin.com/in/vallabh-patil-8810ba374/" target="_blank" rel="noopener" class="team-social-btn" aria-label="LinkedIn">in</a>
-          <a href="https://github.com/Patil2004-hash" target="_blank" rel="noopener" class="team-social-btn" aria-label="GitHub">⌥</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Operational Head -->
-    <div class="team-card reveal delay-1">
-      <div class="team-card-top" style="background:linear-gradient(135deg,rgba(66,133,244,0.3),rgba(52,168,83,0.3))"></div>
-      <div class="team-avatar" style="background:linear-gradient(135deg,var(--google-blue),var(--google-green))">PT</div>
-      <div class="team-card-body">
-        <div class="team-name">Prathamesh Tripathi</div>
-        <div class="team-role" style="color:var(--google-blue)">Operational Head</div>
-        <div class="team-socials">
-          <a href="https://www.linkedin.com/in/tripathiprathamesh/" target="_blank" rel="noopener" class="team-social-btn" aria-label="LinkedIn">in</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ====== CTA ====== -->
-<section class="cta-section" id="contact">
-  <div class="cta-box reveal">
-    <h2>Ready to <span class="highlight">Join</span> Us?</h2>
-    <p>Be part of a movement that's shaping the future of technology. Become a member of GDG Campus CSMU today — it's free!</p>
-    <div class="cta-actions">
-      <a href="signup.html" class="btn btn-primary btn-lg">Create Free Account</a>
-      <a href="mailto:gdgoc.csmu@gmail.com" class="btn btn-outline btn-lg">Contact Us</a>
-    </div>
-  </div>
-</section>
-
-<!-- ====== FOOTER ====== -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="index.html" class="nav-logo" style="margin-bottom:0">
-        <div class="logo-dots">
-          <div class="logo-dot"></div>
-          <div class="logo-dot"></div>
-          <div class="logo-dot"></div>
-          <div class="logo-dot"></div>
-        </div>
-        <span class="logo-text">GDG <span>Campus</span> CSMU</span>
-      </a>
-      <p>A community of passionate developers at Chandigarh State Medical University, powered by Google Developer Groups.</p>
-      <div class="footer-social">
-        <a href="https://www.linkedin.com/company/google-developer-group-on-campus-csmu/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
-        <a href="https://www.instagram.com/gdgoncampus.csmu" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
-        <a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener" aria-label="GDG">G</a>
-        <a href="mailto:gdgoc.csmu@gmail.com" aria-label="Email">✉</a>
-      </div>
-    </div>
-
-    <div class="footer-col">
-      <h4>Navigate</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#domains">Domains</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Community</h4>
-      <ul>
-        <li><a href="signup.html">Join GDG</a></li>
-        <li><a href="#">Become a Speaker</a></li>
-        <li><a href="#">Sponsor Us</a></li>
-        <li><a href="#">Volunteer</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="#">Google for Developers</a></li>
-        <li><a href="#">Google Codelabs</a></li>
-        <li><a href="#">Study Jams</a></li>
-        <li><a href="#">Code of Conduct</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 GDG Campus CSMU. Made with ❤️ by the community.</p>
-    <div class="gdg-colors-bar">
-      <span style="background:var(--google-blue)"></span>
-      <span style="background:var(--google-red)"></span>
-      <span style="background:var(--google-yellow)"></span>
-      <span style="background:var(--google-green)"></span>
-    </div>
-  </div>
-</footer>
-
-<script type="module" src="js/main.js"></script>
-<script type="module">
-  import { initNavbarUserState } from './js/dashboard.js';
-  initNavbarUserState();
-</script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { initNavbarUserState } from './js/dashboard.js';
+    initNavbarUserState();
+  </script>
 </body>
+
 </html>

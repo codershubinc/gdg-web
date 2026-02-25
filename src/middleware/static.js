@@ -1,6 +1,6 @@
 'use strict';
 
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
 const MIME = require('../config/mime');
 
@@ -9,17 +9,17 @@ const MIME = require('../config/mime');
  * Falls back to 404 if the file doesn't exist.
  */
 function serveFile(filePath, res) {
-  fs.readFile(filePath, (err, data) => {
-    if (err) {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('404 Not Found');
-      return;
-    }
-    const ext  = path.extname(filePath).toLowerCase();
-    const mime = MIME[ext] || 'application/octet-stream';
-    res.writeHead(200, { 'Content-Type': mime });
-    res.end(data);
-  });
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('404 Not Found');
+            return;
+        }
+        const ext = path.extname(filePath).toLowerCase();
+        const mime = MIME[ext] || 'application/octet-stream';
+        res.writeHead(200, { 'Content-Type': mime });
+        res.end(data);
+    });
 }
 
 /**
@@ -31,22 +31,22 @@ function serveFile(filePath, res) {
  * Returns null if the resolved path escapes `publicDir` (path traversal guard).
  */
 function resolvePublicPath(url, publicDir) {
-  let filePath = path.join(publicDir, url);
+    let filePath = path.join(publicDir, url);
 
-  // Security: prevent path traversal outside public/
-  if (!filePath.startsWith(publicDir + path.sep) && filePath !== publicDir) {
-    return null;
-  }
+    // Security: prevent path traversal outside public/
+    if (!filePath.startsWith(publicDir + path.sep) && filePath !== publicDir) {
+        return null;
+    }
 
-  if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
-    filePath = path.join(filePath, 'index.html');
-  }
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+        filePath = path.join(filePath, 'index.html');
+    }
 
-  if (!path.extname(filePath) && !fs.existsSync(filePath)) {
-    filePath += '.html';
-  }
+    if (!path.extname(filePath) && !fs.existsSync(filePath)) {
+        filePath += '.html';
+    }
 
-  return filePath;
+    return filePath;
 }
 
 module.exports = { serveFile, resolvePublicPath };

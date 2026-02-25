@@ -253,15 +253,15 @@ window.addEventListener('load', () => {
 /* ===== RIPPLE EFFECT on buttons ===== */
 (function initRipple() {
   document.querySelectorAll('.btn, .btn-auth, .event-register-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', function (e) {
       const rect = this.getBoundingClientRect();
       const ripple = document.createElement('span');
       const size = Math.max(rect.width, rect.height);
       ripple.style.cssText = `
         position:absolute;
         width:${size}px;height:${size}px;
-        left:${e.clientX - rect.left - size/2}px;
-        top:${e.clientY - rect.top - size/2}px;
+        left:${e.clientX - rect.left - size / 2}px;
+        top:${e.clientY - rect.top - size / 2}px;
         background:rgba(255,255,255,0.25);
         border-radius:50%;
         transform:scale(0);
@@ -304,9 +304,9 @@ window.addEventListener('load', () => {
 
 /* ===== EVENT CARD HOVER POPOUT ===== */
 (function initEventPopout() {
-  const POP_W   = 300;  // must match CSS width
-  const OFFSET  = 18;   // gap from cursor
-  const DELAY   = 120;  // ms before appearing (prevents flicker on fast pass-through)
+  const POP_W = 300;  // must match CSS width
+  const OFFSET = 18;   // gap from cursor
+  const DELAY = 120;  // ms before appearing (prevents flicker on fast pass-through)
 
   // ── Build single popout DOM (reused for every card) ──
   const pop = document.createElement('div');
@@ -324,13 +324,13 @@ window.addEventListener('load', () => {
   `;
   document.body.appendChild(pop);
 
-  const epHero  = document.getElementById('_ep-hero');
+  const epHero = document.getElementById('_ep-hero');
   const epTitle = document.getElementById('_ep-title');
-  const epDesc  = document.getElementById('_ep-desc');
-  const epMeta  = document.getElementById('_ep-meta');
-  const epTags  = document.getElementById('_ep-tags');
+  const epDesc = document.getElementById('_ep-desc');
+  const epMeta = document.getElementById('_ep-meta');
+  const epTags = document.getElementById('_ep-tags');
 
-  let showTimer  = null;
+  let showTimer = null;
   let activeCard = null;
 
   const svgCal = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`;
@@ -339,20 +339,20 @@ window.addEventListener('load', () => {
   const metaIcons = [svgCal, svgPin, svgPpl];
 
   function position(cx, cy) {
-    const popH  = pop.offsetHeight || 300;
-    const vw    = window.innerWidth;
-    const vh    = window.innerHeight;
+    const popH = pop.offsetHeight || 300;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
     let x = cx + OFFSET;
     let y = cy + OFFSET;
     // flip left if overflowing right
     if (x + POP_W > vw - 10) x = cx - POP_W - OFFSET;
     // flip up if overflowing bottom
-    if (y + popH > vh - 10)  y = cy - popH - OFFSET;
+    if (y + popH > vh - 10) y = cy - popH - OFFSET;
     // clamp to viewport
     x = Math.max(8, x);
     y = Math.max(8, y);
     pop.style.left = x + 'px';
-    pop.style.top  = y + 'px';
+    pop.style.top = y + 'px';
   }
 
   function fill(data) {
@@ -362,7 +362,7 @@ window.addEventListener('load', () => {
       ${data.badge ? `<span class="event-type-badge ${data.badgeCls} ep-badge">${data.badge}</span>` : ''}
     `;
     epTitle.textContent = data.title;
-    epDesc.textContent  = data.desc;
+    epDesc.textContent = data.desc;
     epMeta.innerHTML = data.infoItems.slice(0, 2)
       .map((item, i) => `<div class="ep-meta-row">${metaIcons[i]}<span>${item}</span></div>`)
       .join('');
@@ -410,28 +410,28 @@ window.addEventListener('load', () => {
   // ── index.html cards ──
   document.querySelectorAll('.event-card').forEach(card => {
     wireCard(card, c => ({
-      emoji:       txt(c.querySelector('.img-placeholder')),
-      heroBg:      c.querySelector('.img-placeholder')?.style.background || '',
-      badge:       txt(c.querySelector('.event-type-badge')),
-      badgeCls:    Array.from(c.querySelector('.event-type-badge')?.classList ?? []).find(cl => cl.startsWith('badge-')) || '',
-      title:       txt(c.querySelector('.event-title')),
-      desc:        txt(c.querySelector('.event-desc')),
-      infoItems:   [txt(c.querySelector('.event-date-row')), txt(c.querySelector('.event-meta'))].filter(Boolean),
-      tags:        Array.from(c.querySelectorAll('.overlay-tag')).map(t => t.textContent.trim()),
+      emoji: txt(c.querySelector('.img-placeholder')),
+      heroBg: c.querySelector('.img-placeholder')?.style.background || '',
+      badge: txt(c.querySelector('.event-type-badge')),
+      badgeCls: Array.from(c.querySelector('.event-type-badge')?.classList ?? []).find(cl => cl.startsWith('badge-')) || '',
+      title: txt(c.querySelector('.event-title')),
+      desc: txt(c.querySelector('.event-desc')),
+      infoItems: [txt(c.querySelector('.event-date-row')), txt(c.querySelector('.event-meta'))].filter(Boolean),
+      tags: Array.from(c.querySelectorAll('.overlay-tag')).map(t => t.textContent.trim()),
     }));
   });
 
   // ── events.html big cards ──
   document.querySelectorAll('.event-card-big').forEach(card => {
     wireCard(card, c => ({
-      emoji:       txt(c.querySelector('.event-img-big')),
-      heroBg:      c.querySelector('.event-img-big')?.style.background || '',
-      badge:       txt(c.querySelector('.event-type-badge')),
-      badgeCls:    Array.from(c.querySelector('.event-type-badge')?.classList ?? []).find(cl => cl.startsWith('badge-')) || '',
-      title:       txt(c.querySelector('.event-title-big')),
-      desc:        txt(c.querySelector('.event-desc-big')),
-      infoItems:   Array.from(c.querySelectorAll('.event-info-item')).map(el => el.textContent.trim()),
-      tags:        Array.from(c.querySelectorAll('.event-tag')).map(t => t.textContent.trim()),
+      emoji: txt(c.querySelector('.event-img-big')),
+      heroBg: c.querySelector('.event-img-big')?.style.background || '',
+      badge: txt(c.querySelector('.event-type-badge')),
+      badgeCls: Array.from(c.querySelector('.event-type-badge')?.classList ?? []).find(cl => cl.startsWith('badge-')) || '',
+      title: txt(c.querySelector('.event-title-big')),
+      desc: txt(c.querySelector('.event-desc-big')),
+      infoItems: Array.from(c.querySelectorAll('.event-info-item')).map(el => el.textContent.trim()),
+      tags: Array.from(c.querySelectorAll('.event-tag')).map(t => t.textContent.trim()),
     }));
   });
 })();

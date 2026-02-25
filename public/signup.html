@@ -1,506 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up — GDG Campus CSMU</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2/dist/iife/sdk.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up — GDG Campus CSMU</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2/dist/iife/sdk.js"></script>
 </head>
+
 <body>
 
-<!-- Page Loader -->
-<div class="page-loader">
-  <div class="loader-dots">
-    <div class="loader-dot"></div><div class="loader-dot"></div>
-    <div class="loader-dot"></div><div class="loader-dot"></div>
-  </div>
-</div>
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-dots">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+        </div>
+    </div>
 
-<!-- ════════════════════════════════════════
+    <!-- ════════════════════════════════════════
      SPLIT LAYOUT
 ════════════════════════════════════════ -->
-<div class="auth-split">
+    <div class="auth-split">
 
-  <!-- ── LEFT: brand panel ── -->
-  <aside class="auth-brand">
-    <div class="auth-brand-bg">
-      <div class="auth-brand-orb"></div>
-      <div class="auth-brand-orb"></div>
-      <div class="auth-brand-orb"></div>
-    </div>
+        <!-- ── LEFT: brand panel ── -->
+        <aside class="auth-brand">
+            <div class="auth-brand-bg">
+                <div class="auth-brand-orb"></div>
+                <div class="auth-brand-orb"></div>
+                <div class="auth-brand-orb"></div>
+            </div>
 
-    <div class="auth-brand-top">
-      <a href="index.html" class="auth-brand-logo">
-        <div class="logo-dots">
-          <div class="logo-dot"></div><div class="logo-dot"></div>
-          <div class="logo-dot"></div><div class="logo-dot"></div>
-        </div>
-        <span class="logo-text">GDG <span>Campus</span> CSMU</span>
-      </a>
+            <div class="auth-brand-top">
+                <a href="index.html" class="auth-brand-logo">
+                    <div class="logo-dots">
+                        <div class="logo-dot"></div>
+                        <div class="logo-dot"></div>
+                        <div class="logo-dot"></div>
+                        <div class="logo-dot"></div>
+                    </div>
+                    <span class="logo-text">GDG <span>Campus</span> CSMU</span>
+                </a>
 
-      <p class="auth-brand-tagline">
-        Join <span class="hl-green">580+</span> developers &amp; learners
-      </p>
-    </div>
+                <p class="auth-brand-tagline">
+                    Join <span class="hl-green">580+</span> developers &amp; learners
+                </p>
+            </div>
 
-    <div class="auth-brand-bottom">
-      © 2026 GDG Campus CSMU &nbsp;·&nbsp; <a href="index.html" style="color:inherit;opacity:.6">Back to site</a>
-    </div>
-  </aside>
+            <div class="auth-brand-bottom">
+                © 2026 GDG Campus CSMU &nbsp;·&nbsp; <a href="index.html" style="color:inherit;opacity:.6">Back to
+                    site</a>
+            </div>
+        </aside>
 
-  <!-- ── RIGHT: form panel ── -->
-  <main class="auth-form-panel">
-    <div class="auth-form-wrap">
+        <!-- ── RIGHT: form panel ── -->
+        <main class="auth-form-panel">
+            <div class="auth-form-wrap">
 
-      <div class="auth-form-heading">
-        <h1>Create account 🚀</h1>
-        <p>Join GDG Campus CSMU — it's completely free</p>
-      </div>
+                <div class="auth-form-heading">
+                    <h1>Create account 🚀</h1>
+                    <p>Join GDG Campus CSMU — it's completely free</p>
+                </div>
 
-      <!-- Tabs -->
-      <div class="auth-tabs">
-        <a href="login.html"  class="auth-tab">Sign In</a>
-        <a href="signup.html" class="auth-tab active">Sign Up</a>
-      </div>
+                <!-- Tabs -->
+                <div class="auth-tabs">
+                    <a href="login.html" class="auth-tab">Sign In</a>
+                    <a href="signup.html" class="auth-tab active">Sign Up</a>
+                </div>
 
-      <!-- Status message -->
-      <div id="status-msg" class="auth-status-msg" role="alert">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span id="status-text"></span>
-      </div>
+                <!-- Status message -->
+                <div id="status-msg" class="auth-status-msg" role="alert">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span id="status-text"></span>
+                </div>
 
-      <!-- Google OAuth (prominent) -->
-      <button class="btn-google-main" id="google-btn" type="button">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-        </svg>
-        Continue with Google
-      </button>
+                <!-- Google OAuth (prominent) -->
+                <button class="btn-google-main" id="google-btn" type="button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                            fill="#4285F4" />
+                        <path
+                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                            fill="#34A853" />
+                        <path
+                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                            fill="#FBBC05" />
+                        <path
+                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                            fill="#EA4335" />
+                    </svg>
+                    Continue with Google
+                </button>
 
-      <div class="auth-or"><span>or create account with email</span></div>
+                <div class="auth-or"><span>or create account with email</span></div>
 
-      <!-- Signup Form -->
-      <form id="signup-form" novalidate autocomplete="on">
+                <!-- Signup Form -->
+                <form id="signup-form" novalidate autocomplete="on">
 
-        <!-- 2-col row: name + email -->
-        <div class="form-row-2">
-          <div class="form-field">
-            <input id="name" name="name" type="text" placeholder=" "
-              autocomplete="name" required />
-            <label for="name">Full Name</label>
-            <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-          </div>
+                    <!-- 2-col row: name + email -->
+                    <div class="form-row-2">
+                        <div class="form-field">
+                            <input id="name" name="name" type="text" placeholder=" " autocomplete="name" required />
+                            <label for="name">Full Name</label>
+                            <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
 
-          <div class="form-field">
-            <input id="email" name="email" type="email" placeholder=" "
-              autocomplete="email" required />
-            <label for="email">Email</label>
-            <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          </div>
-        </div>
+                        <div class="form-field">
+                            <input id="email" name="email" type="email" placeholder=" " autocomplete="email" required />
+                            <label for="email">Email</label>
+                            <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                    </div>
 
-        <!-- College -->
-        <div class="form-field">
-          <input id="college" name="college" type="text" placeholder=" " />
-          <label for="college">College / Branch (optional)</label>
-          <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
-        </div>
+                    <!-- College -->
+                    <div class="form-field">
+                        <input id="college" name="college" type="text" placeholder=" " />
+                        <label for="college">College / Branch (optional)</label>
+                        <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        </svg>
+                    </div>
 
-        <!-- Password -->
-        <div class="form-field has-toggle">
-          <input id="password" name="password" type="password" placeholder=" "
-            autocomplete="new-password" required minlength="8" />
-          <label for="password">Password</label>
-          <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-          <button type="button" class="pw-toggle" id="pw-toggle-1" aria-label="Toggle visibility">
-            <svg id="eye-show-1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-            <svg id="eye-hide-1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
-          </button>
-        </div>
-        <!-- Strength meter -->
-        <div class="pw-strength" id="pw-strength">
-          <div class="pw-strength-bars">
-            <div class="pw-strength-bar" id="sb1"></div>
-            <div class="pw-strength-bar" id="sb2"></div>
-            <div class="pw-strength-bar" id="sb3"></div>
-            <div class="pw-strength-bar" id="sb4"></div>
-          </div>
-          <span class="pw-strength-label" id="pw-strength-label"></span>
-        </div>
+                    <!-- Password -->
+                    <div class="form-field has-toggle">
+                        <input id="password" name="password" type="password" placeholder=" " autocomplete="new-password"
+                            required minlength="8" />
+                        <label for="password">Password</label>
+                        <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <button type="button" class="pw-toggle" id="pw-toggle-1" aria-label="Toggle visibility">
+                            <svg id="eye-show-1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <svg id="eye-hide-1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" style="display:none">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Strength meter -->
+                    <div class="pw-strength" id="pw-strength">
+                        <div class="pw-strength-bars">
+                            <div class="pw-strength-bar" id="sb1"></div>
+                            <div class="pw-strength-bar" id="sb2"></div>
+                            <div class="pw-strength-bar" id="sb3"></div>
+                            <div class="pw-strength-bar" id="sb4"></div>
+                        </div>
+                        <span class="pw-strength-label" id="pw-strength-label"></span>
+                    </div>
 
-        <!-- Confirm Password -->
-        <div class="form-field has-toggle">
-          <input id="confirm-password" name="confirm-password" type="password" placeholder=" "
-            autocomplete="new-password" required />
-          <label for="confirm-password">Confirm Password</label>
-          <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <button type="button" class="pw-toggle" id="pw-toggle-2" aria-label="Toggle visibility">
-            <svg id="eye-show-2" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-            <svg id="eye-hide-2" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
-          </button>
-        </div>
-        <!-- Match indicator -->
-        <p class="pw-match-msg" id="pw-match-msg"></p>
+                    <!-- Confirm Password -->
+                    <div class="form-field has-toggle">
+                        <input id="confirm-password" name="confirm-password" type="password" placeholder=" "
+                            autocomplete="new-password" required />
+                        <label for="confirm-password">Confirm Password</label>
+                        <svg class="fi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <button type="button" class="pw-toggle" id="pw-toggle-2" aria-label="Toggle visibility">
+                            <svg id="eye-show-2" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <svg id="eye-hide-2" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" style="display:none">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Match indicator -->
+                    <p class="pw-match-msg" id="pw-match-msg"></p>
 
-        <div class="form-options">
-          <label class="checkbox-wrap">
-            <input type="checkbox" id="terms" required />
-            I agree to the <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a>
-          </label>
-        </div>
+                    <div class="form-options">
+                        <label class="checkbox-wrap">
+                            <input type="checkbox" id="terms" required />
+                            I agree to the <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a>
+                        </label>
+                    </div>
 
-        <button type="submit" class="btn-auth" id="signup-submit">Create Account</button>
-      </form>
+                    <button type="submit" class="btn-auth" id="signup-submit">Create Account</button>
+                </form>
 
-      <p class="auth-switch">
-        Already have an account? <a href="login.html">Sign in</a>
-      </p>
+                <p class="auth-switch">
+                    Already have an account? <a href="login.html">Sign in</a>
+                </p>
 
-    </div>
-  </main>
+            </div>
+        </main>
 
-</div><!-- /auth-split -->
+    </div><!-- /auth-split -->
 
-<script type="module" src="js/main.js"></script>
-<script type="module">
-  import { signUp, loginWithGoogle, redirectIfLoggedIn } from './js/auth.js';
+    <script type="module" src="js/main.js"></script>
+    <script type="module">
+        import { signUp, loginWithGoogle, redirectIfLoggedIn } from './js/auth.js';
 
-  redirectIfLoggedIn('dashboard.html');
+        redirectIfLoggedIn('dashboard.html');
 
-  /* ── helpers ── */
-  const statusEl  = document.getElementById('status-msg');
-  const statusTxt = document.getElementById('status-text');
+        /* ── helpers ── */
+        const statusEl = document.getElementById('status-msg');
+        const statusTxt = document.getElementById('status-text');
 
-  function showStatus(msg, isError = false) {
-    statusEl.className = 'auth-status-msg show ' + (isError ? 'error' : 'success');
-    statusTxt.textContent = msg;
-  }
+        function showStatus(msg, isError = false) {
+            statusEl.className = 'auth-status-msg show ' + (isError ? 'error' : 'success');
+            statusTxt.textContent = msg;
+        }
 
-  function setLoading(btn, loading) {
-    btn.disabled = loading;
-    btn.innerHTML = loading
-      ? '<span class="spinner"></span> Creating account…'
-      : 'Create Account';
-  }
+        function setLoading(btn, loading) {
+            btn.disabled = loading;
+            btn.innerHTML = loading
+                ? '<span class="spinner"></span> Creating account…'
+                : 'Create Account';
+        }
 
-  /* ── password toggle helpers ── */
-  function makeToggle(btnId, inputId, showId, hideId) {
-    const btn   = document.getElementById(btnId);
-    const input = document.getElementById(inputId);
-    btn.addEventListener('click', () => {
-      const show = input.type === 'password';
-      input.type = show ? 'text' : 'password';
-      document.getElementById(showId).style.display = show ? 'none' : '';
-      document.getElementById(hideId).style.display = show ? ''     : 'none';
-    });
-  }
-  makeToggle('pw-toggle-1', 'password',         'eye-show-1', 'eye-hide-1');
-  makeToggle('pw-toggle-2', 'confirm-password',  'eye-show-2', 'eye-hide-2');
+        /* ── password toggle helpers ── */
+        function makeToggle(btnId, inputId, showId, hideId) {
+            const btn = document.getElementById(btnId);
+            const input = document.getElementById(inputId);
+            btn.addEventListener('click', () => {
+                const show = input.type === 'password';
+                input.type = show ? 'text' : 'password';
+                document.getElementById(showId).style.display = show ? 'none' : '';
+                document.getElementById(hideId).style.display = show ? '' : 'none';
+            });
+        }
+        makeToggle('pw-toggle-1', 'password', 'eye-show-1', 'eye-hide-1');
+        makeToggle('pw-toggle-2', 'confirm-password', 'eye-show-2', 'eye-hide-2');
 
-  /* ── password strength ── */
-  const pwInput = document.getElementById('password');
-  const bars    = [1,2,3,4].map(i => document.getElementById('sb'+i));
-  const lblEl   = document.getElementById('pw-strength-label');
-  const strengthMap = [
-    { label:'',          cls:'' },
-    { label:'Weak',      cls:'filled-1' },
-    { label:'Fair',      cls:'filled-2' },
-    { label:'Good',      cls:'filled-3' },
-    { label:'Strong',    cls:'filled-4' },
-  ];
-  pwInput.addEventListener('input', () => {
-    const v = pwInput.value;
-    let score = 0;
-    if (v.length >= 8)          score++;
-    if (/[A-Z]/.test(v))        score++;
-    if (/[0-9]/.test(v))        score++;
-    if (/[^A-Za-z0-9]/.test(v)) score++;
-    bars.forEach((b, i) => {
-      b.className = 'pw-strength-bar' + (i < score ? ' ' + strengthMap[score].cls : '');
-    });
-    lblEl.textContent = strengthMap[score].label;
-    lblEl.className   = 'pw-strength-label ' + strengthMap[score].cls;
-  });
+        /* ── password strength ── */
+        const pwInput = document.getElementById('password');
+        const bars = [1, 2, 3, 4].map(i => document.getElementById('sb' + i));
+        const lblEl = document.getElementById('pw-strength-label');
+        const strengthMap = [
+            { label: '', cls: '' },
+            { label: 'Weak', cls: 'filled-1' },
+            { label: 'Fair', cls: 'filled-2' },
+            { label: 'Good', cls: 'filled-3' },
+            { label: 'Strong', cls: 'filled-4' },
+        ];
+        pwInput.addEventListener('input', () => {
+            const v = pwInput.value;
+            let score = 0;
+            if (v.length >= 8) score++;
+            if (/[A-Z]/.test(v)) score++;
+            if (/[0-9]/.test(v)) score++;
+            if (/[^A-Za-z0-9]/.test(v)) score++;
+            bars.forEach((b, i) => {
+                b.className = 'pw-strength-bar' + (i < score ? ' ' + strengthMap[score].cls : '');
+            });
+            lblEl.textContent = strengthMap[score].label;
+            lblEl.className = 'pw-strength-label ' + strengthMap[score].cls;
+        });
 
-  /* ── confirm password match ── */
-  const confirmInput = document.getElementById('confirm-password');
-  const matchMsg     = document.getElementById('pw-match-msg');
-  confirmInput.addEventListener('input', () => {
-    if (!confirmInput.value) { matchMsg.textContent = ''; return; }
-    const ok = confirmInput.value === pwInput.value;
-    matchMsg.textContent = ok ? '✓ Passwords match' : '✗ Passwords don’t match';
-    matchMsg.className   = 'pw-match-msg ' + (ok ? 'ok' : 'err');
-  });
+        /* ── confirm password match ── */
+        const confirmInput = document.getElementById('confirm-password');
+        const matchMsg = document.getElementById('pw-match-msg');
+        confirmInput.addEventListener('input', () => {
+            if (!confirmInput.value) { matchMsg.textContent = ''; return; }
+            const ok = confirmInput.value === pwInput.value;
+            matchMsg.textContent = ok ? '✓ Passwords match' : '✗ Passwords don’t match';
+            matchMsg.className = 'pw-match-msg ' + (ok ? 'ok' : 'err');
+        });
 
-  /* ── form submit ── */
-  const form = document.getElementById('signup-form');
-  const btn  = document.getElementById('signup-submit');
+        /* ── form submit ── */
+        const form = document.getElementById('signup-form');
+        const btn = document.getElementById('signup-submit');
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const name     = document.getElementById('name').value.trim();
-    const email    = document.getElementById('email').value.trim();
-    const college  = document.getElementById('college').value.trim();
-    const password = pwInput.value;
-    const confirm  = confirmInput.value;
-    const terms    = document.getElementById('terms').checked;
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const college = document.getElementById('college').value.trim();
+            const password = pwInput.value;
+            const confirm = confirmInput.value;
+            const terms = document.getElementById('terms').checked;
 
-    if (!name || !email || !password)  { showStatus('Please fill in all required fields.', true); return; }
-    if (password.length < 8)           { showStatus('Password must be at least 8 characters.', true); return; }
-    if (password !== confirm)          { showStatus('Passwords do not match.', true); return; }
-    if (!terms)                        { showStatus('Please agree to the terms of service.', true); return; }
+            if (!name || !email || !password) { showStatus('Please fill in all required fields.', true); return; }
+            if (password.length < 8) { showStatus('Password must be at least 8 characters.', true); return; }
+            if (password !== confirm) { showStatus('Passwords do not match.', true); return; }
+            if (!terms) { showStatus('Please agree to the terms of service.', true); return; }
 
-    setLoading(btn, true);
-    try {
-      await signUp(name, email, password, college);
-      showStatus('✓ Account created! Redirecting…');
-      setTimeout(() => window.location.href = 'dashboard.html', 700);
-    } catch (err) {
-      showStatus(err.message || 'Something went wrong. Try again.', true);
-      setLoading(btn, false);
-    }
-  });
+            setLoading(btn, true);
+            try {
+                await signUp(name, email, password, college);
+                showStatus('✓ Account created! Redirecting…');
+                setTimeout(() => window.location.href = 'dashboard.html', 700);
+            } catch (err) {
+                showStatus(err.message || 'Something went wrong. Try again.', true);
+                setLoading(btn, false);
+            }
+        });
 
-  /* ── Google OAuth ── */
-  document.getElementById('google-btn').addEventListener('click', () => loginWithGoogle());
-</script>
+        /* ── Google OAuth ── */
+        document.getElementById('google-btn').addEventListener('click', () => loginWithGoogle());
+    </script>
 </body>
+
 </html>
 
 <canvas id="particles-canvas"></canvas>
 
 <!-- Minimal Navbar -->
 <nav class="navbar">
-  <a href="index.html" class="nav-logo">
-    <div class="logo-dots">
-      <div class="logo-dot"></div><div class="logo-dot"></div>
-      <div class="logo-dot"></div><div class="logo-dot"></div>
+    <a href="index.html" class="nav-logo">
+        <div class="logo-dots">
+            <div class="logo-dot"></div>
+            <div class="logo-dot"></div>
+            <div class="logo-dot"></div>
+            <div class="logo-dot"></div>
+        </div>
+        <span class="logo-text">GDG <span>Campus</span> CSMU</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+    </ul>
+    <div class="nav-cta">
+        <a href="login.html" class="btn btn-ghost">Sign In</a>
     </div>
-    <span class="logo-text">GDG <span>Campus</span> CSMU</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="events.html">Events</a></li>
-  </ul>
-  <div class="nav-cta">
-    <a href="login.html" class="btn btn-ghost">Sign In</a>
-  </div>
-  <div class="hamburger"><span></span><span></span><span></span></div>
+    <div class="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
 <!-- Background Orbs -->
 <div style="position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0">
-  <div class="orb" style="width:500px;height:500px;background:var(--google-green);top:-150px;right:-100px;opacity:0.08;filter:blur(100px)"></div>
-  <div class="orb" style="width:400px;height:400px;background:var(--google-yellow);bottom:-100px;left:-80px;opacity:0.08;filter:blur(100px)"></div>
+    <div class="orb"
+        style="width:500px;height:500px;background:var(--google-green);top:-150px;right:-100px;opacity:0.08;filter:blur(100px)">
+    </div>
+    <div class="orb"
+        style="width:400px;height:400px;background:var(--google-yellow);bottom:-100px;left:-80px;opacity:0.08;filter:blur(100px)">
+    </div>
 </div>
 
 <!-- Auth Card -->
 <main class="auth-page">
-  <div class="auth-container">
+    <div class="auth-container">
 
-    <div class="auth-card">
+        <div class="auth-card">
 
-      <div class="auth-logo">
-        <div class="logo-dots" style="justify-content:center;margin-bottom:14px">
-          <div class="logo-dot" style="width:12px;height:12px"></div>
-          <div class="logo-dot" style="width:12px;height:12px"></div>
-          <div class="logo-dot" style="width:12px;height:12px"></div>
-          <div class="logo-dot" style="width:12px;height:12px"></div>
+            <div class="auth-logo">
+                <div class="logo-dots" style="justify-content:center;margin-bottom:14px">
+                    <div class="logo-dot" style="width:12px;height:12px"></div>
+                    <div class="logo-dot" style="width:12px;height:12px"></div>
+                    <div class="logo-dot" style="width:12px;height:12px"></div>
+                    <div class="logo-dot" style="width:12px;height:12px"></div>
+                </div>
+                <h2>Join the Community</h2>
+                <p>Create your GDG Campus CSMU account</p>
+            </div>
+
+            <!-- Login / Signup Tabs -->
+            <div class="auth-tabs">
+                <a href="login.html" class="auth-tab">Sign In</a>
+                <a href="signup.html" class="auth-tab active">Sign Up</a>
+            </div>
+
+            <!-- Signup Form -->
+            <form id="signup-form" novalidate autocomplete="on">
+
+                <div class="form-group">
+                    <label class="form-label" for="name">Full Name</label>
+                    <div class="form-input-wrap">
+                        <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <input id="name" name="name" type="text" class="form-input" placeholder="Your full name"
+                            autocomplete="name" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <div class="form-input-wrap">
+                        <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <input id="email" name="email" type="email" class="form-input" placeholder="you@example.com"
+                            autocomplete="email" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="college">College / Branch</label>
+                    <div class="form-input-wrap">
+                        <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        </svg>
+                        <input id="college" name="college" type="text" class="form-input"
+                            placeholder="e.g. CSMU — Computer Science" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="form-input-wrap">
+                        <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <input id="password" name="password" type="password" class="form-input"
+                            placeholder="Min. 8 characters" autocomplete="new-password" required minlength="8" />
+                        <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="password-strength-bar">
+                        <div id="strength-fill"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="confirm-password">Confirm Password</label>
+                    <div class="form-input-wrap">
+                        <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <input id="confirm-password" name="confirm-password" type="password" class="form-input"
+                            placeholder="Repeat your password" autocomplete="new-password" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-wrap">
+                        <input type="checkbox" id="terms" required />
+                        I agree to the <a href="#" style="color:var(--google-blue)">Terms of Service</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-auth" id="signup-submit">Create Account</button>
+            </form>
+
+            <!-- Divider -->
+            <div class="auth-divider">or continue with</div>
+
+            <!-- Social Auth -->
+            <div class="social-auth">
+                <button class="social-btn" id="google-signup-btn" type="button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                            fill="#4285F4" />
+                        <path
+                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                            fill="#34A853" />
+                        <path
+                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                            fill="#FBBC05" />
+                        <path
+                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                            fill="#EA4335" />
+                    </svg>
+                    Google
+                </button>
+                <button class="social-btn" id="github-signup-btn" type="button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    GitHub
+                </button>
+            </div>
+
+            <p class="auth-footer">
+                Already have an account? <a href="login.html">Sign in</a>
+            </p>
         </div>
-        <h2>Join the Community</h2>
-        <p>Create your GDG Campus CSMU account</p>
-      </div>
 
-      <!-- Login / Signup Tabs -->
-      <div class="auth-tabs">
-        <a href="login.html" class="auth-tab">Sign In</a>
-        <a href="signup.html" class="auth-tab active">Sign Up</a>
-      </div>
-
-      <!-- Signup Form -->
-      <form id="signup-form" novalidate autocomplete="on">
-
-        <div class="form-group">
-          <label class="form-label" for="name">Full Name</label>
-          <div class="form-input-wrap">
-            <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              class="form-input"
-              placeholder="Your full name"
-              autocomplete="name"
-              required
-            />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="email">Email Address</label>
-          <div class="form-input-wrap">
-            <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              class="form-input"
-              placeholder="you@example.com"
-              autocomplete="email"
-              required
-            />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="college">College / Branch</label>
-          <div class="form-input-wrap">
-            <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
-            <input
-              id="college"
-              name="college"
-              type="text"
-              class="form-input"
-              placeholder="e.g. CSMU — Computer Science"
-            />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="password">Password</label>
-          <div class="form-input-wrap">
-            <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              class="form-input"
-              placeholder="Min. 8 characters"
-              autocomplete="new-password"
-              required
-              minlength="8"
-            />
-            <button type="button" class="password-toggle" aria-label="Toggle password visibility">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-            </button>
-          </div>
-          <div class="password-strength-bar"><div id="strength-fill"></div></div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="confirm-password">Confirm Password</label>
-          <div class="form-input-wrap">
-            <svg class="form-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <input
-              id="confirm-password"
-              name="confirm-password"
-              type="password"
-              class="form-input"
-              placeholder="Repeat your password"
-              autocomplete="new-password"
-              required
-            />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="checkbox-wrap">
-            <input type="checkbox" id="terms" required />
-            I agree to the <a href="#" style="color:var(--google-blue)">Terms of Service</a>
-          </label>
-        </div>
-
-        <button type="submit" class="btn-auth" id="signup-submit">Create Account</button>
-      </form>
-
-      <!-- Divider -->
-      <div class="auth-divider">or continue with</div>
-
-      <!-- Social Auth -->
-      <div class="social-auth">
-        <button class="social-btn" id="google-signup-btn" type="button">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-          </svg>
-          Google
-        </button>
-        <button class="social-btn" id="github-signup-btn" type="button">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          GitHub
-        </button>
-      </div>
-
-      <p class="auth-footer">
-        Already have an account? <a href="login.html">Sign in</a>
-      </p>
     </div>
-
-  </div>
 </main>
 
 <script type="module" src="js/main.js"></script>
 <script type="module">
-  import { signUp, loginWithGoogle, redirectIfLoggedIn, setFormStatus, setButtonLoading } from './js/auth.js';
+    import { signUp, loginWithGoogle, redirectIfLoggedIn, setFormStatus, setButtonLoading } from './js/auth.js';
 
-  redirectIfLoggedIn('dashboard.html');
+    redirectIfLoggedIn('dashboard.html');
 
-  const form = document.getElementById('signup-form');
-  const btn  = document.getElementById('signup-submit');
+    const form = document.getElementById('signup-form');
+    const btn = document.getElementById('signup-submit');
 
-  // Password strength indicator
-  const pwdInput     = document.getElementById('password');
-  const strengthFill = document.getElementById('strength-fill');
-  const colors = ['#ea4335','#fbbc04','#fbbc04','#34a853','#34a853'];
-  pwdInput.addEventListener('input', () => {
-    const v = pwdInput.value;
-    let score = 0;
-    if (v.length >= 8) score++;
-    if (/[A-Z]/.test(v)) score++;
-    if (/[0-9]/.test(v)) score++;
-    if (/[^A-Za-z0-9]/.test(v)) score++;
-    strengthFill.style.width = (score / 4 * 100) + '%';
-    strengthFill.style.background = colors[score] || '#ea4335';
-  });
+    // Password strength indicator
+    const pwdInput = document.getElementById('password');
+    const strengthFill = document.getElementById('strength-fill');
+    const colors = ['#ea4335', '#fbbc04', '#fbbc04', '#34a853', '#34a853'];
+    pwdInput.addEventListener('input', () => {
+        const v = pwdInput.value;
+        let score = 0;
+        if (v.length >= 8) score++;
+        if (/[A-Z]/.test(v)) score++;
+        if (/[0-9]/.test(v)) score++;
+        if (/[^A-Za-z0-9]/.test(v)) score++;
+        strengthFill.style.width = (score / 4 * 100) + '%';
+        strengthFill.style.background = colors[score] || '#ea4335';
+    });
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name     = document.getElementById('name').value.trim();
-    const email    = document.getElementById('email').value.trim();
-    const college  = document.getElementById('college').value.trim();
-    const password = document.getElementById('password').value;
-    const confirm  = document.getElementById('confirm-password').value;
-    const terms    = document.getElementById('terms').checked;
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const college = document.getElementById('college').value.trim();
+        const password = document.getElementById('password').value;
+        const confirm = document.getElementById('confirm-password').value;
+        const terms = document.getElementById('terms').checked;
 
-    if (!name || !email || !password) { setFormStatus(form, 'Please fill in all required fields.', true); return; }
-    if (password.length < 8)          { setFormStatus(form, 'Password must be at least 8 characters.', true); return; }
-    if (password !== confirm)          { setFormStatus(form, 'Passwords do not match.', true); return; }
-    if (!terms)                        { setFormStatus(form, 'Please agree to the terms of service.', true); return; }
+        if (!name || !email || !password) { setFormStatus(form, 'Please fill in all required fields.', true); return; }
+        if (password.length < 8) { setFormStatus(form, 'Password must be at least 8 characters.', true); return; }
+        if (password !== confirm) { setFormStatus(form, 'Passwords do not match.', true); return; }
+        if (!terms) { setFormStatus(form, 'Please agree to the terms of service.', true); return; }
 
-    setButtonLoading(btn, true, 'Create Account');
-    try {
-      await signUp(name, email, password, college);
-      setFormStatus(form, '✓ Account created! Redirecting…');
-      setTimeout(() => window.location.href = 'dashboard.html', 800);
-    } catch (err) {
-      setFormStatus(form, err.message || 'Something went wrong. Please try again.', true);
-    } finally {
-      setButtonLoading(btn, false, 'Create Account');
-    }
-  });
+        setButtonLoading(btn, true, 'Create Account');
+        try {
+            await signUp(name, email, password, college);
+            setFormStatus(form, '✓ Account created! Redirecting…');
+            setTimeout(() => window.location.href = 'dashboard.html', 800);
+        } catch (err) {
+            setFormStatus(form, err.message || 'Something went wrong. Please try again.', true);
+        } finally {
+            setButtonLoading(btn, false, 'Create Account');
+        }
+    });
 
-  document.getElementById('google-signup-btn').addEventListener('click', () => loginWithGoogle());
+    document.getElementById('google-signup-btn').addEventListener('click', () => loginWithGoogle());
 </script>
 </body>
+
 </html>

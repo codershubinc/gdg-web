@@ -14,9 +14,9 @@
 // frontend still loads without errors during static development.
 const _cfg = window.__GDG_CONFIG__ || {};
 
-export const APPWRITE_ENDPOINT  = _cfg.APPWRITE_ENDPOINT  || 'https://cloud.appwrite.io/v1';
-export const APPWRITE_PROJECT   = _cfg.APPWRITE_PROJECT   || 'YOUR_PROJECT_ID';
-export const APPWRITE_DB_ID     = _cfg.APPWRITE_DB_ID     || 'YOUR_DATABASE_ID';
+export const APPWRITE_ENDPOINT = _cfg.APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1';
+export const APPWRITE_PROJECT = _cfg.APPWRITE_PROJECT || 'YOUR_PROJECT_ID';
+export const APPWRITE_DB_ID = _cfg.APPWRITE_DB_ID || 'YOUR_DATABASE_ID';
 export const APPWRITE_USERS_COL = _cfg.APPWRITE_USERS_COL || 'users';
 
 // ─── Appwrite SDK instances ─────────────────────────────────────────────────
@@ -25,11 +25,11 @@ export const APPWRITE_USERS_COL = _cfg.APPWRITE_USERS_COL || 'users';
 const { Client, Account, Databases, Avatars, Storage, ID, Query, OAuthProvider } = window.Appwrite;
 
 const client = new Client()
-  .setEndpoint(APPWRITE_ENDPOINT)
-  .setProject(APPWRITE_PROJECT);
+    .setEndpoint(APPWRITE_ENDPOINT)
+    .setProject(APPWRITE_PROJECT);
 
-export const account   = new Account(client);
+export const account = new Account(client);
 export const databases = new Databases(client);
-export const avatars   = new Avatars(client);
-export const storage   = new Storage(client);
+export const avatars = new Avatars(client);
+export const storage = new Storage(client);
 export { ID, Query, OAuthProvider };

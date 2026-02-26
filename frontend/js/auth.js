@@ -60,12 +60,24 @@ export async function login(email, password) {
     return user;
 }
 
-// ─── Google OAuth (stub) ──────────────────────────────────────────────────────
+// ─── Google OAuth ───────────────────────────────────────────────────────────────
+// Called by the GSI callback after Google verifies the user and returns a credential.
+// Sends the ID token to the backend, which verifies it with Google, then issues a
+// JWT session cookie and returns the user object.
 
-export function loginWithGoogle() {
-    alert('Google sign-in is coming soon! Please use email & password for now.');
+export async function handleGoogleCredential(credential) {
+    const { user } = await api.post('/auth/google', { credential });
+    return user;
 }
-
+// Fetches the Google OAuth Client ID from the backend config endpoint.
+export async function getGoogleClientId() {
+    try {
+        const { googleClientId } = await api.get('/auth/config');
+        return googleClientId;
+    } catch {
+        return null;
+    }
+}
 // ─── Logout ───────────────────────────────────────────────────────────────────
 
 export async function logout() {

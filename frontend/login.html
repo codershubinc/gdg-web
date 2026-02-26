@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -248,9 +250,9 @@
 
     <script type="module" src="js/main.js"></script>
     <script type="module">
-        import { login, loginWithGoogle, redirectIfLoggedIn } from './js/auth.js';
+        import { login, handleGoogleCredential, getGoogleClientId, redirectIfLoggedIn } from './js/auth.js';
 
-        redirectIfLoggedIn('dashboard.html');
+        await redirectIfLoggedIn('dashboard.html');
 
         /* ── status banner ── */
         const statusEl = document.getElementById('status-msg');
@@ -273,7 +275,7 @@
             if (!navigator.onLine) return 'No internet connection. Check your network.';
             const m = err?.message || '';
             if (m.includes('Failed to fetch') || m.includes('NetworkError') || m.includes('Load failed'))
-                return 'Cannot reach the server. Make sure the backend is running.';
+                return 'Something went wrong. Please try again.';
             if (m.toLowerCase().includes('invalid email or password'))
                 return 'Incorrect email or password. Please try again.';
             if (m.includes('429'))
@@ -327,7 +329,41 @@
         });
 
         /* ── Google OAuth ── */
-        document.getElementById('google-btn').addEventListener('click', () => loginWithGoogle());
+        const googleBtn = document.getElementById('google-btn');
+        const googleBtnHTML = googleBtn.innerHTML;
+
+        async function initGSI() {
+            if (typeof google === 'undefined' || !google?.accounts?.id) return;
+            const clientId = await getGoogleClientId();
+            if (!clientId) return; // Google OAuth not configured on the server
+            google.accounts.id.initialize({
+                client_id: clientId,
+                callback: async ({ credential }) => {
+                    googleBtn.disabled = true;
+                    googleBtn.innerHTML = '<span class="spinner"></span> Signing in with Google…';
+                    try {
+                        await handleGoogleCredential(credential);
+                        showStatus('✓ Signed in with Google! Redirecting…');
+                        setTimeout(() => window.location.href = 'dashboard.html', 900);
+                    } catch (err) {
+                        showStatus(friendlyError(err), true);
+                        googleBtn.disabled = false;
+                        googleBtn.innerHTML = googleBtnHTML;
+                    }
+                },
+            });
+        }
+
+        initGSI();
+        window.addEventListener('load', initGSI);
+
+        googleBtn.addEventListener('click', () => {
+            if (typeof google !== 'undefined' && google?.accounts?.id) {
+                google.accounts.id.prompt();
+            } else {
+                showStatus('Google Sign-In is still loading, please try again in a moment.', true);
+            }
+        });
 
         /* ── Brand word morph ── */
         (function () {

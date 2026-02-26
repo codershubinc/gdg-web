@@ -1,9 +1,20 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import { OAuth2Client } from 'google-auth-library';
 import User from '../models/User.js';
 import { protect } from '../middleware/auth.js';
 
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
 const router = express.Router();
+
+// ── GET /api/auth/config ────────────────────────────────────────────────────
+// Exposes the Google OAuth Client ID so the frontend never needs it hardcoded.
+
+router.get('/config', (_req, res) => {
+    const googleClientId = process.env.GOOGLE_CLIENT_ID || null;
+    return res.json({ googleClientId });
+});
 
 // ── Cookie options ──────────────────────────────────────────────────────────
 
@@ -94,6 +105,64 @@ router.post('/login', async (req, res) => {
 
 router.get('/me', protect, (req, res) => {
     return res.json({ user: req.user });
+});
+
+// ── POST /api/auth/logout ───────────────────────────────────────────────────
+
+// ── POST /api/auth/google ──────────────────────────────────────────────────
+// Accepts a Google ID token from the frontend (Google Identity Services),
+// verifies it, then finds-or-creates the user and issues a JWT cookie.
+
+router.post('/google', async (req, res) => {
+    const { credential } = req.body;
+
+    if (!credential) {
+        return res.status(400).json({ error: 'Google credential token is required' });
+    }
+
+    if (!process.env.GOOGLE_CLIENT_ID) {
+        return res.status(500).json({ error: 'Google OAuth is not configured on the server' });
+    }
+
+    try {
+        const ticket = await googleClient.verifyIdToken({
+            idToken: credential,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        const payload = ticket.getPayload();
+        const { sub: googleId, email, name, email_verified } = payload;
+
+        if (!email_verified) {
+            return res.status(400).json({ error: 'Google account email is not verified' });
+        }
+
+        // Find existing user by googleId or email
+        let user = await User.findOne({ $or: [{ googleId }, { email }] }).select('+googleId');
+
+        if (user) {
+            // Link googleId if this email existed as a local account
+            if (!user.googleId) {
+                user.googleId = googleId;
+                user.authProvider = 'google';
+                await user.save();
+            }
+        } else {
+            // New user — create without a password
+            user = await User.create({
+                name,
+                email,
+                googleId,
+                authProvider: 'google',
+            });
+        }
+
+        const token = signToken(user._id);
+        res.cookie('token', token, cookieOptions());
+        return res.json({ user });
+    } catch (err) {
+        console.error('Google OAuth error:', err);
+        return res.status(401).json({ error: 'Invalid or expired Google token' });
+    }
 });
 
 // ── POST /api/auth/logout ───────────────────────────────────────────────────

@@ -236,65 +236,6 @@ window.addEventListener('load', () => {
   });
 })();
 
-/* ===== FORM SUBMISSION ===== */
-(function initForms() {
-  const loginForm = document.getElementById('login-form');
-  const signupForm = document.getElementById('signup-form');
-
-  function showToast(icon, title, msg, isError = false) {
-    let toast = document.querySelector('.toast');
-    if (!toast) {
-      toast = document.createElement('div');
-      toast.className = 'toast';
-      document.body.appendChild(toast);
-    }
-    toast.innerHTML = `
-      <div class="toast-icon" style="${isError ? 'background:rgba(234,67,53,0.2);color:#EA4335' : ''}">
-        ${isError ? '✕' : '✓'}
-      </div>
-      <div class="toast-text">
-        <h4>${title}</h4>
-        <p>${msg}</p>
-      </div>
-    `;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 4000);
-  }
-
-  if (loginForm) {
-    loginForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const btn = loginForm.querySelector('.btn-auth');
-      btn.textContent = 'Signing in...';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Sign In';
-        btn.disabled = false;
-        showToast('✓', 'Welcome back!', 'Successfully signed in to GDG Campus CSMU');
-      }, 1500);
-    });
-  }
-
-  if (signupForm) {
-    signupForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const pwd = signupForm.querySelector('#password');
-      const cpwd = signupForm.querySelector('#confirm-password');
-      if (pwd && cpwd && pwd.value !== cpwd.value) {
-        showToast('✕', 'Passwords do not match', 'Please make sure both passwords are the same.', true);
-        return;
-      }
-      const btn = signupForm.querySelector('.btn-auth');
-      btn.textContent = 'Creating account...';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Create Account';
-        btn.disabled = false;
-        showToast('✓', 'Account created!', 'Welcome to GDG Campus CSMU community!');
-      }, 1800);
-    });
-  }
-})();
 
 /* ===== RIPPLE EFFECT on buttons ===== */
 (function initRipple() {

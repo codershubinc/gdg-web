@@ -19,9 +19,19 @@ const userSchema = new mongoose.Schema(
         },
         password: {
             type: String,
-            required: [true, 'Password is required'],
+            required: false,          // not required for Google OAuth users
             minlength: [8, 'Password must be at least 8 characters'],
             select: false, // never returned in queries by default
+        },
+        googleId: {
+            type: String,
+            default: null,
+            select: false,
+        },
+        authProvider: {
+            type: String,
+            enum: ['local', 'google'],
+            default: 'local',
         },
         college: {
             type: String,
@@ -37,9 +47,9 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-// Hash password before saving
+// Hash password before saving (skip for OAuth users without a password)
 userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
+    if (!this.isModified('password') || !this.password) return next();
     this.password = await bcrypt.hash(this.password, 12);
     next();
 });

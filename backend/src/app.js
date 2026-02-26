@@ -43,4 +43,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.get('/api/ping', (_req, res) => res.json({ ok: true }));
 
+// Root health check
+app.get('/', (_req, res) => res.json({ name: 'GDG Campus CSMU API', status: 'running' }));
+
 module.exports = app;

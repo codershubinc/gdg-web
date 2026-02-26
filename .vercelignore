@@ -1,6 +1,0 @@
-# Exclude backend from the frontend deployment
-backend/
-
-# Keep .env files out of both deployments
-**/.env
-**/.env.local

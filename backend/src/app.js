@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
+import quizRoutes from './routes/quiz.js';
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use(cookieParser());
 // ── API routes ────────────────────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/quiz', quizRoutes);
 app.get('/api/ping', (_req, res) => res.json({ ok: true }));
 
 // Root health check

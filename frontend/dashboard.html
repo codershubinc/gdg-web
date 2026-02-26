@@ -99,6 +99,13 @@
                     </svg>
                     Events
                 </a>
+                <a href="#quiz-section" class="sidebar-link" data-section="quiz-section">
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    Quizzes
+                </a>
                 <button id="logout-btn" class="sidebar-link sidebar-logout">
                     <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -321,13 +328,34 @@
                 </div>
             </div>
 
+            <!-- Quiz Scores Section -->
+            <div id="quiz-section" class="dash-section" style="display:none">
+                <div class="dash-section-header">
+                    <div>
+                        <h2>My Quiz Scores</h2>
+                        <p>Track your best scores across all quizzes</p>
+                    </div>
+                    <a href="quiz.html" class="btn-auth"
+                        style="max-width:160px;text-decoration:none;text-align:center">Take a Quiz</a>
+                </div>
+
+                <div id="dash-quiz-scores">
+                    <div class="dash-card reveal">
+                        <div class="dash-card-header">Your Best Scores</div>
+                        <div id="dash-quiz-list" style="display:flex;flex-direction:column;gap:12px">
+                            <p style="color:var(--text-muted);font-size:0.85rem">Loading scores…</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
     </main>
 
     <script type="module" src="js/main.js"></script>
     <script type="module">
-        import { initDashboard, initNavbarUserState } from './js/dashboard.js';
+        import { initDashboard, initNavbarUserState, loadDashboardQuizScores } from './js/dashboard.js';
 
         initNavbarUserState();
         initDashboard();
@@ -342,6 +370,7 @@
                 document.getElementById(target).style.display = 'block';
                 sidebarLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
+                if (target === 'quiz-section') loadDashboardQuizScores();
             });
         });
     </script>

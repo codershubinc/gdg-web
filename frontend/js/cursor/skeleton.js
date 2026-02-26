@@ -41,8 +41,8 @@ export class RoboSkeleton {
 
   /** Call every animation frame with the current cursor position. */
   update(mx, my) {
-    // Head chases cursor
-    _lerp(this.spine[0], mx, my, 0.28);
+    // Head follows cursor closely (1–3 px lag)
+    _lerp(this.spine[0], mx, my, 0.25);
 
     // Rigid spine: each joint is constrained to SPINE_SEG behind the previous
     for (let i = 1; i < SPINE_N; i++) {

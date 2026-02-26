@@ -11,6 +11,16 @@ import {
     getAvatarURL, setFormStatus, setButtonLoading,
     getGoogleClientId, syncGoogleAvatar,
 } from './auth.js';
+import { api } from './appwrite.js';
+
+const QUIZ_COLORS = {
+    javascript: '#FBBC04', python: '#4285F4', webdev: '#34A853',
+    cloud: '#EA4335', android: '#34A853',
+};
+const QUIZ_LABELS = {
+    javascript: '⚡ JavaScript', python: '🐍 Python', webdev: '🌐 Web Dev',
+    cloud: '☁️ Cloud & GCP', android: '📱 Android',
+};
 
 // ─── Navbar user state (runs on every page) ─────────────────────────────────
 
@@ -182,4 +192,41 @@ export async function initDashboard() {
 function setText(id, value) {
     const el = document.getElementById(id);
     if (el) el.textContent = value;
+}
+
+// ─── Dashboard quiz scores ────────────────────────────────────────────────────
+
+export async function loadDashboardQuizScores() {
+    const listEl = document.getElementById('dash-quiz-list');
+    if (!listEl) return;
+
+    try {
+        const { scores } = await api.get('/quiz/scores');
+        if (!scores || scores.length === 0) {
+            listEl.innerHTML = `<p style="color:var(--text-muted);font-size:0.85rem">No quiz attempts yet. <a href="quiz.html" style="color:#4285F4">Take your first quiz →</a></p>`;
+            return;
+        }
+        listEl.innerHTML = scores.map(s => {
+            const pct = Math.round((s.score / s.total) * 100);
+            const color = QUIZ_COLORS[s._id] || '#4285F4';
+            const label = QUIZ_LABELS[s._id] || s._id;
+            return `
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--dark-border);border-radius:12px">
+                <span style="font-size:1.1rem">${label.split(' ')[0]}</span>
+                <div style="flex:1;min-width:0">
+                  <p style="font-size:0.85rem;font-weight:600;color:#fff;margin:0 0 4px">${label.slice(label.split(' ')[0].length + 1)}</p>
+                  <div style="height:4px;background:rgba(255,255,255,0.07);border-radius:99px;overflow:hidden">
+                    <div style="height:100%;width:${pct}%;background:${color};border-radius:99px;transition:width 0.8s ease"></div>
+                  </div>
+                </div>
+                <div style="text-align:right;flex-shrink:0">
+                  <span style="font-size:1rem;font-weight:800;color:${color}">${pct}%</span>
+                  <p style="font-size:0.67rem;color:var(--text-muted);margin:2px 0 0">${s.score}/${s.total} · ${s.attempts} attempt${s.attempts === 1 ? '' : 's'}</p>
+                </div>
+              </div>
+            `;
+        }).join('');
+    } catch {
+        listEl.innerHTML = `<p style="color:var(--text-muted);font-size:0.85rem">Could not load scores.</p>`;
+    }
 }

@@ -275,12 +275,12 @@ export async function loadDashboardQuizScores() {
           ${rankBanner}
           <div class="dash-quiz-grid">
             ${scores.map(s => {
-                const pct = Math.round((s.score / s.total) * 100);
-                const color = QUIZ_COLORS[s._id] || '#4285F4';
-                const icon = QUIZ_ICONS[s._id] || '📝';
-                const name = QUIZ_NAMES[s._id] || s._id;
-                const grade = pct >= 90 ? '🏆' : pct >= 70 ? '🎉' : pct >= 50 ? '💪' : '📚';
-                return `
+            const pct = Math.round((s.score / s.total) * 100);
+            const color = QUIZ_COLORS[s._id] || '#4285F4';
+            const icon = QUIZ_ICONS[s._id] || '📝';
+            const name = QUIZ_NAMES[s._id] || s._id;
+            const grade = pct >= 90 ? '🏆' : pct >= 70 ? '🎉' : pct >= 50 ? '💪' : '📚';
+            return `
                   <div class="dash-qscore-card" style="--qc:${color}">
                     <div class="dash-qscore-top">
                       <span class="dash-qscore-icon">${icon}</span>
@@ -295,7 +295,7 @@ export async function loadDashboardQuizScores() {
                     <a href="quiz.html" class="dash-qscore-retry">Play again →</a>
                   </div>
                 `;
-            }).join('')}
+        }).join('')}
           </div>
           <div style="margin-top:20px;text-align:right">
             <a href="quiz.html" class="btn-auth" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;max-width:180px">⚡ More Quizzes</a>

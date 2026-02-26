@@ -10,11 +10,11 @@ import { initNavbarUserState } from './dashboard.js';
 // ── Quiz metadata (questions fetched from DB) ────────────────────────────────
 
 const QUIZZES = {
-    javascript: { label: 'JavaScript', color: '#FBBC04', icon: '⚡',  desc: 'ES6+, async, DOM, closures & more',    count: 10 },
-    python:     { label: 'Python',     color: '#4285F4', icon: '🐍',  desc: 'Core syntax, data structures & OOP',   count: 10 },
-    webdev:     { label: 'Web Dev',    color: '#34A853', icon: '🌐',  desc: 'HTML, CSS, REST APIs & browsers',       count: 10 },
-    cloud:      { label: 'Cloud & GCP',color: '#EA4335', icon: '☁️', desc: 'GCP, Firebase, DevOps basics',          count: 10 },
-    android:    { label: 'Android',    color: '#34A853', icon: '📱',  desc: 'Kotlin, Jetpack & Android APIs',        count: 10 },
+    javascript: { label: 'JavaScript', color: '#FBBC04', icon: '⚡', desc: 'ES6+, async, DOM, closures & more', count: 10 },
+    python: { label: 'Python', color: '#4285F4', icon: '🐍', desc: 'Core syntax, data structures & OOP', count: 10 },
+    webdev: { label: 'Web Dev', color: '#34A853', icon: '🌐', desc: 'HTML, CSS, REST APIs & browsers', count: 10 },
+    cloud: { label: 'Cloud & GCP', color: '#EA4335', icon: '☁️', desc: 'GCP, Firebase, DevOps basics', count: 10 },
+    android: { label: 'Android', color: '#34A853', icon: '📱', desc: 'Kotlin, Jetpack & Android APIs', count: 10 },
 };
 
 // ── State ────────────────────────────────────────────────────────────────────

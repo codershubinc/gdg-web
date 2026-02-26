@@ -5480,8 +5480,8 @@ footer {
   gap: 14px;
   padding: 56px 24px;
   text-align: center;
-  background: rgba(255,255,255,0.025);
-  border: 1px dashed rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
   border-radius: 20px;
 }
 
@@ -5513,8 +5513,8 @@ footer {
 }
 
 .dash-qscore-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: 2px solid var(--qc, #4285F4);
   border-radius: 16px;
   padding: 18px 16px 14px;
@@ -5566,7 +5566,7 @@ footer {
 
 .dash-qscore-bar-wrap {
   height: 4px;
-  background: rgba(255,255,255,0.07);
+  background: rgba(255, 255, 255, 0.07);
   border-radius: 99px;
   overflow: hidden;
   margin: 4px 0 2px;
@@ -5575,7 +5575,7 @@ footer {
 .dash-qscore-bar {
   height: 100%;
   border-radius: 99px;
-  transition: width 0.9s cubic-bezier(.4,0,.2,1);
+  transition: width 0.9s cubic-bezier(.4, 0, .2, 1);
 }
 
 .dash-qscore-meta {
@@ -5594,7 +5594,9 @@ footer {
   transition: opacity 0.15s;
 }
 
-.dash-qscore-retry:hover { opacity: 1; }
+.dash-qscore-retry:hover {
+  opacity: 1;
+}
 
 /* ── Dashboard rank banner ── */
 .dash-rank-banner {
@@ -5604,8 +5606,8 @@ footer {
   gap: 16px;
   flex-wrap: wrap;
   padding: 18px 22px;
-  background: linear-gradient(135deg, rgba(66,133,244,0.1) 0%, rgba(52,168,83,0.08) 100%);
-  border: 1px solid rgba(66,133,244,0.25);
+  background: linear-gradient(135deg, rgba(66, 133, 244, 0.1) 0%, rgba(52, 168, 83, 0.08) 100%);
+  border: 1px solid rgba(66, 133, 244, 0.25);
   border-radius: 16px;
   margin-bottom: 20px;
 }
@@ -5649,8 +5651,8 @@ footer {
   font-weight: 700;
   color: #4285F4;
   padding: 4px 12px;
-  background: rgba(66,133,244,0.12);
-  border: 1px solid rgba(66,133,244,0.25);
+  background: rgba(66, 133, 244, 0.12);
+  border: 1px solid rgba(66, 133, 244, 0.25);
   border-radius: 99px;
 }
 
@@ -5672,14 +5674,14 @@ footer {
   color: #4285F4;
   list-style: none;
   padding: 6px 14px;
-  border: 1px solid rgba(66,133,244,0.3);
+  border: 1px solid rgba(66, 133, 244, 0.3);
   border-radius: 99px;
   transition: background 0.15s;
   user-select: none;
 }
 
 .dash-lb-details summary:hover {
-  background: rgba(66,133,244,0.1);
+  background: rgba(66, 133, 244, 0.1);
 }
 
 .dash-lb-details[open] summary {
@@ -5698,15 +5700,15 @@ footer {
   align-items: center;
   gap: 10px;
   padding: 8px 12px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 10px;
   font-size: 0.82rem;
 }
 
 .dash-lb-row--me {
-  background: rgba(66,133,244,0.1);
-  border-color: rgba(66,133,244,0.3);
+  background: rgba(66, 133, 244, 0.1);
+  border-color: rgba(66, 133, 244, 0.3);
 }
 
 .dash-lb-rank {
@@ -5738,8 +5740,8 @@ footer {
   align-items: center;
   gap: 12px;
   padding: 14px 22px;
-  background: linear-gradient(135deg, rgba(66,133,244,0.12) 0%, rgba(52,168,83,0.08) 100%);
-  border: 1px solid rgba(66,133,244,0.3);
+  background: linear-gradient(135deg, rgba(66, 133, 244, 0.12) 0%, rgba(52, 168, 83, 0.08) 100%);
+  border: 1px solid rgba(66, 133, 244, 0.3);
   border-radius: 14px;
   width: 100%;
 }

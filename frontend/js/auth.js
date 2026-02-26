@@ -46,6 +46,40 @@ export function getAvatarURL(name = 'GDG User', size = 80) {
     return `https://ui-avatars.com/api/?name=${encoded}&size=${size}&background=4285F4&color=fff&bold=true&rounded=true`;
 }
 
+// Returns a cached avatar URL (localStorage, 24hr TTL).
+// Falls back to ui-avatars if the original URL is unavailable.
+const AVATAR_CACHE_KEY = 'gdg_avatar';
+const AVATAR_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+
+export function getCachedAvatarURL(user, size = 80) {
+    const fallback = getAvatarURL(user?.name || 'GDG User', size);
+    if (!user?.avatar) return fallback;
+
+    try {
+        const raw = localStorage.getItem(AVATAR_CACHE_KEY);
+        if (raw) {
+            const cached = JSON.parse(raw);
+            if (cached.url === user.avatar && Date.now() - cached.ts < AVATAR_CACHE_TTL) {
+                return cached.dataUrl || cached.url;
+            }
+        }
+        // Cache miss — store the remote URL with a timestamp
+        localStorage.setItem(AVATAR_CACHE_KEY, JSON.stringify({ url: user.avatar, ts: Date.now() }));
+    } catch { /* storage unavailable — use live URL */ }
+
+    return user.avatar;
+}
+
+// Call this after a successful avatar load to store the result and extend TTL.
+export function refreshAvatarCache(remoteUrl) {
+    if (!remoteUrl) return;
+    try {
+        const raw = localStorage.getItem(AVATAR_CACHE_KEY);
+        const cached = raw ? JSON.parse(raw) : {};
+        localStorage.setItem(AVATAR_CACHE_KEY, JSON.stringify({ ...cached, url: remoteUrl, ts: Date.now() }));
+    } catch { /* ignore */ }
+}
+
 // ─── Sign Up ──────────────────────────────────────────────────────────────────
 
 export async function signUp(name, email, password, college = '') {

@@ -8,7 +8,8 @@
 
 import {
     getCurrentUser, logout, updateName, updatePassword,
-    getAvatarURL, setFormStatus, setButtonLoading,
+    getAvatarURL, getCachedAvatarURL, refreshAvatarCache,
+    setFormStatus, setButtonLoading,
     getGoogleClientId, syncGoogleAvatar,
 } from './auth.js';
 import { api } from './appwrite.js';
@@ -16,6 +17,13 @@ import { api } from './appwrite.js';
 const QUIZ_COLORS = {
     javascript: '#FBBC04', python: '#4285F4', webdev: '#34A853',
     cloud: '#EA4335', android: '#34A853',
+};
+const QUIZ_ICONS = {
+    javascript: '⚡', python: '🐍', webdev: '🌐', cloud: '☁️', android: '📱',
+};
+const QUIZ_NAMES = {
+    javascript: 'JavaScript', python: 'Python', webdev: 'Web Dev',
+    cloud: 'Cloud & GCP', android: 'Android',
 };
 const QUIZ_LABELS = {
     javascript: '⚡ JavaScript', python: '🐍 Python', webdev: '🌐 Web Dev',
@@ -30,10 +38,12 @@ export async function initNavbarUserState() {
     if (!navCta) return;
 
     if (user) {
-        const avatarUrl = user.avatar || getAvatarURL(user.name);
+        const avatarUrl = getCachedAvatarURL(user);
+        const fallbackUrl = getAvatarURL(user.name);
         navCta.innerHTML = `
       <a href="dashboard.html" class="nav-user-btn" title="${user.name}" aria-label="My profile">
-        <img src="${avatarUrl}" alt="${user.name}" class="nav-avatar" />
+        <img src="${avatarUrl}" alt="${user.name}" class="nav-avatar"
+             onerror="this.onerror=null;this.src='${fallbackUrl}'" />
         <span class="nav-username">${user.name.split(' ')[0]}</span>
       </a>
       <button class="btn btn-ghost" id="nav-logout-btn">Sign Out</button>
@@ -53,16 +63,24 @@ export async function initDashboard() {
     setText('user-initials', initials);
     const avatarEl = document.getElementById('user-avatar');
     if (avatarEl) {
-        // Use stored Google avatar if available, else generate initials-based avatar
-        avatarEl.src = user.avatar || getAvatarURL(user.name, 120);
+        const cachedUrl = getCachedAvatarURL(user, 120);
+        const fallbackUrl = getAvatarURL(user.name, 120);
+        avatarEl.src = cachedUrl;
         avatarEl.alt = user.name;
         avatarEl.style.display = 'none';
         avatarEl.onload = () => {
             avatarEl.style.display = 'block';
+            refreshAvatarCache(user.avatar);
             const ini = document.getElementById('user-initials');
             if (ini) ini.style.display = 'none';
         };
-        avatarEl.onerror = () => { avatarEl.style.display = 'none'; };
+        avatarEl.onerror = () => {
+            if (avatarEl.src !== fallbackUrl) {
+                avatarEl.src = fallbackUrl;
+            } else {
+                avatarEl.style.display = 'none';
+            }
+        };
     }
 
     // Show sync-avatar card only if user has no avatar
@@ -197,36 +215,93 @@ function setText(id, value) {
 // ─── Dashboard quiz scores ────────────────────────────────────────────────────
 
 export async function loadDashboardQuizScores() {
-    const listEl = document.getElementById('dash-quiz-list');
-    if (!listEl) return;
+    const container = document.getElementById('dash-quiz-scores');
+    if (!container) return;
 
     try {
-        const { scores } = await api.get('/quiz/scores');
+        const [{ scores }, rankData] = await Promise.all([
+            api.get('/quiz/scores'),
+            api.get('/quiz/global-rank').catch(() => null),
+        ]);
+
         if (!scores || scores.length === 0) {
-            listEl.innerHTML = `<p style="color:var(--text-muted);font-size:0.85rem">No quiz attempts yet. <a href="quiz.html" style="color:#4285F4">Take your first quiz →</a></p>`;
-            return;
-        }
-        listEl.innerHTML = scores.map(s => {
-            const pct = Math.round((s.score / s.total) * 100);
-            const color = QUIZ_COLORS[s._id] || '#4285F4';
-            const label = QUIZ_LABELS[s._id] || s._id;
-            return `
-              <div style="display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--dark-border);border-radius:12px">
-                <span style="font-size:1.1rem">${label.split(' ')[0]}</span>
-                <div style="flex:1;min-width:0">
-                  <p style="font-size:0.85rem;font-weight:600;color:#fff;margin:0 0 4px">${label.slice(label.split(' ')[0].length + 1)}</p>
-                  <div style="height:4px;background:rgba(255,255,255,0.07);border-radius:99px;overflow:hidden">
-                    <div style="height:100%;width:${pct}%;background:${color};border-radius:99px;transition:width 0.8s ease"></div>
-                  </div>
-                </div>
-                <div style="text-align:right;flex-shrink:0">
-                  <span style="font-size:1rem;font-weight:800;color:${color}">${pct}%</span>
-                  <p style="font-size:0.67rem;color:var(--text-muted);margin:2px 0 0">${s.score}/${s.total} · ${s.attempts} attempt${s.attempts === 1 ? '' : 's'}</p>
-                </div>
+            container.innerHTML = `
+              <div class="dash-quiz-empty">
+                <div class="dash-quiz-empty-icon">🧠</div>
+                <h3>No quizzes attempted yet</h3>
+                <p>Test your skills across JavaScript, Python, Cloud & more. Your best scores will appear here.</p>
+                <a href="quiz.html" class="btn-auth" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;max-width:200px">⚡ Take a Quiz</a>
               </div>
             `;
-        }).join('');
+            return;
+        }
+
+        // ── rank banner ──
+        let rankBanner = '';
+        if (rankData && rankData.rank) {
+            const { rank, total, stats, top10 } = rankData;
+            const medalEmoji = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : '🏅';
+            const top10Rows = (top10 || []).map((u, i) => {
+                const isMe = u.name === (stats && stats.name);
+                const rowMedal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `#${u.rank}`;
+                return `
+                  <div class="dash-lb-row${isMe ? ' dash-lb-row--me' : ''}">
+                    <span class="dash-lb-rank">${rowMedal}</span>
+                    <span class="dash-lb-name">${u.name}</span>
+                    <span class="dash-lb-rating">${u.rating} pts</span>
+                  </div>
+                `;
+            }).join('');
+
+            rankBanner = `
+              <div class="dash-rank-banner">
+                <div class="dash-rank-left">
+                  <span class="dash-rank-medal">${medalEmoji}</span>
+                  <div>
+                    <p class="dash-rank-label">Your Global Rank</p>
+                    <p class="dash-rank-pos">#${rank} <span>of ${total}</span></p>
+                  </div>
+                  ${stats ? `<div class="dash-rank-rating">${stats.rating} <span>pts</span></div>` : ''}
+                </div>
+                <details class="dash-lb-details">
+                  <summary>Top 10 Leaderboard</summary>
+                  <div class="dash-lb-list">${top10Rows}</div>
+                </details>
+              </div>
+            `;
+        }
+
+        container.innerHTML = `
+          ${rankBanner}
+          <div class="dash-quiz-grid">
+            ${scores.map(s => {
+                const pct = Math.round((s.score / s.total) * 100);
+                const color = QUIZ_COLORS[s._id] || '#4285F4';
+                const icon = QUIZ_ICONS[s._id] || '📝';
+                const name = QUIZ_NAMES[s._id] || s._id;
+                const grade = pct >= 90 ? '🏆' : pct >= 70 ? '🎉' : pct >= 50 ? '💪' : '📚';
+                return `
+                  <div class="dash-qscore-card" style="--qc:${color}">
+                    <div class="dash-qscore-top">
+                      <span class="dash-qscore-icon">${icon}</span>
+                      <span class="dash-qscore-grade">${grade}</span>
+                    </div>
+                    <p class="dash-qscore-name">${name}</p>
+                    <div class="dash-qscore-pct" style="color:${color}">${pct}<span>%</span></div>
+                    <div class="dash-qscore-bar-wrap">
+                      <div class="dash-qscore-bar" style="width:${pct}%;background:${color}"></div>
+                    </div>
+                    <p class="dash-qscore-meta">${s.score}/${s.total} correct · ${s.attempts} attempt${s.attempts === 1 ? '' : 's'}</p>
+                    <a href="quiz.html" class="dash-qscore-retry">Play again →</a>
+                  </div>
+                `;
+            }).join('')}
+          </div>
+          <div style="margin-top:20px;text-align:right">
+            <a href="quiz.html" class="btn-auth" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;max-width:180px">⚡ More Quizzes</a>
+          </div>
+        `;
     } catch {
-        listEl.innerHTML = `<p style="color:var(--text-muted);font-size:0.85rem">Could not load scores.</p>`;
+        container.innerHTML = `<p style="color:var(--text-muted);font-size:0.85rem;padding:16px">Could not load scores.</p>`;
     }
 }

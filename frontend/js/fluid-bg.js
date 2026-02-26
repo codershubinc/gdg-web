@@ -27,27 +27,27 @@
         constructor(x, y, color) {
             this.x = x;
             this.y = y;
-            this.vx = (Math.random() - 0.5) * 1.1;
-            this.vy = (Math.random() - 0.5) * 1.1;
-            this.r = 90 + Math.random() * 120;
+            this.vx = (Math.random() - 0.5) * 0.6;
+            this.vy = (Math.random() - 0.5) * 0.6;
+            this.r = 60 + Math.random() * 80;
             this.color = color;
-            this.alpha = 0.38 + Math.random() * 0.18;
+            this.alpha = 0.18 + Math.random() * 0.1;
             this.life = 1;
-            this.decay = 0.004 + Math.random() * 0.003;
+            this.decay = 0.006 + Math.random() * 0.004;
         }
         update() {
             this.x += this.vx;
             this.y += this.vy;
-            this.vx *= 0.985;
-            this.vy *= 0.985;
-            this.r += 0.35;
+            this.vx *= 0.988;
+            this.vy *= 0.988;
+            this.r += 0.2;
             this.life -= this.decay;
         }
         draw() {
             const [r, g, b] = this.color;
             const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
             grad.addColorStop(0, `rgba(${r},${g},${b},${(this.alpha * this.life).toFixed(3)})`);
-            grad.addColorStop(0.45, `rgba(${r},${g},${b},${(this.alpha * this.life * 0.3).toFixed(3)})`);
+            grad.addColorStop(0.5, `rgba(${r},${g},${b},${(this.alpha * this.life * 0.2).toFixed(3)})`);
             grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
@@ -59,10 +59,10 @@
     let frameCount = 0;
     window.addEventListener('mousemove', function (e) {
         frameCount++;
-        if (frameCount % 3 === 0) {
+        if (frameCount % 5 === 0) {
             blobs.push(new Blob(e.clientX, e.clientY, COLORS[colorIdx % COLORS.length]));
             colorIdx++;
-            if (blobs.length > 120) blobs.splice(0, blobs.length - 120);
+            if (blobs.length > 60) blobs.splice(0, blobs.length - 60);
         }
     }, { passive: true });
 

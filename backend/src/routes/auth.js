@@ -130,7 +130,7 @@ router.post('/google', async (req, res) => {
             audience: process.env.GOOGLE_CLIENT_ID,
         });
         const payload = ticket.getPayload();
-        const { sub: googleId, email, name, email_verified } = payload;
+        const { sub: googleId, email, name, email_verified, picture } = payload;
 
         if (!email_verified) {
             return res.status(400).json({ error: 'Google account email is not verified' });
@@ -140,12 +140,11 @@ router.post('/google', async (req, res) => {
         let user = await User.findOne({ $or: [{ googleId }, { email }] }).select('+googleId');
 
         if (user) {
-            // Link googleId if this email existed as a local account
-            if (!user.googleId) {
-                user.googleId = googleId;
-                user.authProvider = 'google';
-                await user.save();
-            }
+            // Update avatar and link googleId if this email existed as a local account
+            let dirty = false;
+            if (!user.googleId) { user.googleId = googleId; user.authProvider = 'google'; dirty = true; }
+            if (picture && user.avatar !== picture) { user.avatar = picture; dirty = true; }
+            if (dirty) await user.save();
         } else {
             // New user — create without a password
             user = await User.create({
@@ -153,6 +152,7 @@ router.post('/google', async (req, res) => {
                 email,
                 googleId,
                 authProvider: 'google',
+                avatar: picture || null,
             });
         }
 

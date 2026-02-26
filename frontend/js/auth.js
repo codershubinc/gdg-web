@@ -78,6 +78,14 @@ export async function getGoogleClientId() {
         return null;
     }
 }
+
+// Syncs the Google profile picture to the user's avatar.
+// Passes a fresh GSI credential to the backend which verifies and saves the picture.
+export async function syncGoogleAvatar(credential) {
+    const { user } = await api.patch('/user/sync-avatar', { credential });
+    return user;
+}
+
 // ─── Logout ───────────────────────────────────────────────────────────────────
 
 export async function logout() {

@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema(
             enum: ['local', 'google'],
             default: 'local',
         },
+        avatar: {
+            type: String,
+            default: null,
+        },
         college: {
             type: String,
             trim: true,

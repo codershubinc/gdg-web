@@ -9,6 +9,7 @@
 import {
     getCurrentUser, logout, updateName, updatePassword,
     getAvatarURL, setFormStatus, setButtonLoading,
+    getGoogleClientId, syncGoogleAvatar,
 } from './auth.js';
 
 // ─── Navbar user state (runs on every page) ─────────────────────────────────
@@ -42,15 +43,64 @@ export async function initDashboard() {
     setText('user-initials', initials);
     const avatarEl = document.getElementById('user-avatar');
     if (avatarEl) {
-        avatarEl.src = getAvatarURL(user.name, 120);
+        // Use stored Google avatar if available, else generate initials-based avatar
+        avatarEl.src = user.avatar || getAvatarURL(user.name, 120);
         avatarEl.alt = user.name;
-        avatarEl.style.display = 'none'; // show only after load
+        avatarEl.style.display = 'none';
         avatarEl.onload = () => {
             avatarEl.style.display = 'block';
             const ini = document.getElementById('user-initials');
             if (ini) ini.style.display = 'none';
         };
         avatarEl.onerror = () => { avatarEl.style.display = 'none'; };
+    }
+
+    // Show sync-avatar card only if user has no avatar
+    const syncCard = document.getElementById('sync-avatar-card');
+    if (syncCard && !user.avatar) {
+        syncCard.style.display = 'block';
+        const syncBtn = document.getElementById('sync-avatar-btn');
+        const syncBtnHTML = syncBtn.innerHTML;
+        let gsiReady = false;
+
+        async function initSyncGSI() {
+            if (typeof google === 'undefined' || !google?.accounts?.id) return;
+            const clientId = await getGoogleClientId();
+            if (!clientId) return;
+            google.accounts.id.initialize({
+                client_id: clientId,
+                callback: async ({ credential }) => {
+                    syncBtn.disabled = true;
+                    syncBtn.innerHTML = '<span class="spinner"></span> Syncing…';
+                    try {
+                        const updated = await syncGoogleAvatar(credential);
+                        if (avatarEl && updated.avatar) {
+                            avatarEl.src = updated.avatar;
+                            avatarEl.style.display = 'block';
+                            document.getElementById('user-initials').style.display = 'none';
+                        }
+                        syncCard.style.display = 'none';
+                        setFormStatus(document.getElementById('update-name-form'), '✓ Google avatar synced!', false);
+                    } catch (err) {
+                        syncBtn.disabled = false;
+                        syncBtn.innerHTML = syncBtnHTML;
+                        setFormStatus(syncCard, err.message || 'Failed to sync avatar.', true);
+                    }
+                },
+            });
+            gsiReady = true;
+        }
+
+        initSyncGSI();
+        window.addEventListener('load', initSyncGSI);
+
+        syncBtn.addEventListener('click', () => {
+            if (gsiReady && typeof google !== 'undefined') {
+                google.accounts.id.prompt();
+            } else {
+                setFormStatus(syncCard, 'Google Sign-In is still loading, please try again.', true);
+            }
+        });
     }
 
     // Basic info — populate all IDs that reference name/email/role

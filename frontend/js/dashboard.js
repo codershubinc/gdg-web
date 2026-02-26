@@ -20,7 +20,7 @@ export async function initNavbarUserState() {
     if (!navCta) return;
 
     if (user) {
-        const avatarUrl = getAvatarURL(user.name);
+        const avatarUrl = user.avatar || getAvatarURL(user.name);
         navCta.innerHTML = `
       <a href="dashboard.html" class="nav-user-btn" title="${user.name}" aria-label="My profile">
         <img src="${avatarUrl}" alt="${user.name}" class="nav-avatar" />
@@ -110,8 +110,18 @@ export async function initDashboard() {
     setText('user-college', user.college || '—');
     setText('user-role', user.role || 'member');
     setText('user-role-display', user.role || 'member');
-    setText('user-joined', user.createdAt
+    const joinedDate = user.createdAt
         ? new Date(user.createdAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })
+        : '—';
+    setText('user-joined', joinedDate);
+
+    // Welcome header + overview strip
+    setText('dash-welcome-name', user.name.split(' ')[0]);
+    const badge = document.getElementById('dash-welcome-badge');
+    if (badge) badge.textContent = user.role || 'Member';
+    setText('dash-ov-role', user.role || 'Member');
+    setText('dash-ov-joined', user.createdAt
+        ? new Date(user.createdAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'short' })
         : '—');
 
     // Logout btn

@@ -69,6 +69,7 @@
         <aside class="dashboard-sidebar">
             <div class="sidebar-avatar-wrap">
                 <div class="sidebar-avatar-ring">
+                    <div class="sidebar-avatar-ring-glow"></div>
                     <img id="user-avatar" src="" alt="Profile" class="sidebar-avatar" />
                     <div id="user-initials" class="sidebar-initials" aria-hidden="true">?</div>
                 </div>
@@ -111,12 +112,65 @@
         <!-- Main Content -->
         <section class="dashboard-content">
 
+            <!-- Welcome header -->
+            <header class="dash-welcome">
+                <div class="dash-welcome-left">
+                    <p class="dash-welcome-greeting">Welcome back</p>
+                    <h1 class="dash-welcome-name" id="dash-welcome-name">—</h1>
+                </div>
+                <span class="dash-welcome-badge" id="dash-welcome-badge">Member</span>
+            </header>
+
             <!-- Profile Section -->
             <div id="profile-section" class="dash-section">
                 <div class="dash-section-header">
                     <div>
                         <h2>My Profile</h2>
                         <p>Manage your account information</p>
+                    </div>
+                </div>
+
+                <!-- Quick overview strip -->
+                <div class="dash-overview-row">
+                    <div class="dash-ov-item">
+                        <span class="dash-ov-icon" style="--oc:#4285F4">
+                            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </span>
+                        <span class="dash-ov-val" id="dash-ov-role">Member</span>
+                        <span class="dash-ov-label">Role</span>
+                    </div>
+                    <div class="dash-ov-item">
+                        <span class="dash-ov-icon" style="--oc:#34A853">
+                            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </span>
+                        <span class="dash-ov-val" id="dash-ov-joined">—</span>
+                        <span class="dash-ov-label">Joined</span>
+                    </div>
+                    <div class="dash-ov-item">
+                        <span class="dash-ov-icon" style="--oc:#FBBC04">
+                            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </span>
+                        <span class="dash-ov-val">GDG CSMU</span>
+                        <span class="dash-ov-label">Chapter</span>
+                    </div>
+                    <div class="dash-ov-item">
+                        <span class="dash-ov-icon" style="--oc:#EA4335">
+                            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                            </svg>
+                        </span>
+                        <span class="dash-ov-val">Active</span>
+                        <span class="dash-ov-label">Status</span>
                     </div>
                 </div>
 

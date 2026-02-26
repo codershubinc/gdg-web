@@ -2,6 +2,7 @@
     "name": "gdg-campus-csmu-backend",
     "version": "1.0.0",
     "description": "GDG Campus CSMU — API backend server (Express + MongoDB)",
+    "type": "module",
     "main": "src/server.js",
     "scripts": {
         "start": "node src/server.js",

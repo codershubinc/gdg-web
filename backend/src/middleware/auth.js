@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
 /**
  * Verifies the JWT stored in the httpOnly cookie.
@@ -25,4 +25,4 @@ async function protect(req, res, next) {
     }
 }
 
-module.exports = { protect };
+export { protect };

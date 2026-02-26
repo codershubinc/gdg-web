@@ -5,8 +5,9 @@
  * MongoDB is connected lazily and reused across warm invocations.
  */
 
-const mongoose = require('mongoose');
-const app = require('../src/app');
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import app from '../src/app.js';
 
 // 404 handler — registered once at module load (module is cached by Node)
 app.use((_req, res) => res.status(404).json({ error: 'Route not found' }));
@@ -20,7 +21,7 @@ async function connectDB() {
     _connected = true;
 }
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
     await connectDB();
     return app(req, res);
 };

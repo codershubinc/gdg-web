@@ -1,9 +1,8 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/user');
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
 
 const app = express();
 
@@ -46,4 +45,4 @@ app.get('/api/ping', (_req, res) => res.json({ ok: true }));
 // Root health check
 app.get('/', (_req, res) => res.json({ name: 'GDG Campus CSMU API', status: 'running' }));
 
-module.exports = app;
+export default app;

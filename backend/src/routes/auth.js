@@ -1,7 +1,7 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const { protect } = require('../middleware/auth');
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import { protect } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -103,4 +103,4 @@ router.post('/logout', (req, res) => {
     return res.json({ message: 'Logged out' });
 });
 
-module.exports = router;
+export default router;

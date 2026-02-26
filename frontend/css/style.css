@@ -5471,6 +5471,81 @@ footer {
   color: var(--text-secondary) !important;
 }
 
+/* ── Quiz page login prompt ── */
+.quiz-login-prompt {
+  max-width: 520px;
+  margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  padding: 48px 36px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+}
+
+.qlp-icon {
+  font-size: 3.2rem;
+  line-height: 1;
+  animation: bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.qlp-title {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.qlp-sub {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 380px;
+}
+
+.qlp-tracks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.qlp-track {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--qc) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--qc) 35%, transparent);
+  color: var(--qc);
+}
+
+.qlp-google-btn-wrap {
+  margin-top: 4px;
+  align-self: stretch;
+}
+
+.qlp-google-btn-wrap .btn-google-main {
+  margin-bottom: 0;
+}
+
+.qlp-email-link {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.qlp-email-link:hover {
+  color: #4285F4;
+}
+
 /* ── Dashboard quiz empty state ── */
 .dash-quiz-empty {
   display: flex;

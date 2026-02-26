@@ -2461,6 +2461,15 @@ section {
   position: relative;
   z-index: 1;
   transition: var(--transition);
+  overflow: hidden;
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 
 .team-card:hover .team-avatar {
@@ -2501,8 +2510,12 @@ section {
   justify-content: center;
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.8rem;
   transition: var(--transition);
+}
+
+.team-social-btn svg {
+  pointer-events: none;
+  flex-shrink: 0;
 }
 
 .team-social-btn:hover {

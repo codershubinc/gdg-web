@@ -7,7 +7,7 @@
  */
 
 import {
-    getCurrentUser, logout, updateName, updatePassword,
+    getCurrentUser, logout, updateName, updatePassword, updateCollege,
     getAvatarURL, getCachedAvatarURL, refreshAvatarCache,
     setFormStatus, setButtonLoading,
     getGoogleClientId, syncGoogleAvatar,
@@ -176,6 +176,27 @@ export async function initDashboard() {
                 setFormStatus(nameForm, err.message, true);
             } finally {
                 setButtonLoading(btn, false, 'Update Name');
+            }
+        });
+    }
+
+    // Update college / branch form
+    const collegeForm = document.getElementById('update-college-form');
+    if (collegeForm) {
+        collegeForm.querySelector('input').value = user.college || '';
+        collegeForm.addEventListener('submit', async e => {
+            e.preventDefault();
+            const btn = collegeForm.querySelector('button[type=submit]');
+            const college = collegeForm.querySelector('input').value.trim();
+            setButtonLoading(btn, true, 'Update Branch');
+            try {
+                await updateCollege(college);
+                setFormStatus(collegeForm, '✓ Branch updated successfully!');
+                setText('user-college', college || '—');
+            } catch (err) {
+                setFormStatus(collegeForm, err.message, true);
+            } finally {
+                setButtonLoading(btn, false, 'Update Branch');
             }
         });
     }

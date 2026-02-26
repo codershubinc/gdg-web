@@ -637,14 +637,28 @@ body {
   background-clip: text;
 }
 
+/* ── Hero subtitle — base (shared) ── */
 .hero-subtitle {
   font-size: clamp(0.95rem, 1.6vw, 1.1rem);
   color: var(--text-secondary);
-  max-width: 480px;
-  margin: 0 auto 44px;
   line-height: 1.8;
-  text-align: center;
   animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+/* ── Hero subtitle — home split layout (left column) ── */
+.hero-left .hero-subtitle {
+  max-width: 460px;
+  width: 100%;
+  margin: 0 0 44px 0;
+  text-align: left;
+}
+
+/* ── Hero subtitle — page heroes (events, etc.) ── */
+.page-hero .hero-subtitle {
+  max-width: 540px;
+  width: 100%;
+  margin: 0 auto 44px;
+  text-align: center;
 }
 
 .hero-actions {
@@ -1282,6 +1296,13 @@ body {
 
   .hero-subtitle {
     max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .hero-left .hero-subtitle {
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
   }

@@ -60,6 +60,29 @@ router.patch('/password', async (req, res) => {
     }
 });
 
+// ── PATCH /api/user/college ─────────────────────────────────────────────────
+
+router.patch('/college', async (req, res) => {
+    const { college } = req.body;
+
+    if (college === undefined) {
+        return res.status(400).json({ error: 'College/Branch field is required' });
+    }
+
+    if (college.trim().length > 120) {
+        return res.status(400).json({ error: 'College/Branch cannot exceed 120 characters' });
+    }
+
+    try {
+        req.user.college = college.trim();
+        await req.user.save();
+        return res.json({ user: req.user });
+    } catch (err) {
+        console.error('Update college error:', err);
+        return res.status(500).json({ error: 'Server error. Please try again.' });
+    }
+});
+
 // ── PATCH /api/user/sync-avatar ────────────────────────────────────────────────
 // Accepts a fresh Google ID token, verifies it, confirms the email matches
 // the logged-in user, then persists the Google profile picture as avatar.

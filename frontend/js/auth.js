@@ -134,6 +134,11 @@ export async function updateName(newName) {
     return user;
 }
 
+export async function updateCollege(college) {
+    const { user } = await api.patch('/user/college', { college });
+    return user;
+}
+
 export async function updatePassword(newPassword, oldPassword) {
     return api.patch('/user/password', { oldPassword, newPassword });
 }

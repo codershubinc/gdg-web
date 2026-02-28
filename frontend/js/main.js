@@ -1,4 +1,4 @@
-import './cursor/cursor.js';
+import './components/cursor/cursor.js';
 
 
 /* ===== PAGE LOADER ===== */

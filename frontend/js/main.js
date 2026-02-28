@@ -190,7 +190,7 @@ window.addEventListener('load', () => {
 /* ===== FILTER BUTTONS (Events Page) ===== */
 (function initFilter() {
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.event-card[data-category]');
+  const cards = document.querySelectorAll('.event-card[data-category], .event-card-big[data-category]');
   if (!filterBtns.length) return;
 
   filterBtns.forEach(btn => {
